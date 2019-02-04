@@ -17,6 +17,7 @@
 		BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */; };
 		BF52DACD22089E77009C0BF5 /* EmotionSensingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DACC22089E77009C0BF5 /* EmotionSensingTests.swift */; };
 		BF52DAD822089E77009C0BF5 /* EmotionSensingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */; };
+		BF52DAE62208E03E009C0BF5 /* AWAREFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		BF52DAD322089E77009C0BF5 /* EmotionSensingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EmotionSensingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSensingUITests.swift; sourceTree = "<group>"; };
 		BF52DAD922089E77009C0BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWAREFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C61E452B15F3A5ACE5D0F388 /* Pods-EmotionSensingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingUITests/Pods-EmotionSensingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF52DAE62208E03E009C0BF5 /* AWAREFramework.framework in Frameworks */,
 				A32D3A7382D5EBEBA43ECCF0 /* Pods_EmotionSensing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -92,6 +95,7 @@
 		A97A3FF163BCD27501E83E7B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */,
 				3D51EE988AC1B285F5641A07 /* Pods_EmotionSensing.framework */,
 				8E1ADD164B6813C31022CA1F /* Pods_EmotionSensingTests.framework */,
 				D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */,
@@ -238,6 +242,11 @@
 				TargetAttributes = {
 					BF52DAB322089E74009C0BF5 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					BF52DAC722089E77009C0BF5 = {
 						CreatedOnToolsVersion = 10.1;
@@ -608,8 +617,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7F5B5586221A9061B38E52E6 /* Pods-EmotionSensing.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = B6V9YNR3RR;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -628,8 +639,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4AE2CEE14FECA45B836C5446 /* Pods-EmotionSensing.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = B6V9YNR3RR;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

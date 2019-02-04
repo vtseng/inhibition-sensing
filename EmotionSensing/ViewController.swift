@@ -7,15 +7,25 @@
 //
 
 import UIKit
+import AWAREFramework
+
 
 class ViewController: UIViewController {
 
+//    var sensorManager: AWARESensorManager?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        let accelerometer = Accelerometer()
+        accelerometer.setSensorEventHandler{ (sensor, data) in
+            print(data)
+        }
+        
+        accelerometer.startSensor()
+        
     }
-    
-    
 
 
 }
