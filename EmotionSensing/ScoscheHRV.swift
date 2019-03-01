@@ -11,9 +11,14 @@ import AWAREFramework
 
 class ScoscheHRV: AWARESensor {
     
-    override init!(dbType: AwareDBType) {
-        super.init(dbType: dbType)
+    override init() {
+        super.init()
     }
+    
+    override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
+        super.init(awareStudy: study, dbType: dbType)
+    }
+    
     
     override func createTable() {
         super.createTable()
