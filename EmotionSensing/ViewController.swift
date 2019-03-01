@@ -20,9 +20,9 @@ class ViewController: UIViewController {
 
 
         
-        let hrvSensor = ScoscheHRV()
-        hrvSensor.startSensor()
-        hrvSensor.startSyncDB()
+        let hrvSensor = ScoscheHRV(awareStudy: nil, dbType: AwareDBTypeSQLite)
+        hrvSensor?.startSensor()
+        hrvSensor!.startSyncDB()
     }
 
 }

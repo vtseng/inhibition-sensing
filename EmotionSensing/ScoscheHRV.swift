@@ -21,7 +21,13 @@ class ScoscheHRV: AWARESensor {
     
     
     override func createTable() {
-        super.createTable()
+        if self.isDebug(){
+            print("\(String(describing: self.getName())) Create Table")
+        }
+        let queryMaker = TCQMaker()
+        queryMaker.addColumn("timestamp", type: TCQTypeReal, default: "0")
+        queryMaker.addColumn("rr_interval", type: TCQTypeReal, default: "0")
+        self.storage.createDBTableOnServer(with: queryMaker)
     }
     
     
