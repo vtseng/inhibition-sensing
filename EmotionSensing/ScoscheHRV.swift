@@ -9,14 +9,23 @@
 import Foundation
 import AWAREFramework
 
-class ScoscheHRV: AWARESensor {
-    
-    override init() {
-        super.init()
-    }
+class Scosche: AWARESensor {
     
     override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
-        super.init(awareStudy: study, dbType: dbType)
+        let SENSOR_NAME = "ScoscheHRV"
+
+        var storage = AWAREStorage()
+        if dbType == AwareDBTypeJSON{
+            print("DBTypeJSON is currently not implemented for HRV sensor.")
+        }else if dbType == AwareDBTypeCSV{
+            print("DBTypeCSV is currently not implemented for HRV sensor.")
+        }else{
+           
+        }
+        
+        super.init(awareStudy: study, sensorName: SENSOR_NAME, storage: storage)
+        
+        
     }
     
     

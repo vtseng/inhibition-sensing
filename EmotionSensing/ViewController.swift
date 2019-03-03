@@ -9,7 +9,6 @@
 import UIKit
 import AWAREFramework
 
-
 class ViewController: UIViewController {
 
 //    var sensorManager: AWARESensorManager?
@@ -18,11 +17,10 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-
-        
-        let hrvSensor = ScoscheHRV(awareStudy: nil, dbType: AwareDBTypeSQLite)
+        let hrvSensor = Scosche(awareStudy: nil, dbType: AwareDBTypeSQLite)
         hrvSensor?.startSensor()
-        hrvSensor!.startSyncDB()
+        hrvSensor?.startSyncDB()
+    
     }
 
 }
