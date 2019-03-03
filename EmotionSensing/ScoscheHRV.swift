@@ -11,8 +11,15 @@ import AWAREFramework
 
 class Scosche: AWARESensor {
     
+    override convenience init() {
+        self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
+    }
+    
     override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
+
         let SENSOR_NAME = "ScoscheHRV"
+        let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
+        let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"
 
         var storage = AWAREStorage()
         if dbType == AwareDBTypeJSON{
@@ -20,15 +27,22 @@ class Scosche: AWARESensor {
         }else if dbType == AwareDBTypeCSV{
             print("DBTypeCSV is currently not implemented for HRV sensor.")
         }else{
-           
+            storage = SQLiteStorage(study: study, sensorName: SENSOR_NAME, entityName: String(describing: EntityScoscheHRV.self), insertCallBack: { (dataDict, childContext, entity) in
+                let entityHRV = NSEntityDescription.insertNewObject(forEntityName: entity!, into: childContext!) as! EntityScoscheHRV
+                entityHRV.timestamp = dataDict?[KEY_SCOSCHE_HRV_TIMESTAMP] as! Double
+                entityHRV.rr_interval = dataDict?[KEY_SCOSCHE_HRV_RR_INTERVAL] as! Double
+
+            })
         }
-        
+
         super.init(awareStudy: study, sensorName: SENSOR_NAME, storage: storage)
-        
-        
+
+
     }
     
     
+    
+
     override func createTable() {
         if self.isDebug(){
             print("\(String(describing: self.getName())) Create Table")

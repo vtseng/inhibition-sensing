@@ -17,9 +17,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let hrvSensor = Scosche(awareStudy: nil, dbType: AwareDBTypeSQLite)
-        hrvSensor?.startSensor()
-        hrvSensor?.startSyncDB()
+        let hrvSensor = Scosche()
+        hrvSensor.startSensor()
+//        hrvSensor?.startSyncDB()
+        let accelerometer = Accelerometer()
+        accelerometer.startSensor()
     
     }
 
