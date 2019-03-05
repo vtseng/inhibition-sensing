@@ -27,12 +27,12 @@ class Scosche: AWARESensor {
         }else if dbType == AwareDBTypeCSV{
             print("DBTypeCSV is currently not implemented for HRV sensor.")
         }else{
-            storage = SQLiteStorage(study: study, sensorName: SENSOR_NAME, entityName: String(describing: EntityScoscheHRV.self), insertCallBack: { (dataDict, childContext, entity) in
-                let entityHRV = NSEntityDescription.insertNewObject(forEntityName: entity!, into: childContext!) as! EntityScoscheHRV
-                entityHRV.timestamp = dataDict?[KEY_SCOSCHE_HRV_TIMESTAMP] as! Double
-                entityHRV.rr_interval = dataDict?[KEY_SCOSCHE_HRV_RR_INTERVAL] as! Double
-
-            })
+//            storage = SQLiteStorage(study: study, sensorName: SENSOR_NAME, entityName: String(describing: EntityScoscheHRV.self), insertCallBack: { (dataDict, childContext, entity) in
+//                let entityHRV = NSEntityDescription.insertNewObject(forEntityName: entity!, into: childContext!) as! EntityScoscheHRV
+//                entityHRV.timestamp = dataDict?[KEY_SCOSCHE_HRV_TIMESTAMP] as! Double
+//                entityHRV.rr_interval = dataDict?[KEY_SCOSCHE_HRV_RR_INTERVAL] as! Double
+//
+//            })
         }
 
         super.init(awareStudy: study, sensorName: SENSOR_NAME, storage: storage)
