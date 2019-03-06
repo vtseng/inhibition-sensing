@@ -18,13 +18,13 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
 
         let hrvSensor = Scosche()
-//        hrvSensor.startSensor()
+        hrvSensor.startSensor()
 
-//        let accelerometer = Acceleromet   er()
-//        accelerometer.startSensor()
-//        
-//        let ambientNoise = AmbientNoise()
-//        ambientNoise.startSensor()
+        let accelerometer = Accelerometer()
+        accelerometer.startSensor()
+//
+        let ambientNoise = AmbientNoise()
+        ambientNoise.startSensor()
     
     }
 

@@ -112,18 +112,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		BF41460F222F2904007DE6FD /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				BF414611222F293B007DE6FD /* EntityScoscheHRV+CoreDataProperties.h */,
-				BF414612222F293B007DE6FD /* EntityScoscheHRV+CoreDataClass.h */,
-				BF414613222F293B007DE6FD /* EntityScoscheHRV+CoreDataClass.m */,
-				BF414614222F293B007DE6FD /* EntityScoscheHRV+CoreDataProperties.m */,
-				BF414610222F293A007DE6FD /* EmotionSensing-Bridging-Header.h */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		BF52DAAB22089E74009C0BF5 = {
 			isa = PBXGroup;
 			children = (
@@ -156,7 +144,11 @@
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
 				BF519D9822286B2C0078E589 /* ScoscheHRV.swift */,
-				BF41460F222F2904007DE6FD /* Resources */,
+				BF414611222F293B007DE6FD /* EntityScoscheHRV+CoreDataProperties.h */,
+				BF414612222F293B007DE6FD /* EntityScoscheHRV+CoreDataClass.h */,
+				BF414613222F293B007DE6FD /* EntityScoscheHRV+CoreDataClass.m */,
+				BF414614222F293B007DE6FD /* EntityScoscheHRV+CoreDataProperties.m */,
+				BF414610222F293A007DE6FD /* EmotionSensing-Bridging-Header.h */,
 			);
 			path = EmotionSensing;
 			sourceTree = "<group>";
