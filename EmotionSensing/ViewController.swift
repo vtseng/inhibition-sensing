@@ -12,12 +12,13 @@ import AWAREFramework
 class ViewController: UIViewController {
 
 //    var sensorManager: AWARESensorManager?
+    var hrvSensor: Scosche!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        let hrvSensor = Scosche()
+        hrvSensor = Scosche()
         hrvSensor.startSensor()
 
         let accelerometer = Accelerometer()
