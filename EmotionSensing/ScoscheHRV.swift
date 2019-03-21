@@ -137,6 +137,12 @@ extension Scosche : CBPeripheralDelegate {
         
         for characteristic in characteristics {
             print(characteristic)
+            if characteristic.properties.contains(.read) {
+                peripheral.readValue(for: characteristic)
+            }
+            if characteristic.properties.contains(.notify) {
+                peripheral.setNotifyValue(true, for: characteristic)
+            }
         }
     }
     
