@@ -70,6 +70,10 @@ class Scosche: AWARESensor {
     
     
     override func stopSensor() -> Bool {
+        if centralManager != nil {
+            centralManager.stopScan()
+            centralManager = nil
+        }
         return super.stopSensor()
     }
     
@@ -83,8 +87,10 @@ class Scosche: AWARESensor {
         super.stopSyncDB()
     }
     
-    func onHeartRateReceived(_ heartRate: Int) {
+    func onHeartRateReceived(_ heartRate: Int, _ rr: Int) {
         print("BPM: \(heartRate)")
+        print("RR: \(rr)")
+
     }
 }
 
@@ -112,7 +118,6 @@ extension Scosche: CBCentralManagerDelegate {
         print(peripheral)
         heartRatePeripheral = peripheral
         heartRatePeripheral.delegate = self
-        centralManager.stopScan()
         centralManager.connect(heartRatePeripheral)
     }
     
@@ -151,7 +156,8 @@ extension Scosche : CBPeripheralDelegate {
         switch characteristic.uuid {
         case heartRateMeasurementCharacteristicCBUUID:
             let bpm = heartRate(from: characteristic)
-            onHeartRateReceived(bpm)
+            let rr = rrInterval(from: characteristic)
+            onHeartRateReceived(bpm, rr)
         case batteryLevelCharacteristicCBUUID:
             let battery = batteryLevel(from: characteristic)
             print("battery level: \(battery)")
@@ -173,9 +179,13 @@ extension Scosche : CBPeripheralDelegate {
         }
     }
     
+    private func rrInterval(from characteristic: CBCharacteristic) -> Int {
+        guard let characteristicData = characteristic.value else { return -1 }
+        return Int(characteristicData[0])
+    }
+    
     private func batteryLevel(from characteristic: CBCharacteristic) -> Int {
         guard let characteristicData = characteristic.value else { return -1 }
-        
         return Int(characteristicData[0])
     }
     
