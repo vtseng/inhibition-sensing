@@ -7,6 +7,7 @@ target 'EmotionSensing' do
 
   # Pods for EmotionSensing
   pod 'AWAREFramework', :git=>'https://github.com/tetujin/AWAREFramework-iOS.git'
+  pod 'ReachabilitySwift'
   #pod 'MQTTKit'
 
   target 'EmotionSensingTests' do

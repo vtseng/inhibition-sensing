@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let core = AWARECore.shared()
-        core?.activate()
-        core?.requestPermissionForBackgroundSensing()
+        core.activate()
+        core.requestPermissionForBackgroundSensing()
         
         return true
     }
