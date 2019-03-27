@@ -1,6 +1,0 @@
-framework module Pods_EmotionSensing {
-  umbrella header "Pods-EmotionSensing-umbrella.h"
-
-  export *
-  module * { export * }
-}

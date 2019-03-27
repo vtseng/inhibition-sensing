@@ -90,7 +90,6 @@ class Scosche: AWARESensor {
     func onHeartRateReceived(_ heartRate: Int, _ rr: Int) {
         print("BPM: \(heartRate)")
         print("RR: \(rr)")
-
     }
 }
 
