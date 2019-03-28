@@ -10,7 +10,7 @@
 import Foundation
 import CoreData
 
-
+@objc(EntityScoscheHRV)
 public class EntityScoscheHRV: NSManagedObject {
 
 }

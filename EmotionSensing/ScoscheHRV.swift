@@ -88,14 +88,9 @@ class ScoscheHRV: AWARESensor {
     override func stopSyncDB() {
         super.stopSyncDB()
     }
-    
-    func onHeartRateReceived(_ heartRate: Int, _ rr: Float) {
-        print("BPM: \(heartRate)")
-        print(rr != -1 ? "RR: \(rr)" : "RR: none")
-    }
 }
 
-// MARK: Confirming to CBCentralManagerDelegate protocol.
+// MARK: Confirm to CBCentralManagerDelegate protocol.
 extension ScoscheHRV: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
@@ -128,7 +123,7 @@ extension ScoscheHRV: CBCentralManagerDelegate {
     }
 }
 
-// MARK: Confirming to CBPeripheralDelegate protocol.
+// MARK: Confirm to CBPeripheralDelegate protocol.
 extension ScoscheHRV : CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
@@ -200,18 +195,25 @@ extension ScoscheHRV : CBPeripheralDelegate {
         return Int(characteristicData[0])
     }
     
-    func onHeartRateReceived(_ heartRate: Int, _ rr: Int) {
+    func onHeartRateReceived(_ heartRate: Int, _ rr: Float) {
         print("BPM: \(heartRate)")
-        print("RR: \(rr)")
+        print(rr != -1 ? "RR: \(rr)" : "RR: none")
         
         var dict = [String: Any]()
         let unixtime = AWAREUtils.getUnixTimestamp(NSDate() as Date)
         dict[KEY_SCOSCHE_HRV_TIMESTAMP] = unixtime
+        dict[KEY_SCOSCHE_HRV_DEVICE_ID] = getDeviceId()
         dict[KEY_SCOSCHE_HRV_RR_INTERVAL] = rr
         
         print(dict)
         
-	
+        storage.saveData(with: dict, buffer: false, saveInMainThread: true)
+        setLatestData(dict)
+        
+        if let handler = getEventHandler(){
+            handler(self, dict)
+        }
+        
     }
     
     

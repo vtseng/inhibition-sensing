@@ -591,7 +591,7 @@
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
-    <entity name="EntityScoscheHRV" representedClassName=".EntityScoscheHRV" syncable="YES">
+    <entity name="EntityScoscheHRV" representedClassName="EntityScoscheHRV" syncable="YES">
         <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="rr_interval" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>

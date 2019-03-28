@@ -21,8 +21,8 @@ class ViewController: UIViewController {
         hrvSensor = ScoscheHRV()
         hrvSensor.startSensor()
 
-        let accelerometer = Accelerometer()
-        accelerometer.startSensor()
+//        let accelerometer = Accelerometer()
+//        accelerometer.startSensor()
 //
 //        let ambientNoise = AmbientNoise()
 //        ambientNoise.startSensor()

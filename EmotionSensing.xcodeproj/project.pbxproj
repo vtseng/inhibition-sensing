@@ -19,8 +19,8 @@
 		BF52DACD22089E77009C0BF5 /* EmotionSensingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DACC22089E77009C0BF5 /* EmotionSensingTests.swift */; };
 		BF52DAD822089E77009C0BF5 /* EmotionSensingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */; };
 		BF52DAE62208E03E009C0BF5 /* AWAREFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */; };
-		BFB01465224D1B2200D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01463224D1B2200D68077 /* EntityScoscheHRV+CoreDataClass.swift */; };
-		BFB01466224D1B2200D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01464224D1B2200D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
+		BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */; };
+		BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,8 +63,8 @@
 		BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSensingUITests.swift; sourceTree = "<group>"; };
 		BF52DAD922089E77009C0BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWAREFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFB01463224D1B2200D68077 /* EntityScoscheHRV+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataClass.swift"; sourceTree = "<group>"; };
-		BFB01464224D1B2200D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		C61E452B15F3A5ACE5D0F388 /* Pods-EmotionSensingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingUITests/Pods-EmotionSensingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -141,8 +141,8 @@
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
 				BF519D9822286B2C0078E589 /* ScoscheHRV.swift */,
-				BFB01463224D1B2200D68077 /* EntityScoscheHRV+CoreDataClass.swift */,
-				BFB01464224D1B2200D68077 /* EntityScoscheHRV+CoreDataProperties.swift */,
+				BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */,
+				BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */,
 			);
 			path = EmotionSensing;
 			sourceTree = "<group>";
@@ -449,8 +449,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BFB01465224D1B2200D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */,
-				BFB01466224D1B2200D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */,
+				BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */,
+				BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */,
 				BF52DABA22089E74009C0BF5 /* ViewController.swift in Sources */,
 				BF519D9922286B2C0078E589 /* ScoscheHRV.swift in Sources */,
 				BF52DAB822089E74009C0BF5 /* AppDelegate.swift in Sources */,
@@ -633,14 +633,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 4D9A79AV7X;
+				DEVELOPMENT_TEAM = 853VPLF7T7;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.avani.EmotionSensing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionSensing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -658,14 +658,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 4D9A79AV7X;
+				DEVELOPMENT_TEAM = 853VPLF7T7;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.avani.EmotionSensing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionSensing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
