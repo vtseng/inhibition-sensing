@@ -94,6 +94,7 @@ class Scosche: AWARESensor {
     }
 }
 
+// MARK: Confirming to CBCentralManagerDelegate protocol.
 extension Scosche: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
@@ -126,6 +127,7 @@ extension Scosche: CBCentralManagerDelegate {
     }
 }
 
+// MARK: Confirming to CBPeripheralDelegate protocol.
 extension Scosche : CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
@@ -166,7 +168,7 @@ extension Scosche : CBPeripheralDelegate {
         }
     }
     
-    
+    // MARK: Helper functions
     private func heartRate(from characteristic: CBCharacteristic) -> Int {
         guard let characteristicData = characteristic.value else { return -1 }
         let byteArray = [UInt8](characteristicData)
