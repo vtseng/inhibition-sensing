@@ -173,7 +173,6 @@ extension ScoscheHRV : CBPeripheralDelegate {
     private func heartRate(from characteristic: CBCharacteristic) -> Int {
         guard let characteristicData = characteristic.value else { return -1 }
         let byteArray = [UInt8](characteristicData)
-        print("byteArray: \(byteArray)")
         
         let firstBitValue = byteArray[0] & 0x01
         if firstBitValue == 0 {
