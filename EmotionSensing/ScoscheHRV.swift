@@ -9,7 +9,13 @@
 import Foundation
 import AWAREFramework
 
-class Scosche: AWARESensor {
+// String constants
+let SENSOR_NAME = "ScoscheHRV"
+let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
+let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
+let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"
+
+class ScoscheHRV: AWARESensor {
     
     var centralManager: CBCentralManager!
     var heartRatePeripheral: CBPeripheral!
@@ -19,17 +25,13 @@ class Scosche: AWARESensor {
     
     let heartRateServiceCBUUID = CBUUID(string: "0x180D")
     let batteryServiceCBUUID = CBUUID(string: "0x180F")
+
     
     override convenience init() {
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
     }
     
     override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
-
-        let SENSOR_NAME = "ScoscheHRV"
-        let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
-        let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
-        let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"
 
         var storage = AWAREStorage()
         if dbType == AwareDBTypeJSON{
@@ -94,7 +96,7 @@ class Scosche: AWARESensor {
 }
 
 // MARK: Confirming to CBCentralManagerDelegate protocol.
-extension Scosche: CBCentralManagerDelegate {
+extension ScoscheHRV: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .unknown:
@@ -127,7 +129,7 @@ extension Scosche: CBCentralManagerDelegate {
 }
 
 // MARK: Confirming to CBPeripheralDelegate protocol.
-extension Scosche : CBPeripheralDelegate {
+extension ScoscheHRV : CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
         
@@ -198,5 +200,20 @@ extension Scosche : CBPeripheralDelegate {
         guard let characteristicData = characteristic.value else { return -1 }
         return Int(characteristicData[0])
     }
+    
+    func onHeartRateReceived(_ heartRate: Int, _ rr: Int) {
+        print("BPM: \(heartRate)")
+        print("RR: \(rr)")
+        
+        var dict = [String: Any]()
+        var unixtime = AWAREUtils.getUnixTimestamp(NSDate() as Date)
+        dict[KEY_SCOSCHE_HRV_TIMESTAMP] = unixtime
+        dict[KEY_SCOSCHE_HRV_RR_INTERVAL] = rr
+        
+        print(dict)
+        
+	
+    }
+    
     
 }

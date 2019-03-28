@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18D109" minimumToolsVersion="Xcode 7.3" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="EntityAccelerometer" representedClassName="EntityAccelerometer" syncable="YES">
         <attribute name="accuracy" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -591,7 +591,11 @@
         <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
-    <entity name="EntityScoscheHRV" syncable="YES"/>
+    <entity name="EntityScoscheHRV" representedClassName=".EntityScoscheHRV" syncable="YES">
+        <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rr_interval" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
     <entity name="EntityScreen" representedClassName="EntityScreen" syncable="YES">
         <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="screen_status" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
@@ -680,10 +684,10 @@
         <element name="EntityProximity" positionX="306" positionY="153" width="128" height="120"/>
         <element name="EntityPushNotification" positionX="198" positionY="162" width="128" height="30"/>
         <element name="EntityRotation" positionX="180" positionY="144" width="128" height="30"/>
+        <element name="EntityScoscheHRV" positionX="315" positionY="162" width="128" height="90"/>
         <element name="EntityScreen" positionX="189" positionY="153" width="128" height="30"/>
         <element name="EntitySensorWifi" positionX="333" positionY="180" width="128" height="120"/>
         <element name="EntityTimezone" positionX="198" positionY="162" width="128" height="30"/>
         <element name="EntityWifi" positionX="207" positionY="171" width="128" height="30"/>
-        <element name="EntityScoscheHRV" positionX="315" positionY="162" width="128" height="45"/>
     </elements>
 </model>
