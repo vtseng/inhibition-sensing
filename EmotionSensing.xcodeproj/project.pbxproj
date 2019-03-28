@@ -639,14 +639,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 853VPLF7T7;
+				DEVELOPMENT_TEAM = 4D9A79AV7X;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionSensing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.avani.EmotionSensing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EmotionSensing/EmotionSensing-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -664,14 +664,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
-				DEVELOPMENT_TEAM = 853VPLF7T7;
+				DEVELOPMENT_TEAM = 4D9A79AV7X;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionSensing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.avani.EmotionSensing;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EmotionSensing/EmotionSensing-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
