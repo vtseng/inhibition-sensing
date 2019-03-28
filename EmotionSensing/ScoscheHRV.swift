@@ -87,10 +87,9 @@ class Scosche: AWARESensor {
         super.stopSyncDB()
     }
     
-    func onHeartRateReceived(_ heartRate: Int, _ rr: Int) {
+    func onHeartRateReceived(_ heartRate: Int, _ rr: Float) {
         print("BPM: \(heartRate)")
-        print("RR: \(rr)")
-
+        print(rr != -1 ? "RR: \(rr)" : "RR: none")
     }
 }
 
@@ -172,6 +171,7 @@ extension Scosche : CBPeripheralDelegate {
     private func heartRate(from characteristic: CBCharacteristic) -> Int {
         guard let characteristicData = characteristic.value else { return -1 }
         let byteArray = [UInt8](characteristicData)
+        print("byteArray: \(byteArray)")
         
         let firstBitValue = byteArray[0] & 0x01
         if firstBitValue == 0 {
@@ -181,9 +181,17 @@ extension Scosche : CBPeripheralDelegate {
         }
     }
     
-    private func rrInterval(from characteristic: CBCharacteristic) -> Int {
+    private func rrInterval(from characteristic: CBCharacteristic) -> Float {
         guard let characteristicData = characteristic.value else { return -1 }
-        return Int(characteristicData[0])
+        let byteArray = [UInt8](characteristicData)
+        let len = byteArray.count
+        let rrIntervalPresentBit = byteArray[0] >> 4 & 0x01 // indicates presence of rr interval values
+        
+        if rrIntervalPresentBit == 1 {
+            return Float((Int(byteArray[len-1]) << 8) + Int(byteArray[len-2])) / 1024.0 // resolution is 1/1024 seconds
+        } else {
+            return -1
+        }
     }
     
     private func batteryLevel(from characteristic: CBCharacteristic) -> Int {
