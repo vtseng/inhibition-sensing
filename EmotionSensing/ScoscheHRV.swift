@@ -89,7 +89,10 @@ class ScoscheHRV: AWARESensor {
         super.stopSyncDB()
     }
     
-    
+    func onHeartRateReceived(_ heartRate: Int, _ rr: Float) {
+        print("BPM: \(heartRate)")
+        print(rr != -1 ? "RR: \(rr)" : "RR: none")
+    }
 }
 
 // MARK: Confirming to CBCentralManagerDelegate protocol.
@@ -179,9 +182,17 @@ extension ScoscheHRV : CBPeripheralDelegate {
         }
     }
     
-    private func rrInterval(from characteristic: CBCharacteristic) -> Int {
+    private func rrInterval(from characteristic: CBCharacteristic) -> Float {
         guard let characteristicData = characteristic.value else { return -1 }
-        return Int(characteristicData[0])
+        let byteArray = [UInt8](characteristicData)
+        let len = byteArray.count
+        let rrIntervalPresentBit = byteArray[0] >> 4 & 0x01 // indicates presence of rr interval values
+        
+        if rrIntervalPresentBit == 1 {
+            return Float((Int(byteArray[len-1]) << 8) + Int(byteArray[len-2])) / 1024.0 // resolution is 1/1024 seconds
+        } else {
+            return -1
+        }
     }
     
     private func batteryLevel(from characteristic: CBCharacteristic) -> Int {
