@@ -12,20 +12,20 @@ import AWAREFramework
 class ViewController: UIViewController {
 
 //    var sensorManager: AWARESensorManager?
-    var hrvSensor: Scosche!
+    var hrvSensor: ScoscheHRV!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        hrvSensor = Scosche()
+        hrvSensor = ScoscheHRV()
         hrvSensor.startSensor()
 
         let accelerometer = Accelerometer()
         accelerometer.startSensor()
 //
-        let ambientNoise = AmbientNoise()
-        ambientNoise.startSensor()
+//        let ambientNoise = AmbientNoise()
+//        ambientNoise.startSensor()
     
     }
 
