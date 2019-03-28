@@ -194,7 +194,7 @@ extension ScoscheHRV : CBPeripheralDelegate {
         print("RR: \(rr)")
         
         var dict = [String: Any]()
-        var unixtime = AWAREUtils.getUnixTimestamp(NSDate() as Date)
+        let unixtime = AWAREUtils.getUnixTimestamp(NSDate() as Date)
         dict[KEY_SCOSCHE_HRV_TIMESTAMP] = unixtime
         dict[KEY_SCOSCHE_HRV_RR_INTERVAL] = rr
         
