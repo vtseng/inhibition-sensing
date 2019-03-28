@@ -12,20 +12,42 @@ import AWAREFramework
 class ViewController: UIViewController {
 
 //    var sensorManager: AWARESensorManager?
-    var hrvSensor: ScoscheHRV!
+//    var hrvSensor: ScoscheHRV!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
 
-        hrvSensor = ScoscheHRV()
-        hrvSensor.startSensor()
+        let awareCore = AWARECore.shared()
+        let study = AWAREStudy.shared()
+        let manager = AWARESensorManager.shared()
+        
 
-//        let accelerometer = Accelerometer()
-//        accelerometer.startSensor()
+        let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
+        study.setStudyURL(url)
+        
+        let hrvSensor = ScoscheHRV(awareStudy: study, dbType: AwareDBTypeSQLite)
+        manager.add(hrvSensor!)
+        manager.createDBTablesOnAwareServer()
+        
+        manager.startAllSensors()
+        manager.syncAllSensors()
+        
+    
+        
+//        study.join(withURL: url) { (settings, studyState, error) in
+//            let accelerometer = Accelerometer()
+//            manager.add(accelerometer)
 //
-//        let ambientNoise = AmbientNoise()
-//        ambientNoise.startSensor()
+//            let hrvSensor = ScoscheHRV()
+//            manager.add(hrvSensor)
+//
+//            manager.createDBTablesOnAwareServer()
+//
+//            manager.startAllSensors()
+//            manager.syncAllSensors()
+//
+//        }
     
     }
 
