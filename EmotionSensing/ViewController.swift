@@ -26,8 +26,12 @@ class ViewController: UIViewController {
         let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
         study.setStudyURL(url)
         
-        let hrvSensor = ScoscheHRV(awareStudy: study, dbType: AwareDBTypeSQLite)
+        let hrvSensor = ScoscheHRV(awareStudy: study)
         manager.add(hrvSensor!)
+        
+        let accelerometer = Accelerometer(awareStudy: study)
+        manager.add(accelerometer!)
+        
         manager.createDBTablesOnAwareServer()
         
         manager.startAllSensors()
