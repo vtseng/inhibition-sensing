@@ -14,6 +14,7 @@ let SENSOR_NAME = "ScoscheHRV"
 let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
 let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
 let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"
+let PERIPHERAL_ID = "5ADD92C7-BE54-59CC-432F-36287BF88B1D"
 
 class ScoscheHRV: AWARESensor {
     
@@ -107,15 +108,16 @@ extension ScoscheHRV: CBCentralManagerDelegate {
         case .poweredOn:
             print("central.state is .poweredOn")
             centralManager.scanForPeripherals(withServices: [heartRateServiceCBUUID, batteryServiceCBUUID])
-            
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
-        heartRatePeripheral = peripheral
-        heartRatePeripheral.delegate = self
-        centralManager.connect(heartRatePeripheral)
+        if (peripheral.identifier.uuidString == PERIPHERAL_ID) {
+            heartRatePeripheral = peripheral
+            heartRatePeripheral.delegate = self
+            centralManager.connect(heartRatePeripheral)
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
