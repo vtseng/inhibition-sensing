@@ -25,7 +25,6 @@ class ScoscheHRV: AWARESensor {
     
     let heartRateServiceCBUUID = CBUUID(string: "0x180D")
     let batteryServiceCBUUID = CBUUID(string: "0x180F")
-
     
     override convenience init() {
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
