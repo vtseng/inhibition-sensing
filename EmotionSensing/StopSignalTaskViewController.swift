@@ -8,12 +8,13 @@
 
 import Foundation
 import UIKit
+import AWAREFramework
 
 // Stop-signal task settings
-let FIXATION_DURATION = 2.0 // 500-ms fixation duration
-let BLANK_DURATION = 0.2 // 0.2 sec blank duration
+let FIXATION_DURATION = 2.0 // fixation duration
+//let BLANK_DURATION = 0.2 // 0.2 sec blank duration
 
-let NUMBER_OF_TRIALS = 10
+let NUMBER_OF_TRIALS = 30
 
 enum Trial {
     case Go, Stop
@@ -34,7 +35,8 @@ class StopSignalTaskViewController: ViewController{
     
     var remainingNumberOfTrials : Int!
     var signal: Signal?
-    var goSignalAppearTime : Date?
+    var goSignalAppearedDate : Date?
+//    var goSignalRespondedTime: Float!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,14 +48,30 @@ class StopSignalTaskViewController: ViewController{
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let touch = touches.first{
             let position = touch.location(in: taskView)
-            print(position)
+//            print(position)
             fixationLabel.isHidden = true
-            let response = userResponded(with: position)
-            print("User responded \(response)")
+            let response = userResponded(at: position)
+            
+            let goSignalRespondedDate = Date()
+//            let goSignalRespondedTimestamp = AWAREUtils.getUnixTimestamp(Date())!
+//            print("Responded: \(goSignalRespondedTimestamp)")
+            
+            if (goSignalAppearedDate != nil){
+//                let goResponseTime = goSignalRespondedTimestamp.floatValue - goSignalAppearedTimestamp!.floatValue
+                let goResponseTime = goSignalRespondedDate.timeIntervalSince(goSignalAppearedDate!)
+//                print("Go appeared: \(goSignalAppearedDate)")
+                print("Go responded: \(goSignalRespondedDate)")
+                print("Go response time: \(goResponseTime)")
+            }
+            
+            
+            // After user responded to the signal, goSignalAppearedDate becomes nil
+            goSignalAppearedDate = nil
+            
         }
     }
     
-    func userResponded(with touchPosition: CGPoint) -> UserResponse{
+    func userResponded(at touchPosition: CGPoint) -> UserResponse{
         if (touchPosition.x < taskView.frame.size.width/2){
             return .left
         }else{
@@ -61,28 +79,36 @@ class StopSignalTaskViewController: ViewController{
         }
     }
     
-    
-
 
     // The duration for which the central fixation stays
     @objc func showCentralFixation(){
+        goSignalAppearedDate = nil
         print("Showing Central Fixation")
         remainingNumberOfTrials -= 1
+        fixationLabel.text = "+"
         fixationLabel.isHidden = false
         Timer.scheduledTimer(timeInterval: FIXATION_DURATION, target: self, selector: #selector(startGoTrial), userInfo: nil, repeats: false)
     }
     
     @objc func startGoTrial(){
-        print("Beging Go Trial")
-        // First, remove the central fixation.
-        fixationLabel.isHidden = true
-        
-        // Second, randomly decide the type of Go signal
+        // Randomly decide the type of Go signal
         let signal = Signal.leftGo
+        
+        if (signal == .leftGo){
+            fixationLabel.text = "Left"
+        }else if (signal == .rightGo){
+            fixationLabel.text = "Right"
+        }
+        
+        print("Go trial starts")
+        goSignalAppearedDate = Date()
+//        goSignalAppearedTimestamp = AWAREUtils.getUnixTimestamp(Date())
+        print("Appeared: \(goSignalAppearedDate!)")
+        
         
         
         if (remainingNumberOfTrials > 0){
-            Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(showCentralFixation), userInfo: nil, repeats: false)
+            Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(showCentralFixation), userInfo: nil, repeats: false)
         }
     }
     
