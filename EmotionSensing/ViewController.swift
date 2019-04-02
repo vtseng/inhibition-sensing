@@ -14,6 +14,11 @@ class ViewController: UIViewController {
 //    var sensorManager: AWARESensorManager?
 //    var hrvSensor: ScoscheHRV!
     
+    @IBOutlet weak var batteryLevelLabel: UILabel!
+    @IBOutlet weak var batteryLevelValueLabel: UILabel!
+    @IBOutlet weak var rrIntervalLabel: UILabel!
+    @IBOutlet weak var rrIntervalValueLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -22,6 +27,16 @@ class ViewController: UIViewController {
         let study = AWAREStudy.shared()
         let manager = AWARESensorManager.shared()
         
+        // add observers for battery level and rr interval updates
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self,
+                                       selector: #selector(scoscheDidUpdateBatteryLevel(_:)),
+                                       name: .ScoscheDidUpdateBatteryLevel,
+                                       object: nil)
+        notificationCenter.addObserver(self,
+                                       selector: #selector(scoscheDidUpdateRRInterval(_:)),
+                                       name: .ScoscheDidUpdateRRInterval,
+                                       object: nil)
 
         let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
         study.setStudyURL(url)
@@ -49,6 +64,18 @@ class ViewController: UIViewController {
 //
 //        }
     
+    }
+    
+    @objc
+    func scoscheDidUpdateBatteryLevel(_ notification: Notification) {
+        let batteryLevel = notification.userInfo?[ScoscheHRV.BATTERY_LEVEL_NOTIFICATION_KEY]
+        self.batteryLevelValueLabel.text = "\(batteryLevel!)"
+    }
+    
+    @objc
+    func scoscheDidUpdateRRInterval(_ notification: Notification) {
+        let rr = notification.userInfo?[ScoscheHRV.RR_INTERVAL_NOTIFICATION_KEY]
+        self.rrIntervalValueLabel.text = "\(rr!)"
     }
 
 }

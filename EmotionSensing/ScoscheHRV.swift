@@ -26,7 +26,9 @@ class ScoscheHRV: AWARESensor {
     
     let heartRateServiceCBUUID = CBUUID(string: "0x180D")
     let batteryServiceCBUUID = CBUUID(string: "0x180F")
-
+    
+    static let BATTERY_LEVEL_NOTIFICATION_KEY = "batteryLevel"
+    static let RR_INTERVAL_NOTIFICATION_KEY = "rrInterval"
     
     override convenience init() {
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
@@ -160,7 +162,7 @@ extension ScoscheHRV : CBPeripheralDelegate {
             onHeartRateReceived(bpm, rr)
         case batteryLevelCharacteristicCBUUID:
             let battery = batteryLevel(from: characteristic)
-            print("battery level: \(battery)")
+            onBatteryLevelReceived(battery)
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
@@ -197,6 +199,10 @@ extension ScoscheHRV : CBPeripheralDelegate {
         return Int(characteristicData[0])
     }
     
+    func onBatteryLevelReceived(_ batteryLevel: Int) {
+        postBatteryLevel(batteryLevel)
+    }
+    
     func onHeartRateReceived(_ heartRate: Int, _ rr: Float) {
         print("BPM: \(heartRate)")
         print(rr != -1 ? "RR: \(rr)" : "RR: none")
@@ -216,7 +222,26 @@ extension ScoscheHRV : CBPeripheralDelegate {
             handler(self, dict)
         }
         
+        // post notifications to update rr interval and battery level labels
+        postRRInterval(rr)
     }
     
+    func postBatteryLevel(_ batteryLevel: Int) {
+        NotificationCenter.default.post(
+            name: .ScoscheDidUpdateBatteryLevel,
+            object: self,
+            userInfo: [ScoscheHRV.BATTERY_LEVEL_NOTIFICATION_KEY : batteryLevel])
+    }
     
+    func postRRInterval(_ rr: Float) {
+        NotificationCenter.default.post(
+            name: .ScoscheDidUpdateRRInterval,
+            object: self,
+            userInfo: [ScoscheHRV.RR_INTERVAL_NOTIFICATION_KEY : rr])
+    }
+}
+
+extension Notification.Name {
+    static let ScoscheDidUpdateBatteryLevel = NSNotification.Name("ScoscheDidUpdateBatteryLevel")
+    static let ScoscheDidUpdateRRInterval = NSNotification.Name("ScoscheDidUpdateRRInterval")
 }
