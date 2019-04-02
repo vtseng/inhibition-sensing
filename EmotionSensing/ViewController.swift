@@ -14,8 +14,6 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 //    var sensorManager: AWARESensorManager?
 //    var hrvSensor: ScoscheHRV!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -28,8 +26,8 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
         study.setStudyURL(url)
         
-        let hrvSensor = ScoscheHRV(awareStudy: study)
-        manager.add(hrvSensor!)
+//        let hrvSensor = ScoscheHRV(awareStudy: study)
+//        manager.add(hrvSensor!)
         
         let accelerometer = Accelerometer(awareStudy: study)
         manager.add(accelerometer!)
@@ -85,8 +83,8 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         content.categoryIdentifier = "taskIdentifier"
         content.badge = 1
         var dateComponents = DateComponents()
-        dateComponents.hour = 16
-        dateComponents.minute = 38
+        dateComponents.hour = 18
+        dateComponents.minute = 3
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
         let request = UNNotificationRequest(identifier: "TaskNotificaiton", content: content, trigger: trigger)

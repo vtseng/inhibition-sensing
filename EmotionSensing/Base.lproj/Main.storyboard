@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZUL-LY-qyE">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,7 +15,7 @@
             <objects>
                 <viewController id="H3f-pO-XBi" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tdE-KE-Wm6">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60q-m5-JGa">
@@ -40,12 +40,42 @@
         <scene sceneID="rbU-uF-M4q">
             <objects>
                 <viewController id="tPc-um-JGY" customClass="StopSignalTaskViewController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="pqd-VO-qyX">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pqd-VO-qyX">
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4k-6j-uxT">
+                                <rect key="frame" x="312" y="177" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="leftGo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="70n-CQ-l3Z">
+                                <rect key="frame" x="142" y="177" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="leftGo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCA-Y0-Xqj">
+                                <rect key="frame" x="495" y="177" width="47" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="GxC-E2-6OE" firstAttribute="trailing" secondItem="rCA-Y0-Xqj" secondAttribute="trailing" constant="125" id="646-w6-c5c"/>
+                            <constraint firstItem="70n-CQ-l3Z" firstAttribute="leading" secondItem="GxC-E2-6OE" secondAttribute="leading" constant="142" id="FLV-YS-DBi"/>
+                            <constraint firstItem="rCA-Y0-Xqj" firstAttribute="leading" secondItem="v4k-6j-uxT" secondAttribute="trailing" constant="141" id="Uhl-Jz-4dI"/>
+                            <constraint firstItem="v4k-6j-uxT" firstAttribute="leading" secondItem="70n-CQ-l3Z" secondAttribute="trailing" constant="123" id="yhM-JA-fAv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="GxC-E2-6OE"/>
                     </view>
+                    <connections>
+                        <outlet property="fixationLabel" destination="v4k-6j-uxT" id="haX-1n-QDP"/>
+                        <outlet property="taskView" destination="pqd-VO-qyX" id="cPQ-Hv-c6v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vi7-cA-nOl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -56,7 +86,7 @@
             <objects>
                 <viewController id="pe6-sr-JO9" customClass="ViewController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Qmx-3V-XTn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="OMH-42-kxG"/>
@@ -90,7 +120,7 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
