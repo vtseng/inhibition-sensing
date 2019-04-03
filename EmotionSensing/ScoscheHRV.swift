@@ -196,7 +196,8 @@ extension ScoscheHRV : CBPeripheralDelegate {
     
     private func batteryLevel(from characteristic: CBCharacteristic) -> Int {
         guard let characteristicData = characteristic.value else { return -1 }
-        return Int(characteristicData[0])
+        let byteArray = [UInt8](characteristicData)
+        return Int(byteArray[0])
     }
     
     func onBatteryLevelReceived(_ batteryLevel: Int) {
