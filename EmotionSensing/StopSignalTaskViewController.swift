@@ -10,32 +10,51 @@ import Foundation
 import UIKit
 import AWAREFramework
 
-// Stop-signal task settings
-let FIXATION_DURATION = 2.0 // fixation duration
-//let BLANK_DURATION = 0.2 // 0.2 sec blank duration
-let GO_TRIAL_DURATION = 1.0
-
-let NUMBER_OF_TOTAL_TRAILS = 30
-let NUMBER_OF_STOP_TRIALS = 5
 
 enum Signal {
     case leftGo, rightGo, stopFollowingLeftGo, stopFollowingRightGo
 }
 
-enum UserResponse {
+enum TouchResponse {
     case left, right
 }
 
-enum TaskState {
-    case blank, fixation, go, stop
+enum TaskState: String {
+    case blank = "blank"
+    case fixation = "fixation"
+    case go = "go"
+    case stop = "stop"
 }
+
+enum ResponseType: String {
+    case falseStart = "false_start"
+    case goCorrect = "go_correct"
+    case goOmission = "go_omission"
+    case goError = "go_error"
+    case stopSuccessful = "stop_successful"
+    case stopUnsuccessful = "stop_unsuccessful"
+}
+
+
+// Stop-signal task settings
+let FIXATION_DURATION = 2.0 // fixation duration
+//let BLANK_DURATION = 0.2 // 0.2 sec blank duration
+let GO_TRIAL_DURATION = 1.0
+
+let NUMBER_OF_TOTAL_TRAILS = 10
+let NUMBER_OF_STOP_TRIALS = 5
+
+let DEFAULT_GO_RESPONSE_TYPE = ResponseType.goOmission // Default response type for Go trial if user doesn't respond
+let DEFAULT_STOP_RESPONSE_TYPE = ResponseType.stopSuccessful // Default response type for Stop trial if user doesn't respond
+
+let fileName  = "task.csv"
+let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
 
 class StopSignalTaskViewController: ViewController{
     
     @IBOutlet weak var fixationLabel: UILabel!
     @IBOutlet var taskView: UIView!
     
-    var remainingNumberOfTrials : Int!
     var signal: Signal?
     var goSignalAppearedDate : Date?
     var taskState = TaskState.blank
@@ -43,16 +62,20 @@ class StopSignalTaskViewController: ViewController{
     var stopSignalDelay = 0.2 // Initial SSD = 200 ms
     var trialStartDate : Date?
     var responseDate : Date?
-//    var goSignalRespondedTime: Float!
+    var responseType : ResponseType?
+    var userDidRespond = false
+    var responsesString = "Trial ID, Trial Timestamp, Trial Type, Current SSD (ms), Response, Response Time (ms)\n"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        remainingNumberOfTrials = NUMBER_OF_TOTAL_TRAILS
         
         let numberOfGoTrials = NUMBER_OF_TOTAL_TRAILS - NUMBER_OF_STOP_TRIALS
         let goTrials = Array(repeating: TaskState.go, count: numberOfGoTrials)
         let stopTrials = Array(repeating: TaskState.stop, count: NUMBER_OF_STOP_TRIALS)
         trials = (goTrials + stopTrials).shuffled()
+        
+        responseType = nil
+        
         
         showFixation()
     }
@@ -68,27 +91,16 @@ class StopSignalTaskViewController: ViewController{
             fixationLabel.isHidden = true
             userResponded(at: position)
             
-            let goSignalRespondedDate = Date()
-            
-            if (goSignalAppearedDate != nil){
-                let goResponseTime = goSignalRespondedDate.timeIntervalSince(goSignalAppearedDate!)
-//                print("Go response time: \(goResponseTime)")
-            }
-            
-            
-            // After user responded to the signal, goSignalAppearedDate becomes nil
-            goSignalAppearedDate = nil
-            
         }
     }
     
     
     func userResponded(at touchPosition: CGPoint){
-        var response: UserResponse?
+        var touchResponse: TouchResponse?
         if touchPosition.x < taskView.frame.size.width/2 {
-            response = .left
+            touchResponse = .left
         } else {
-            response = .right
+            touchResponse = .right
         }
         
         switch taskState{
@@ -96,16 +108,24 @@ class StopSignalTaskViewController: ViewController{
             fixationLabel.text = ""
         case .fixation:
             fixationLabel.text = "Too early"
+            responseType = .falseStart
+
         case .stop:
-            fixationLabel.text = "Incorrect"
+            fixationLabel.text = userDidRespond ? fixationLabel.text : "Incorrect"
+            responseType = userDidRespond ?  responseType : .stopUnsuccessful
+            
         case .go:
-            let correct = userResponseToGoTrial(with: response!)
+            let correct = userResponseToGoTrial(with: touchResponse!)
             if correct{
-                fixationLabel.text = "Correct"
+                fixationLabel.text = userDidRespond ? fixationLabel.text : "Correct"
+                responseType = userDidRespond ? responseType : .goCorrect
             } else{
-                fixationLabel.text = "Incorrect"
+                fixationLabel.text = userDidRespond ? fixationLabel.text : "Incorrect"
+                responseType = userDidRespond ? responseType : .goError
             }
         }
+        
+        userDidRespond = true
         fixationLabel.isHidden = false
     }
     
@@ -115,12 +135,15 @@ class StopSignalTaskViewController: ViewController{
         goSignalAppearedDate = nil
         print("Showing Central Fixation")
         fixationLabel.text = "+"
+        userDidRespond = false
         
         let nextTrial = trials?.popLast()
         
         if nextTrial == .go {
+            responseType = DEFAULT_GO_RESPONSE_TYPE
             Timer.scheduledTimer(timeInterval: FIXATION_DURATION, target: self, selector: #selector(startGoTrial), userInfo: nil, repeats: false)
-        }else if nextTrial == .stop{
+        }else if nextTrial == .stop {
+            responseType = DEFAULT_STOP_RESPONSE_TYPE
             Timer.scheduledTimer(timeInterval: FIXATION_DURATION, target: self, selector: #selector(startStopTrial), userInfo: nil, repeats: false)
         }
     }
@@ -152,9 +175,9 @@ class StopSignalTaskViewController: ViewController{
         signal = stopSignalGenerator()
         
         if signal == .stopFollowingLeftGo {
-            fixationLabel.text = "Left Stop"
+            fixationLabel.text = "Left"
         } else if signal == .stopFollowingRightGo {
-            fixationLabel.text = "Right Stop"
+            fixationLabel.text = "Right"
         }
         
         trialStartDate = Date()
@@ -165,14 +188,22 @@ class StopSignalTaskViewController: ViewController{
     
     
     @objc func showBlank(){
-        taskState = .blank
         //TODO: Save the log from the previvous trial
         var responseTime = -1.0
-        if responseDate != nil{
+        if responseDate != nil {
             responseTime = responseDate!.timeIntervalSince(trialStartDate!)
-            print("RT: \(responseTime)")
         }
         
+        print("RT: \(responseTime)")
+        print("Re: \(responseType!.rawValue)")
+    
+        let trial_id = NUMBER_OF_TOTAL_TRAILS - trials!.count
+        let timestamp = AWAREUtils.getUnixTimestamp(Date())
+        
+        let trialResponseString = "\(trial_id),\(String(describing: timestamp!)),\(taskState.rawValue),\(stopSignalDelay*1000),\(String(describing: responseType!.rawValue)),\(responseTime*1000)\n"
+        responsesString.append(trialResponseString)
+        
+        taskState = .blank
         trialStartDate = nil
         responseDate = nil
         
@@ -192,10 +223,17 @@ class StopSignalTaskViewController: ViewController{
     
     func taskDidComplete(){
         fixationLabel.text = "Completed"
+        
+        do {
+            try responsesString.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+        } catch {
+            print("Failed to create file")
+            print("\(error)")
+        }
     }
 
     
-    func userResponseToGoTrial(with response: UserResponse) -> Bool{
+    func userResponseToGoTrial(with response: TouchResponse) -> Bool{
         if signal == .leftGo && response == .left {
             return true
         } else if signal == .rightGo && response == .right {
