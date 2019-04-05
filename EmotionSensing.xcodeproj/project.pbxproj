@@ -65,6 +65,7 @@
 		BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWAREFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BFCAAFC62257E27F0086A6A1 /* HRV.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = HRV.storyboard; path = "/Users/vincent/Desktop/EmotionSensing/inhibition-sensing/EmotionSensing/HRV.storyboard"; sourceTree = "<absolute>"; };
 		C61E452B15F3A5ACE5D0F388 /* Pods-EmotionSensingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingUITests/Pods-EmotionSensingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -134,6 +135,7 @@
 		BF52DAB622089E74009C0BF5 /* EmotionSensing */ = {
 			isa = PBXGroup;
 			children = (
+				BFCAAFC62257E27F0086A6A1 /* HRV.storyboard */,
 				BF52DAB722089E74009C0BF5 /* AppDelegate.swift */,
 				BF52DAB922089E74009C0BF5 /* ViewController.swift */,
 				BF52DABB22089E74009C0BF5 /* Main.storyboard */,
