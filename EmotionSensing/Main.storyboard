@@ -24,7 +24,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JTH-eV-Ef7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="497" y="-75"/>
+            <point key="canvasLocation" x="470" y="-78"/>
         </scene>
         <!--Item 1-->
         <scene sceneID="YWf-TQ-TmW">
@@ -45,7 +45,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="7ea-bn-ydk">
             <objects>
-                <tabBarController id="XXw-hD-aZ6" sceneMemberID="viewController">
+                <tabBarController id="XXw-hD-aZ6" customClass="TabBarController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hSe-rL-7YC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>

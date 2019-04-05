@@ -60,7 +60,7 @@ let KEY_STOP_SIGNAL_TASK_STATUS = "task_status"
 let fileName  = "task.csv"
 let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
 
-class StopSignalTaskViewController: ViewController{
+class StopSignalTaskViewController: UIViewController{
     
     @IBOutlet weak var fixationLabel: UILabel!
     @IBOutlet var taskView: UIView!
