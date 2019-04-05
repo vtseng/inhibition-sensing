@@ -13,7 +13,6 @@
 		BF519D9922286B2C0078E589 /* ScoscheHRV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF519D9822286B2C0078E589 /* ScoscheHRV.swift */; };
 		BF52DAB822089E74009C0BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAB722089E74009C0BF5 /* AppDelegate.swift */; };
 		BF52DABA22089E74009C0BF5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAB922089E74009C0BF5 /* ViewController.swift */; };
-		BF52DABD22089E74009C0BF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF52DABB22089E74009C0BF5 /* Main.storyboard */; };
 		BF52DABF22089E77009C0BF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF52DABE22089E77009C0BF5 /* Assets.xcassets */; };
 		BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */; };
 		BF52DACD22089E77009C0BF5 /* EmotionSensingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DACC22089E77009C0BF5 /* EmotionSensingTests.swift */; };
@@ -52,7 +51,6 @@
 		BF52DAB422089E74009C0BF5 /* EmotionSensing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmotionSensing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF52DAB722089E74009C0BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF52DAB922089E74009C0BF5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		BF52DABC22089E74009C0BF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF52DABE22089E77009C0BF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BF52DAC122089E77009C0BF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BF52DAC322089E77009C0BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 				BFCAAFC62257E27F0086A6A1 /* HRV.storyboard */,
 				BF52DAB722089E74009C0BF5 /* AppDelegate.swift */,
 				BF52DAB922089E74009C0BF5 /* ViewController.swift */,
-				BF52DABB22089E74009C0BF5 /* Main.storyboard */,
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
@@ -297,7 +294,6 @@
 			files = (
 				BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */,
 				BF52DABF22089E77009C0BF5 /* Assets.xcassets in Resources */,
-				BF52DABD22089E74009C0BF5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,14 +487,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BF52DABB22089E74009C0BF5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				BF52DABC22089E74009C0BF5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
