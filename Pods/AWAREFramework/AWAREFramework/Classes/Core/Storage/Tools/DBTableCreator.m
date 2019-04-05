@@ -47,7 +47,7 @@
 - (void) createTable:(NSString*) query {
     [self createTable:query withTableName:sensorName];
 }
-
+    
 - (void) createTable:(NSString *)query withTableName:(NSString*) tableName {
     NSString *post = nil;
     NSData *postData = nil;

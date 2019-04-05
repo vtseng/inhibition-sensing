@@ -18,8 +18,12 @@
 		BF52DACD22089E77009C0BF5 /* EmotionSensingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DACC22089E77009C0BF5 /* EmotionSensingTests.swift */; };
 		BF52DAD822089E77009C0BF5 /* EmotionSensingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */; };
 		BF52DAE62208E03E009C0BF5 /* AWAREFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */; };
+		BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */; };
 		BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */; };
 		BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
+		BFCAAFC12257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */; };
+		BFCAAFC22257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFC02257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift */; };
+		BFCAAFC92257F0C00086A6A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFC82257F0C00086A6A1 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,9 +65,13 @@
 		BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmotionSensingUITests.swift; sourceTree = "<group>"; };
 		BF52DAD922089E77009C0BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWAREFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskViewController.swift; sourceTree = "<group>"; };
 		BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BFCAAFC62257E27F0086A6A1 /* HRV.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = HRV.storyboard; path = "/Users/vincent/Desktop/EmotionSensing/inhibition-sensing/EmotionSensing/HRV.storyboard"; sourceTree = "<absolute>"; };
+		BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BFCAAFC02257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BFCAAFC72257E3890086A6A1 /* ESM.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ESM.storyboard; path = "/Users/vincent/Desktop/EmotionSensing/inhibition-sensing/EmotionSensing/ESM.storyboard"; sourceTree = "<absolute>"; };
+		BFCAAFC82257F0C00086A6A1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		C61E452B15F3A5ACE5D0F388 /* Pods-EmotionSensingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingUITests/Pods-EmotionSensingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -133,15 +141,19 @@
 		BF52DAB622089E74009C0BF5 /* EmotionSensing */ = {
 			isa = PBXGroup;
 			children = (
-				BFCAAFC62257E27F0086A6A1 /* HRV.storyboard */,
+				BFCAAFC72257E3890086A6A1 /* ESM.storyboard */,
 				BF52DAB722089E74009C0BF5 /* AppDelegate.swift */,
 				BF52DAB922089E74009C0BF5 /* ViewController.swift */,
+				BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */,
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
+				BFCAAFC82257F0C00086A6A1 /* Main.storyboard */,
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
 				BF519D9822286B2C0078E589 /* ScoscheHRV.swift */,
 				BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */,
 				BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */,
+				BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */,
+				BFCAAFC02257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift */,
 			);
 			path = EmotionSensing;
 			sourceTree = "<group>";
@@ -292,6 +304,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCAAFC92257F0C00086A6A1 /* Main.storyboard in Resources */,
 				BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */,
 				BF52DABF22089E77009C0BF5 /* Assets.xcassets in Resources */,
 			);
@@ -448,10 +461,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */,
+				BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */,
 				BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */,
 				BF52DABA22089E74009C0BF5 /* ViewController.swift in Sources */,
+				BFCAAFC12257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift in Sources */,
 				BF519D9922286B2C0078E589 /* ScoscheHRV.swift in Sources */,
 				BF52DAB822089E74009C0BF5 /* AppDelegate.swift in Sources */,
+				BFCAAFC22257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

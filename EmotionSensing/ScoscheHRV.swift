@@ -29,9 +29,14 @@ class ScoscheHRV: AWARESensor {
     
     static let BATTERY_LEVEL_NOTIFICATION_KEY = "batteryLevel"
     static let RR_INTERVAL_NOTIFICATION_KEY = "rrInterval"
+
     
     override convenience init() {
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
+    }
+    
+    override convenience init!(awareStudy study: AWAREStudy!) {
+        self.init(awareStudy: study, dbType: AwareDBTypeSQLite)
     }
     
     override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
