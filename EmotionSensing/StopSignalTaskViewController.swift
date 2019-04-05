@@ -8,8 +8,8 @@
 
 import Foundation
 import UIKit
+import CoreData
 import AWAREFramework
-
 
 enum Signal {
     case leftGo, rightGo, stopFollowingLeftGo, stopFollowingRightGo
@@ -35,6 +35,10 @@ enum ResponseType: String {
     case stopUnsuccessful = "stop_unsuccessful"
 }
 
+enum TaskStatus: String {
+    case incomplete = "incomplete"
+    case complete = "complete"
+}
 
 // Stop-signal task settings
 let FIXATION_DURATION = 2.0 // fixation duration
@@ -46,6 +50,12 @@ let NUMBER_OF_STOP_TRIALS = 5
 
 let DEFAULT_GO_RESPONSE_TYPE = ResponseType.goOmission // Default response type for Go trial if user doesn't respond
 let DEFAULT_STOP_RESPONSE_TYPE = ResponseType.stopSuccessful // Default response type for Stop trial if user doesn't respond
+
+let KEY_STOP_SIGNAL_TASK_DEVICE_ID = "device_id"
+let KEY_STOP_SIGNAL_TASK_TIMESTAMP = "timestamp"
+let KEY_STOP_SIGNAL_TASK_RESPONSE_STRING = "task_response_string"
+let KEY_STOP_SIGNAL_TASK_STATUS = "task_status"
+
 
 let fileName  = "task.csv"
 let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(fileName)
@@ -64,7 +74,8 @@ class StopSignalTaskViewController: ViewController{
     var responseDate : Date?
     var responseType : ResponseType?
     var userDidRespond = false
-    var responsesString = "Trial ID, Trial Timestamp, Trial Type, Current SSD (ms), Response, Response Time (ms)\n"
+    var responseString = "Trial ID, Trial Timestamp, Trial Type, Current SSD (ms), Response, Response Time (ms)\n"
+    var taskStatus = TaskStatus.incomplete
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -164,7 +175,7 @@ class StopSignalTaskViewController: ViewController{
         
         trialStartDate = Date()
         
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: GO_TRIAL_DURATION, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
     }
     
     
@@ -201,7 +212,7 @@ class StopSignalTaskViewController: ViewController{
         let timestamp = AWAREUtils.getUnixTimestamp(Date())
         
         let trialResponseString = "\(trial_id),\(String(describing: timestamp!)),\(taskState.rawValue),\(stopSignalDelay*1000),\(String(describing: responseType!.rawValue)),\(responseTime*1000)\n"
-        responsesString.append(trialResponseString)
+        responseString.append(trialResponseString)
         
         taskState = .blank
         trialStartDate = nil
@@ -222,14 +233,38 @@ class StopSignalTaskViewController: ViewController{
     
     
     func taskDidComplete(){
-        fixationLabel.text = "Completed"
+        taskStatus = .complete
+        
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = CoreDataHandler.shared().persistentStoreCoordinator
+        
+
+//        let task = EntityStopSignalTask()
+        let task = NSEntityDescription.insertNewObject(forEntityName: String(describing: EntityStopSignalTask.self), into: managedObjectContext)
+        
+        let device_id = AWAREStudy.shared().getDeviceId()
+        let unixtime = AWAREUtils.getUnixTimestamp(Date())
+        task.setValue(device_id, forKey: KEY_STOP_SIGNAL_TASK_DEVICE_ID)
+        task.setValue(unixtime, forKey: KEY_STOP_SIGNAL_TASK_TIMESTAMP)
+        task.setValue(responseString, forKey: KEY_STOP_SIGNAL_TASK_RESPONSE_STRING)
+        task.setValue(taskStatus.rawValue, forKey: KEY_STOP_SIGNAL_TASK_STATUS)
         
         do {
-            try responsesString.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+            try managedObjectContext.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+        
+        do {
+            try responseString.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
         } catch {
             print("Failed to create file")
             print("\(error)")
         }
+        
+        fixationLabel.text = "Completed"
+        
     }
 
     
@@ -263,6 +298,11 @@ class StopSignalTaskViewController: ViewController{
         }
     }
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // TODO: Save unsaved user data
+    }
     
     
     // MARK: Force the orientation to be landscape.

@@ -1113,6 +1113,7 @@
 		BE0E9A39B225B0AEBBD0F32940A52828 /* TPCircularBuffer+AudioBufferList.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; path = "TPCircularBuffer+AudioBufferList.c"; sourceTree = "<group>"; };
 		BF8194A7567A102E3E632B67EB53BFBC /* 9_2.jpg */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.jpeg; name = 9_2.jpg; path = AWAREFramework/Assets/images/9_miserable/9_2.jpg; sourceTree = "<group>"; };
 		BFB01462224C955400D68077 /* AWARE_v7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AWARE_v7.xcdatamodel; sourceTree = "<group>"; };
+		BFCAAFAA2256BD260086A6A1 /* AWARE_v8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AWARE_v8.xcdatamodel; sourceTree = "<group>"; };
 		BFFEF1B4415598684AC6DCBD793801BC /* EntityDebug+CoreDataProperties.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "EntityDebug+CoreDataProperties.m"; path = "AWAREFramework/Classes/Sensors/Debug/EntityDebug+CoreDataProperties.m"; sourceTree = "<group>"; };
 		C00CF087410FDF488BBDF6BE402B689D /* ESM.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = ESM.m; path = AWAREFramework/Classes/ESM/ESM.m; sourceTree = "<group>"; };
 		C01ACE2C5176AD1DB6FA689B8705707D /* TCQMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TCQMaker.h; path = AWAREFramework/Classes/Core/Storage/Tools/TCQMaker.h; sourceTree = "<group>"; };
@@ -4301,6 +4302,7 @@
 		7283F5E3870377FF0992314F4CA86688 /* AWARE.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				BFCAAFAA2256BD260086A6A1 /* AWARE_v8.xcdatamodel */,
 				BFB01462224C955400D68077 /* AWARE_v7.xcdatamodel */,
 				192BD67F3E9741ED39089ED12C621F77 /* AWARE.xcdatamodel */,
 				E20060F88311E05CB0F6A2EE1B18ADEC /* AWARE_v2.xcdatamodel */,
@@ -4309,7 +4311,7 @@
 				961EC1B6D88299AD2EAC112795B51130 /* AWARE_v5.xcdatamodel */,
 				6062E812848076609B8CFD2EACF04FCC /* AWARE_v6.xcdatamodel */,
 			);
-			currentVersion = BFB01462224C955400D68077 /* AWARE_v7.xcdatamodel */;
+			currentVersion = BFCAAFAA2256BD260086A6A1 /* AWARE_v8.xcdatamodel */;
 			name = AWARE.xcdatamodeld;
 			path = AWAREFramework/Assets/AWARE.xcdatamodeld;
 			sourceTree = "<group>";
