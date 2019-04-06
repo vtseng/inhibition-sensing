@@ -43,7 +43,7 @@ enum TaskStatus: String {
 // Stop-signal task settings
 let FIXATION_DURATION = 2.0 // fixation duration
 //let BLANK_DURATION = 0.2 // 0.2 sec blank duration
-let GO_TRIAL_DURATION = 1.0
+let TRIAL_DURATION = 1.0
 
 let NUMBER_OF_TOTAL_TRAILS = 10
 let NUMBER_OF_STOP_TRIALS = 5
@@ -84,10 +84,10 @@ class StopSignalTaskViewController: UIViewController{
         let goTrials = Array(repeating: TaskState.go, count: numberOfGoTrials)
         let stopTrials = Array(repeating: TaskState.stop, count: NUMBER_OF_STOP_TRIALS)
         trials = (goTrials + stopTrials).shuffled()
-        
         responseType = nil
         
-        
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(onMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         showFixation()
     }
     
@@ -175,7 +175,7 @@ class StopSignalTaskViewController: UIViewController{
         
         trialStartDate = Date()
         
-        Timer.scheduledTimer(timeInterval: GO_TRIAL_DURATION, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: TRIAL_DURATION, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
     }
     
     
@@ -194,7 +194,7 @@ class StopSignalTaskViewController: UIViewController{
         trialStartDate = Date()
         
         Timer.scheduledTimer(timeInterval: stopSignalDelay, target: self, selector: #selector(showStopSignal), userInfo: nil, repeats: false)
-        Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: TRIAL_DURATION, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
     }
     
     
@@ -301,13 +301,22 @@ class StopSignalTaskViewController: UIViewController{
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        print("View will disappear")
+    }
+    
+    @objc func onMovedToBackground() {
         // TODO: Save unsaved user data
+        print("Task moved to background!")
+        dismiss(animated: true, completion: nil)
     }
     
     
     // MARK: Force the orientation to be landscape.
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+//        navigationController?.setNavigationBarHidden(true, animated: animated)
+//        tabBarController?.tabBar.isHidden = true
         
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
     }

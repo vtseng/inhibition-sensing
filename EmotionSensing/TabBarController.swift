@@ -19,11 +19,32 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate{
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let tabOneViewController: SummaryViewController = UIStoryboard(name: "HRV", bundle: nil).instantiateViewController(withIdentifier: "HRVViewController") as! SummaryViewController
+        let summaryViewController = UIStoryboard(name: "HRV", bundle: nil).instantiateViewController(withIdentifier: "HRVViewController") as! SummaryViewController
+        let navigationController = UINavigationController(rootViewController: summaryViewController)
+        navigationController.title = "Summary"
         
+        let taskViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "UIViewController")
+        let navigationController2 = UINavigationController(rootViewController: taskViewController)
+        navigationController2.title = "Task"
+        viewControllers = [navigationController, navigationController2]
         
-        self.viewControllers = [tabOneViewController, tabOneViewController]
-        
+//        let tabTwoViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "StopSignalTaskViewController") as! StopSignalTaskViewController
+//
+//        let controller = createNavigationController(tabTwoViewController, tabTitle: "Summary")
+//
+//        viewControllers = [controller, controller]
+//
+//        print("tab bars: \(toolbarItems?.count)")
+//
+//        self.toolbarItems?[0].title = "Summry"
+//        self.toolbarItems?[1].title = "Task"
+    }
+    
+    
+    func createNavigationController(_ viewController: UIViewController, tabTitle: String) -> UINavigationController{
+        let navController = UINavigationController(rootViewController: viewController)
+        navController.tabBarItem.title = title
+        return navController
     }
     
     

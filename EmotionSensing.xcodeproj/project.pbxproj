@@ -26,6 +26,7 @@
 		BFCAAFC92257F0C00086A6A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFC82257F0C00086A6A1 /* Main.storyboard */; };
 		BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */; };
 		BFCAAFCD225801F20086A6A1 /* HRV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCC225801F20086A6A1 /* HRV.storyboard */; };
+		BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,10 +73,10 @@
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFCAAFC02257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BFCAAFC72257E3890086A6A1 /* ESM.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ESM.storyboard; path = "/Users/vincent/Desktop/EmotionSensing/inhibition-sensing/EmotionSensing/ESM.storyboard"; sourceTree = "<absolute>"; };
 		BFCAAFC82257F0C00086A6A1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BFCAAFCC225801F20086A6A1 /* HRV.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HRV.storyboard; sourceTree = "<group>"; };
+		BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StopSignalTask.storyboard; sourceTree = "<group>"; };
 		C61E452B15F3A5ACE5D0F388 /* Pods-EmotionSensingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingUITests/Pods-EmotionSensingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -145,8 +146,6 @@
 		BF52DAB622089E74009C0BF5 /* EmotionSensing */ = {
 			isa = PBXGroup;
 			children = (
-				BFCAAFCC225801F20086A6A1 /* HRV.storyboard */,
-				BFCAAFC72257E3890086A6A1 /* ESM.storyboard */,
 				BF52DAB722089E74009C0BF5 /* AppDelegate.swift */,
 				BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */,
 				BF52DAB922089E74009C0BF5 /* SummaryViewController.swift */,
@@ -154,6 +153,8 @@
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
 				BFCAAFC82257F0C00086A6A1 /* Main.storyboard */,
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
+				BFCAAFCC225801F20086A6A1 /* HRV.storyboard */,
+				BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
 				BF519D9822286B2C0078E589 /* ScoscheHRV.swift */,
 				BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */,
@@ -310,6 +311,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */,
 				BFCAAFC92257F0C00086A6A1 /* Main.storyboard in Resources */,
 				BFCAAFCD225801F20086A6A1 /* HRV.storyboard in Resources */,
 				BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */,

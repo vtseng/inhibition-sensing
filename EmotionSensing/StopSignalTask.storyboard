@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item 2-->
+        <scene sceneID="G7O-1h-IJf">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController" id="H3f-pO-XBi" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tdE-KE-Wm6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60q-m5-JGa">
+                                <rect key="frame" x="170" y="328" width="34" height="30"/>
+                                <state key="normal" title="Start"/>
+                                <connections>
+                                    <segue destination="tPc-um-JGY" kind="presentation" id="kX2-kd-ucP"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="60q-m5-JGa" firstAttribute="centerY" secondItem="R2o-QW-lVp" secondAttribute="centerY" id="qdN-dx-uQL"/>
+                            <constraint firstItem="60q-m5-JGa" firstAttribute="centerX" secondItem="R2o-QW-lVp" secondAttribute="centerX" id="uhn-zO-XBh"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="R2o-QW-lVp"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="EbO-ny-oeD"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZm-jN-Jid" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="625" y="-201"/>
+        </scene>
+        <!--Stop Signal Task View Controller-->
+        <scene sceneID="rbU-uF-M4q">
+            <objects>
+                <viewController id="tPc-um-JGY" customClass="StopSignalTaskViewController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="pqd-VO-qyX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v4k-6j-uxT">
+                                <rect key="frame" x="166.5" y="333" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="v4k-6j-uxT" firstAttribute="centerY" secondItem="GxC-E2-6OE" secondAttribute="centerY" id="2Ck-gL-pAl"/>
+                            <constraint firstItem="v4k-6j-uxT" firstAttribute="centerX" secondItem="GxC-E2-6OE" secondAttribute="centerX" id="gp2-qp-uZU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GxC-E2-6OE"/>
+                    </view>
+                    <connections>
+                        <outlet property="fixationLabel" destination="v4k-6j-uxT" id="Tj6-fK-aMt"/>
+                        <outlet property="taskView" destination="pqd-VO-qyX" id="uSq-or-IUQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vi7-cA-nOl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2249" y="-201"/>
+        </scene>
+    </scenes>
+</document>
