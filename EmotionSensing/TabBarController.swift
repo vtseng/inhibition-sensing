@@ -17,35 +17,17 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate{
     
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         
         let summaryViewController = UIStoryboard(name: "HRV", bundle: nil).instantiateViewController(withIdentifier: "HRVViewController") as! SummaryViewController
-        let navigationController = UINavigationController(rootViewController: summaryViewController)
-        navigationController.title = "Summary"
+        let summaryNavigationController = UINavigationController(rootViewController: summaryViewController)
+        summaryNavigationController.title = "Summary"
         
         let taskViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "UIViewController")
-        let navigationController2 = UINavigationController(rootViewController: taskViewController)
-        navigationController2.title = "Task"
-        viewControllers = [navigationController, navigationController2]
+        let taskNavigationController = UINavigationController(rootViewController: taskViewController)
+        taskNavigationController.title = "Task"
         
-//        let tabTwoViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "StopSignalTaskViewController") as! StopSignalTaskViewController
-//
-//        let controller = createNavigationController(tabTwoViewController, tabTitle: "Summary")
-//
-//        viewControllers = [controller, controller]
-//
-//        print("tab bars: \(toolbarItems?.count)")
-//
-//        self.toolbarItems?[0].title = "Summry"
-//        self.toolbarItems?[1].title = "Task"
+        viewControllers = [summaryNavigationController, taskNavigationController]
     }
-    
-    
-    func createNavigationController(_ viewController: UIViewController, tabTitle: String) -> UINavigationController{
-        let navController = UINavigationController(rootViewController: viewController)
-        navController.tabBarItem.title = title
-        return navController
-    }
-    
     
 }

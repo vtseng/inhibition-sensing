@@ -51,11 +51,10 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         manager.add(stopSigalTaskResponse!)
         
         manager.createDBTablesOnAwareServer()
+        awareCore.requestPermissionForPushNotification()
         
         manager.startAllSensors()
         manager.syncAllSensors()
-        
-        awareCore.requestPermissionForPushNotification()
         startESMTask()
     
     }
