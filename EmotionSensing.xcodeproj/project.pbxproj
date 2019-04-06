@@ -19,11 +19,11 @@
 		BF52DAD822089E77009C0BF5 /* EmotionSensingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */; };
 		BF52DAE62208E03E009C0BF5 /* AWAREFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */; };
 		BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */; };
+		BF92703022593558007CCE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF92702E22593558007CCE23 /* Main.storyboard */; };
 		BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */; };
 		BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
 		BFCAAFC12257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */; };
 		BFCAAFC22257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFC02257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift */; };
-		BFCAAFC92257F0C00086A6A1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFC82257F0C00086A6A1 /* Main.storyboard */; };
 		BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */; };
 		BFCAAFCD225801F20086A6A1 /* HRV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCC225801F20086A6A1 /* HRV.storyboard */; };
 		BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */; };
@@ -69,11 +69,11 @@
 		BF52DAD922089E77009C0BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWAREFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskViewController.swift; sourceTree = "<group>"; };
+		BF92702F22593558007CCE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFCAAFC02257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BFCAAFC82257F0C00086A6A1 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BFCAAFCC225801F20086A6A1 /* HRV.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HRV.storyboard; sourceTree = "<group>"; };
 		BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StopSignalTask.storyboard; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 				BF52DAB922089E74009C0BF5 /* SummaryViewController.swift */,
 				BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */,
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
-				BFCAAFC82257F0C00086A6A1 /* Main.storyboard */,
+				BF92702E22593558007CCE23 /* Main.storyboard */,
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
 				BFCAAFCC225801F20086A6A1 /* HRV.storyboard */,
 				BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */,
@@ -312,8 +312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */,
-				BFCAAFC92257F0C00086A6A1 /* Main.storyboard in Resources */,
 				BFCAAFCD225801F20086A6A1 /* HRV.storyboard in Resources */,
+				BF92703022593558007CCE23 /* Main.storyboard in Resources */,
 				BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */,
 				BF52DABF22089E77009C0BF5 /* Assets.xcassets in Resources */,
 			);
@@ -519,6 +519,14 @@
 				BF52DAC122089E77009C0BF5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		BF92702E22593558007CCE23 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF92702F22593558007CCE23 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
