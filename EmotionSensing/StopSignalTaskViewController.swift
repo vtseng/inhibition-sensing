@@ -299,14 +299,8 @@ class StopSignalTaskViewController: UIViewController{
     }
     
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        print("View will disappear")
-    }
-    
     @objc func onMovedToBackground() {
-        // TODO: Save unsaved user data
+        // TODO: Save unsaved user data before the view coontroller gets removed
         print("Task moved to background!")
         dismiss(animated: true, completion: nil)
     }
