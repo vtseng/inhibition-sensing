@@ -10,7 +10,7 @@ import Foundation
 import AWAREFramework
 
 // String constants
-let SENSOR_NAME = "ScoscheHRV"
+let SENSOR_SCOSCHE_HRV = "ScoscheHRV"
 let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
 let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
 let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"
@@ -47,17 +47,17 @@ class ScoscheHRV: AWARESensor {
         }else if dbType == AwareDBTypeCSV{
             print("DBTypeCSV is currently not implemented for HRV sensor.")
         }else{
-            storage = SQLiteStorage(study: study, sensorName: SENSOR_NAME, entityName: String(describing: EntityScoscheHRV.self), insertCallBack: { (dataDict, childContext, entity) in
+            storage = SQLiteStorage(study: study, sensorName: SENSOR_SCOSCHE_HRV, entityName: String(describing: EntityScoscheHRV.self), insertCallBack: { (dataDict, childContext, entity) in
                 let entityHRV = NSEntityDescription.insertNewObject(forEntityName: entity!, into: childContext!) as! EntityScoscheHRV
                 
                 entityHRV.device_id = dataDict![KEY_SCOSCHE_HRV_DEVICE_ID] as? String
-                entityHRV.timestamp = dataDict?[KEY_SCOSCHE_HRV_TIMESTAMP] as? NSNumber
-                entityHRV.rr_interval = dataDict?[KEY_SCOSCHE_HRV_RR_INTERVAL] as? NSNumber
+                entityHRV.timestamp = dataDict![KEY_SCOSCHE_HRV_TIMESTAMP] as? NSNumber
+                entityHRV.rr_interval = dataDict![KEY_SCOSCHE_HRV_RR_INTERVAL] as? NSNumber
 
             })
         }
 
-        super.init(awareStudy: study, sensorName: SENSOR_NAME, storage: storage)
+        super.init(awareStudy: study, sensorName: SENSOR_SCOSCHE_HRV, storage: storage)
     }
     
     

@@ -47,6 +47,9 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         let accelerometer = Accelerometer(awareStudy: study)
         manager.add(accelerometer!)
         
+        let stopSigalTaskResponse = StopSignalTaskResponse(awareStudy: study)
+        manager.add(stopSigalTaskResponse!)
+        
         manager.createDBTablesOnAwareServer()
         
         manager.startAllSensors()
@@ -115,6 +118,7 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         completionHandler()
     }
     
+    // MARK: User reminders
     @objc
     func scoscheDidUpdateBatteryLevel(_ notification: Notification) {
         let batteryLevel = notification.userInfo?[ScoscheHRV.BATTERY_LEVEL_NOTIFICATION_KEY]

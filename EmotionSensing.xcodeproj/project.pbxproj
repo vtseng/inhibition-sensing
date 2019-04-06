@@ -20,6 +20,7 @@
 		BF52DAE62208E03E009C0BF5 /* AWAREFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */; };
 		BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */; };
 		BF92703022593558007CCE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF92702E22593558007CCE23 /* Main.storyboard */; };
+		BF92703222593D75007CCE23 /* StopSignalTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */; };
 		BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */; };
 		BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
 		BFCAAFC12257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */; };
@@ -70,6 +71,7 @@
 		BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWAREFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskViewController.swift; sourceTree = "<group>"; };
 		BF92702F22593558007CCE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskResponse.swift; sourceTree = "<group>"; };
 		BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFCAAFBF2257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				BFCAAFCC225801F20086A6A1 /* HRV.storyboard */,
 				BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
+				BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */,
 				BF519D9822286B2C0078E589 /* ScoscheHRV.swift */,
 				BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */,
 				BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */,
@@ -472,6 +475,7 @@
 				BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */,
 				BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */,
 				BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */,
+				BF92703222593D75007CCE23 /* StopSignalTaskResponse.swift in Sources */,
 				BF52DABA22089E74009C0BF5 /* SummaryViewController.swift in Sources */,
 				BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */,
 				BFCAAFC12257BDAE0086A6A1 /* EntityStopSignalTask+CoreDataClass.swift in Sources */,
