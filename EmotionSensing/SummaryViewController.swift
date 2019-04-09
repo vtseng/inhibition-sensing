@@ -55,8 +55,13 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         
         manager.startAllSensors()
         manager.syncAllSensors()
+
         startESMTask()
-    
+        
+//        let task = UserTask(title: "Task title", subtitle: "Task subtitle", summary: "Task summary", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23], notificationDelegate: self)
+//        let taskScheduler = UserTaskScheduler.shared
+//        taskScheduler.scheduleTask(task)
+//        taskScheduler.refrshNotificationSchedules()
     }
     
     
@@ -97,22 +102,35 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         content.title = "Task title"
         content.subtitle = "Task subtitle"
         content.body = "Task body"
-        content.categoryIdentifier = "taskIdentifier"
+        content.categoryIdentifier = STOP_SIGNAL_TASK_IDENTIFIER
         content.badge = 1
         var dateComponents = DateComponents()
-        dateComponents.hour = 18
-        dateComponents.minute = 3
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-        //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10, repeats: false)
-        let request = UNNotificationRequest(identifier: "TaskNotificaiton", content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        dateComponents.hour = 16
+        dateComponents.minute = 58
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        let request = UNNotificationRequest(identifier: STOP_SIGNAL_TASK_IDENTIFIER, content: content, trigger: trigger)
+        UNUserNotificationCenter.current().add(request) { (error) in
+            if error != nil {
+                print("Notification error \(String(describing: error))")
+            }
+            
+        }
         UNUserNotificationCenter.current().delegate = self
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Did received notificaiton")
+        
+        let identifier = response.notification.request.content.categoryIdentifier
+//        print("Controller: \(String(describing: viewController.self))")
+        
+        print("Task identifier:", identifier)
+        let viewController = UIStoryboard(name: identifier, bundle: nil).instantiateViewController(withIdentifier: identifier)
+        show(viewController, sender: self)
+        
         // Open the Stop-Signal-Task tab
-        self.tabBarController?.selectedIndex = 1
+//        self.tabBarController?.selectedIndex = 1
         UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler()
     }

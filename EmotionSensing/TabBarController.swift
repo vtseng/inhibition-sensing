@@ -23,7 +23,8 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate{
         let summaryNavigationController = UINavigationController(rootViewController: summaryViewController)
         summaryNavigationController.title = "Summary"
         
-        let taskViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "UIViewController")
+//        let taskViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "StopSignalTask")
+        let taskViewController = UIStoryboard(name: "TaskDashboard", bundle: nil).instantiateViewController(withIdentifier: "TaskDashboard")
         let taskNavigationController = UINavigationController(rootViewController: taskViewController)
         taskNavigationController.title = "Task"
         

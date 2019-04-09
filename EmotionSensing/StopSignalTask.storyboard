@@ -13,13 +13,13 @@
         <!--Item 2-->
         <scene sceneID="G7O-1h-IJf">
             <objects>
-                <viewController storyboardIdentifier="UIViewController" id="H3f-pO-XBi" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StopSignalTask" id="H3f-pO-XBi" customClass="StopSignalTaskIntroductionVeiwController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tdE-KE-Wm6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60q-m5-JGa">
-                                <rect key="frame" x="170" y="328" width="34" height="30"/>
+                                <rect key="frame" x="170.5" y="328.5" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <segue destination="tPc-um-JGY" kind="presentation" id="kX2-kd-ucP"/>
@@ -37,7 +37,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZm-jN-Jid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="625" y="-201"/>
+            <point key="canvasLocation" x="1041" y="-202"/>
         </scene>
         <!--Stop Signal Task View Controller-->
         <scene sceneID="rbU-uF-M4q">

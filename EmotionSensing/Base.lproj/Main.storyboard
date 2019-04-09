@@ -40,7 +40,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZZV-4e-eCH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="470" y="643"/>
+            <point key="canvasLocation" x="470" y="670"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="7ea-bn-ydk">
