@@ -56,12 +56,13 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         manager.startAllSensors()
         manager.syncAllSensors()
 
-        startESMTask()
+//        startESMTask()
         
-//        let task = UserTask(title: "Task title", subtitle: "Task subtitle", summary: "Task summary", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [6, 7, 8, 9, 17, 18, 19, 20, 21, 22, 23], notificationDelegate: self)
-//        let taskScheduler = UserTaskScheduler.shared
-//        taskScheduler.scheduleTask(task)
-//        taskScheduler.refrshNotificationSchedules()
+        let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], expirationThreshold: 0, notificationDelegate: self)
+//                let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [21, 22], expirationThreshold: 0, notificationDelegate: self)
+        let taskScheduler = UserTaskScheduler.shared
+        taskScheduler.scheduleTask(task)
+        taskScheduler.refrshNotificationSchedules()
     }
     
     
@@ -76,26 +77,26 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
     
     
     
-    func scheduleExperienceSampling(){
-        let schedule = ESMSchedule.init()
-        schedule.notificationTitle = "notification title"
-        schedule.notificationBody = "notificaiton body"
-        schedule.scheduleId = "schedule_id"
-        schedule.expirationThreshold = 60
-        schedule.startDate = Date.init()
-        schedule.endDate = Date.init(timeIntervalSinceNow: 60*60*24*10)
-        schedule.fireHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
-        
-        let radio = ESMItem.init(asRadioESMWithTrigger: "1_radio", radioItems: ["A", "B", "C", "D", "E"])
-        radio?.setTitle("ESM title")
-        radio?.setInstructions("some instructions")
-        schedule.addESM(radio)
-        
-        let esmManager = ESMScheduleManager.shared()
-        esmManager.add(schedule)
-        esmManager.refreshESMNotifications()
-        
-    }
+//    func scheduleExperienceSampling(){
+//        let schedule = ESMSchedule.init()
+//        schedule.notificationTitle = "notification title"
+//        schedule.notificationBody = "notificaiton body"
+//        schedule.scheduleId = "schedule_id"
+//        schedule.expirationThreshold = 60
+//        schedule.startDate = Date.init()
+//        schedule.endDate = Date.init(timeIntervalSinceNow: 60*60*24*10)
+//        schedule.fireHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
+//
+//        let radio = ESMItem.init(asRadioESMWithTrigger: "1_radio", radioItems: ["A", "B", "C", "D", "E"])
+//        radio?.setTitle("ESM title")
+//        radio?.setInstructions("some instructions")
+//        schedule.addESM(radio)
+//
+//        let esmManager = ESMScheduleManager.shared()
+//        esmManager.add(schedule)
+//        esmManager.refreshESMNotifications()
+//
+//    }
     
     func startESMTask(){
         let content = UNMutableNotificationContent()
@@ -105,8 +106,8 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         content.categoryIdentifier = STOP_SIGNAL_TASK_IDENTIFIER
         content.badge = 1
         var dateComponents = DateComponents()
-        dateComponents.hour = 16
-        dateComponents.minute = 58
+        dateComponents.hour = 14
+        dateComponents.minute = 44
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
 //        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
         let request = UNNotificationRequest(identifier: STOP_SIGNAL_TASK_IDENTIFIER, content: content, trigger: trigger)
@@ -119,6 +120,14 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         UNUserNotificationCenter.current().delegate = self
     }
     
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("Will receive notification")
+        completionHandler([.alert, .sound])
+    }
+
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("Did received notificaiton")
         
@@ -130,10 +139,12 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         show(viewController, sender: self)
         
         // Open the Stop-Signal-Task tab
-//        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 1
         UIApplication.shared.applicationIconBadgeNumber = 0
         completionHandler()
     }
+    
+    
     
     // MARK: User reminders
     @objc

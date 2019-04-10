@@ -9,6 +9,6 @@
 import Foundation
 import UIKit
 
-class StopSignalTaskIntroductionVeiwController: UIViewController{
+class StopSignalTaskInstructionsVeiwController: UIViewController{
     
 }

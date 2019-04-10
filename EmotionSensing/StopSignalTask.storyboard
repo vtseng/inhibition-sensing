@@ -13,7 +13,7 @@
         <!--Item 2-->
         <scene sceneID="G7O-1h-IJf">
             <objects>
-                <viewController storyboardIdentifier="StopSignalTask" id="H3f-pO-XBi" customClass="StopSignalTaskIntroductionVeiwController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StopSignalTask" id="H3f-pO-XBi" customClass="StopSignalTaskInstructionsVeiwController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tdE-KE-Wm6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

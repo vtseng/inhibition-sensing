@@ -9,21 +9,37 @@
 import Foundation
 import UIKit
 
+class PendingTaskCell: UITableViewCell{
+    
+    @IBOutlet weak var taskNameLabel: UILabel!
+}
+
+
 class TaskDashboardTableViewController: UITableViewController{
+    
+    var userTaskScheduler: UserTaskScheduler!
+    var pendingTasks: [UserTask]!
+
+    
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        pendingTasks = UserTaskScheduler.shared.getPendingTasks()
+        return pendingTasks.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell")
-//        cell!.textLabel?.text = "Stop Signal Task"
+        let task = pendingTasks[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PendingTaskCell") as! PendingTaskCell
         
-        return cell!
+        cell.taskNameLabel.text = task.title
+        
+        return cell
+
+        
     }
     
     
