@@ -14,7 +14,8 @@ let SENSOR_SCOSCHE_HRV = "ScoscheHRV"
 let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
 let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
 let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"
-let PERIPHERAL_ID = "751FF690-947A-6A0A-7248-209FDF502805"
+//let PERIPHERAL_ID = "751FF690-947A-6A0A-7248-209FDF502805"
+let PERIPHERAL_ID = "77EA86F3-A874-9262-F3F7-C0A077724D6E"
 
 class ScoscheHRV: AWARESensor {
     
@@ -85,13 +86,7 @@ class ScoscheHRV: AWARESensor {
             centralManager = nil
         }
         return super.stopSensor()
-    }
-    
-    
-    override func startSyncDB() {
-        super.startSyncDB()
-    }
-    
+    }    
     
     override func stopSyncDB() {
         super.stopSyncDB()

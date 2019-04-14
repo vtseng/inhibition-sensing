@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import UserNotifications
 
-class TabBarController : UITabBarController, UITabBarControllerDelegate{
+class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserNotificationCenterDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,5 +31,14 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate{
         
         viewControllers = [summaryNavigationController, taskNavigationController]
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        // Open the Stop-Signal-Task tab
+        selectedIndex = 1
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        completionHandler()
+    }
+    
     
 }

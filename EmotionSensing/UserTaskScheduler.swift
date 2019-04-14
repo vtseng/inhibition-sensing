@@ -12,6 +12,7 @@ import UIKit
 
 let USER_TASK_NOTIFICATION = "pending_user_task"
 let STOP_SIGNAL_TASK_IDENTIFIER = "StopSignalTask"
+let FIRE_MINUTE_COMPONENT = 39
 
 class UserTaskScheduler {
     
@@ -32,33 +33,31 @@ class UserTaskScheduler {
     }
     
     
-    func getPendingTasks() -> [UserTask] {
-        var pendingTasks: [UserTask] = []
+    func getPendingTasks() -> [String : Date] {
+//        var pendingTasks: [UserTask] = []
+        var pendingTasks: [String : Date] = [:] // The fire date of each of the tasks, keyed by the task identifier.
         
         let calendar = Calendar.current
         let dateComponents = calendar.dateComponents([.year, .month, .day, .hour, .minute], from: Date())
-        let date = Date()
-        let dateFromComponents = calendar.date(from: dateComponents)
         
         for task in scheduledTasks {
             var fireDateComponents = dateComponents
             for hour in task.fireHous! {
                 fireDateComponents.timeZone = TimeZone.current
                 fireDateComponents.hour = hour
-                fireDateComponents.minute = 0
+                fireDateComponents.minute = FIRE_MINUTE_COMPONENT
 
                 
                 let fireDate = calendar.date(from: fireDateComponents)!
                 
-                print(Date().addingTimeInterval(TimeInterval(task.expirationThreshold*60)))
                 if Date() > fireDate && Date() < fireDate.addingTimeInterval(TimeInterval(task.expirationThreshold*60)) {
-                    pendingTasks.append(task)
+//                    pendingTasks.append(task)
+                    pendingTasks[task.identifier] = fireDate
                 }
                 
             }
         }
         
-        print("pending tasks \(pendingTasks)")
         return pendingTasks
     }
     
@@ -77,9 +76,9 @@ class UserTaskScheduler {
                     
                     var dateComponents = DateComponents()
                     dateComponents.hour = hour
-                    dateComponents.minute = 2
+                    dateComponents.minute = FIRE_MINUTE_COMPONENT
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-                    let notificationIdentifier = createNotificationIdentifier(taskIdentifier: task.identifier, fireHour: hour)
+                    let notificationIdentifier = getNotificationIdentifier(taskIdentifier: task.identifier, fireHour: hour)
                     let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
                     UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
                     UNUserNotificationCenter.current().delegate = task.notificationDelegate
@@ -96,7 +95,7 @@ class UserTaskScheduler {
     }
     
     
-    func createNotificationIdentifier(taskIdentifier: String, fireHour: Int) -> String {
+    func getNotificationIdentifier(taskIdentifier: String, fireHour: Int) -> String {
         
         return taskIdentifier + String(describing: fireHour)
     }

@@ -51,10 +51,16 @@ let NUMBER_OF_STOP_TRIALS = 5
 let DEFAULT_GO_RESPONSE_TYPE = ResponseType.goOmission // Default response type for Go trial if user doesn't respond
 let DEFAULT_STOP_RESPONSE_TYPE = ResponseType.stopSuccessful // Default response type for Stop trial if user doesn't respond
 
-let KEY_STOP_SIGNAL_TASK_DEVICE_ID = "device_id"
+let KEY_STOP_SIGNAL_TASK_NUMBER_STOP_TRIALS = "number_stop_trials"
+let KEY_STOP_SIGNAL_TASK_NUMBER_TOTAL_TRIALS = "number_total_trials"
+let KEY_STOP_SIGNAL_TRIAL_ID = "trial_id"
+let KEY_STOP_SIGNAL_TASK_RESPONSE_TIME = "response_time_milliseconds"
+let KEY_STOP_SIGNAL_TASK_STOP_SIGNAL_DELAY = "stop_signal_delay_milliseconds"
+let KEY_STOP_SIGNAL_TASK_START_TIMESTAMP = "task_start_timestamp"
 let KEY_STOP_SIGNAL_TASK_TIMESTAMP = "timestamp"
-let KEY_STOP_SIGNAL_TASK_RESPONSE_STRING = "task_response_string"
-let KEY_STOP_SIGNAL_TASK_STATUS = "task_status"
+let KEY_STOP_SIGNAL_TASK_DEVICE_ID = "device_id"
+let KEY_STOP_SIGNAL_TASK_RESPONSE_TYPE = "response_type"
+let KEY_STOP_SIGNAL_TASK_TRIAL_TYPE = "trial_type"
 
 
 let fileName  = "task.csv"
@@ -75,7 +81,7 @@ class StopSignalTaskViewController: UIViewController{
     var responseType : ResponseType?
     var userDidRespond = false
     var responseString = "Trial ID, Trial Timestamp, Trial Type, Current SSD (ms), Response, Response Time (ms)\n"
-    var taskStatus = TaskStatus.incomplete
+    var taskStartTimestamp : NSNumber!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,6 +91,7 @@ class StopSignalTaskViewController: UIViewController{
         let stopTrials = Array(repeating: TaskState.stop, count: NUMBER_OF_STOP_TRIALS)
         trials = (goTrials + stopTrials).shuffled()
         responseType = nil
+        taskStartTimestamp = AWAREUtils.getUnixTimestamp(Date())
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(onMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
@@ -209,10 +216,32 @@ class StopSignalTaskViewController: UIViewController{
         print("Re: \(responseType!.rawValue)")
     
         let trial_id = NUMBER_OF_TOTAL_TRAILS - trials!.count
-        let timestamp = AWAREUtils.getUnixTimestamp(Date())
+        let response_timestamp = AWAREUtils.getUnixTimestamp(Date())
+        let device_id = AWAREStudy.shared().getDeviceId()
         
-        let trialResponseString = "\(trial_id),\(String(describing: timestamp!)),\(taskState.rawValue),\(stopSignalDelay*1000),\(String(describing: responseType!.rawValue)),\(responseTime*1000)\n"
-        responseString.append(trialResponseString)
+        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+        managedObjectContext.persistentStoreCoordinator = CoreDataHandler.shared().persistentStoreCoordinator
+        let task = NSEntityDescription.insertNewObject(forEntityName: String(describing: EntityStopSignalTask.self), into: managedObjectContext)
+        
+        task.setValue(NUMBER_OF_STOP_TRIALS, forKey: KEY_STOP_SIGNAL_TASK_NUMBER_STOP_TRIALS)
+        task.setValue(NUMBER_OF_TOTAL_TRAILS, forKey: KEY_STOP_SIGNAL_TASK_NUMBER_TOTAL_TRIALS)
+        task.setValue(trial_id, forKey: KEY_STOP_SIGNAL_TRIAL_ID)
+        task.setValue(responseTime*1000, forKey: KEY_STOP_SIGNAL_TASK_RESPONSE_TIME)
+        task.setValue(stopSignalDelay*1000, forKey: KEY_STOP_SIGNAL_TASK_STOP_SIGNAL_DELAY)
+        task.setValue(taskStartTimestamp, forKey: KEY_STOP_SIGNAL_TASK_START_TIMESTAMP)
+        task.setValue(response_timestamp, forKey: KEY_STOP_SIGNAL_TASK_TIMESTAMP)
+        task.setValue(device_id, forKey: KEY_STOP_SIGNAL_TASK_DEVICE_ID)
+        task.setValue(responseType!.rawValue, forKey: KEY_STOP_SIGNAL_TASK_RESPONSE_TYPE)
+        task.setValue(taskState.rawValue, forKey: KEY_STOP_SIGNAL_TASK_TRIAL_TYPE)
+    
+        do {
+            try managedObjectContext.save()
+        } catch {
+            fatalError("Failure to save context: \(error)")
+        }
+        
+//        let trialResponseString = "\(trial_id),\(String(describing: timestamp!)),\(taskState.rawValue),\(stopSignalDelay*1000),\(String(describing: responseType!.rawValue)),\(responseTime*1000)\n"
+//        responseString.append(trialResponseString)
         
         taskState = .blank
         trialStartDate = nil
@@ -233,38 +262,31 @@ class StopSignalTaskViewController: UIViewController{
     
     
     func taskDidComplete(){
-        taskStatus = .complete
-        
-        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        managedObjectContext.persistentStoreCoordinator = CoreDataHandler.shared().persistentStoreCoordinator
-        
-
-//        let task = EntityStopSignalTask()
-        let task = NSEntityDescription.insertNewObject(forEntityName: String(describing: EntityStopSignalTask.self), into: managedObjectContext)
-        
-        let device_id = AWAREStudy.shared().getDeviceId()
-        let unixtime = AWAREUtils.getUnixTimestamp(Date())
-        task.setValue(device_id, forKey: KEY_STOP_SIGNAL_TASK_DEVICE_ID)
-        task.setValue(unixtime, forKey: KEY_STOP_SIGNAL_TASK_TIMESTAMP)
-        task.setValue(responseString, forKey: KEY_STOP_SIGNAL_TASK_RESPONSE_STRING)
-        task.setValue(taskStatus.rawValue, forKey: KEY_STOP_SIGNAL_TASK_STATUS)
-        
-        do {
-            try managedObjectContext.save()
-        } catch {
-            fatalError("Failure to save context: \(error)")
-        }
+//        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
+//        managedObjectContext.persistentStoreCoordinator = CoreDataHandler.shared().persistentStoreCoordinator
+//        let task = NSEntityDescription.insertNewObject(forEntityName: String(describing: EntityStopSignalTask.self), into: managedObjectContext)
+//        let device_id = AWAREStudy.shared().getDeviceId()
+//        let unixtime = AWAREUtils.getUnixTimestamp(Date())
+//        task.setValue(device_id, forKey: KEY_STOP_SIGNAL_TASK_DEVICE_ID)
+//        task.setValue(unixtime, forKey: KEY_STOP_SIGNAL_TASK_TIMESTAMP)
+//
+//
+//        do {
+//            try managedObjectContext.save()
+//        } catch {
+//            fatalError("Failure to save context: \(error)")
+//        }
         
         
-        do {
-            try responseString.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-        } catch {
-            print("Failed to create file")
-            print("\(error)")
-        }
+//        do {
+//            try responseString.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
+//        } catch {
+//            print("Failed to create file")
+//            print("\(error)")
+//        }
         
+//        AWARESensorManager.shared().syncAllSensorsForcefully()
         fixationLabel.text = "Completed"
-        
     }
 
     

@@ -40,6 +40,7 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
 
         let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
         study.setStudyURL(url)
+        study.setMaximumNumberOfRecordsForDBSync(1)
         
         let hrvSensor = ScoscheHRV(awareStudy: study)
         manager.add(hrvSensor!)
@@ -50,19 +51,57 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         let stopSigalTaskResponse = StopSignalTaskResponse(awareStudy: study)
         manager.add(stopSigalTaskResponse!)
         
+        let weather = OpenWeather(awareStudy: study)
+        manager.add(weather!)
+        
+        let iosActivity = IOSActivityRecognition(awareStudy: study)
+        manager.add(iosActivity!)
+        
+        let ambientNoise = AmbientNoise(awareStudy: study)
+        manager.add(ambientNoise!)
+        
+        let locations = Locations(awareStudy: study)
+        manager.add(locations!)
+        
+        let battery = Battery(awareStudy: study)
+        manager.add(battery!)
+        
+        let calendar = Calendar(awareStudy: study)
+        manager.add(calendar!)
+        
+        let calls = Calls(awareStudy: study)
+        manager.add(calls!)
+        
+        let deviceUsage = DeviceUsage(awareStudy: study)
+        manager.add(deviceUsage!)
+        
+        let pushNotification = PushNotification(awareStudy: study)
+        manager.add(pushNotification!)
+        
+        let screen = Screen(awareStudy: study)
+        manager.add(screen!)
+        
+        let visitLocations = VisitLocations(awareStudy: study)
+        manager.add(visitLocations!)
+        
+        let pedometer = Pedometer(awareStudy: study)
+        manager.add(pedometer!)
+        
         manager.createDBTablesOnAwareServer()
         awareCore.requestPermissionForPushNotification()
         
         manager.startAllSensors()
-        manager.syncAllSensors()
 
 //        startESMTask()
         
-        let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], expirationThreshold: 0, notificationDelegate: self)
+        let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], expirationThreshold: 55, notificationDelegate: tabBarController as! UNUserNotificationCenterDelegate)
 //                let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [21, 22], expirationThreshold: 0, notificationDelegate: self)
         let taskScheduler = UserTaskScheduler.shared
         taskScheduler.scheduleTask(task)
         taskScheduler.refrshNotificationSchedules()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
     }
     
     
@@ -120,29 +159,23 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         UNUserNotificationCenter.current().delegate = self
     }
     
-    
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("Will receive notification")
-        completionHandler([.alert, .sound])
-    }
 
     
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("Did received notificaiton")
-        
-        let identifier = response.notification.request.content.categoryIdentifier
-//        print("Controller: \(String(describing: viewController.self))")
-        
-        print("Task identifier:", identifier)
-        let viewController = UIStoryboard(name: identifier, bundle: nil).instantiateViewController(withIdentifier: identifier)
-        show(viewController, sender: self)
-        
-        // Open the Stop-Signal-Task tab
-        self.tabBarController?.selectedIndex = 1
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        completionHandler()
-    }
+//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+//        print("Did received notificaiton")
+//
+//        let identifier = response.notification.request.content.categoryIdentifier
+////        print("Controller: \(String(describing: viewController.self))")
+//
+//        print("Task identifier:", identifier)
+//        let viewController = UIStoryboard(name: identifier, bundle: nil).instantiateViewController(withIdentifier: identifier)
+//        show(viewController, sender: self)
+//
+//        // Open the Stop-Signal-Task tab
+//        self.tabBarController!.selectedIndex = 1
+//        UIApplication.shared.applicationIconBadgeNumber = 0
+//        completionHandler()
+//    }
     
     
     
@@ -160,5 +193,9 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
     }
 
 
+    @objc func appMovedToBackground() {
+        print("Sync data after App moved to background!")
+        AWARESensorManager.shared().syncAllSensorsForcefully()
+    }
 }
 

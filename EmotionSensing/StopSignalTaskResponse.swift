@@ -37,12 +37,20 @@ class StopSignalTaskResponse: AWARESensor{
     
     
     override func createTable() {
+        if isDebug(){
+            print("\(String(describing: self.getName())) Create Table")
+        }
         let queryMaker = TCQMaker()
-        queryMaker.addColumn("task_status", type: TCQTypeText, default: "''")
-        queryMaker.addColumn("task_response_string", type: TCQTypeText, default: "''")
-        let query = queryMaker.getTableCreateQuery(withUniques: nil)
-        storage.createDBTableOnServer(withQuery: query!, tableName: "stop_signal_task_response")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_NUMBER_STOP_TRIALS, type: TCQTypeInteger, default: "-1")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_NUMBER_TOTAL_TRIALS, type: TCQTypeInteger, default: "-1")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TRIAL_ID, type: TCQTypeInteger, default: "-1")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_RESPONSE_TIME, type: TCQTypeReal, default: "-1.0")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_STOP_SIGNAL_DELAY, type: TCQTypeReal, default: "-1.0")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_START_TIMESTAMP, type: TCQTypeReal, default: "-1.0")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_RESPONSE_TYPE, type: TCQTypeText, default: "''")
+        queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_TRIAL_TYPE, type: TCQTypeText, default: "''")
         
+        storage.createDBTableOnServer(with: queryMaker)
     }
     
 }

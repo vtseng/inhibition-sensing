@@ -610,9 +610,15 @@
     </entity>
     <entity name="EntityStopSignalTask" representedClassName="EntityStopSignalTask" syncable="YES">
         <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="task_response_string" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="task_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="number_stop_trials" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="number_total_trials" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="response_time_milliseconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="response_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stop_signal_delay_milliseconds" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="task_start_timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="trial_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="trial_type" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="EntityTimezone" representedClassName="EntityTimezone" syncable="YES">
         <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -693,8 +699,8 @@
         <element name="EntityScoscheHRV" positionX="315" positionY="162" width="128" height="90"/>
         <element name="EntityScreen" positionX="189" positionY="153" width="128" height="30"/>
         <element name="EntitySensorWifi" positionX="333" positionY="180" width="128" height="120"/>
+        <element name="EntityStopSignalTask" positionX="342" positionY="189" width="128" height="195"/>
         <element name="EntityTimezone" positionX="198" positionY="162" width="128" height="30"/>
         <element name="EntityWifi" positionX="207" positionY="171" width="128" height="30"/>
-        <element name="EntityStopSignalTask" positionX="342" positionY="189" width="128" height="105"/>
     </elements>
 </model>
