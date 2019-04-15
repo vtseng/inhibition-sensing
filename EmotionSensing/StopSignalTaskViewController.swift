@@ -41,9 +41,10 @@ enum TaskStatus: String {
 }
 
 // Stop-signal task settings
-let FIXATION_DURATION = 2.0 // fixation duration
+let FIXATION_DURATION = 1.0 // fixation duration
 //let BLANK_DURATION = 0.2 // 0.2 sec blank duration
 let TRIAL_DURATION = 1.0
+let STOP_SIGNAL_DELAY_STEP_SIZE = 0.025 // After successful stopping SSD was increased by 25ms and after unsuccessful stopping SSD was decreased by 25ms.
 
 let NUMBER_OF_TOTAL_TRAILS = 10
 let NUMBER_OF_STOP_TRIALS = 5
@@ -80,7 +81,6 @@ class StopSignalTaskViewController: UIViewController{
     var responseDate : Date?
     var responseType : ResponseType?
     var userDidRespond = false
-    var responseString = "Trial ID, Trial Timestamp, Trial Type, Current SSD (ms), Response, Response Time (ms)\n"
     var taskStartTimestamp : NSNumber!
     
     override func viewDidLoad() {
@@ -240,8 +240,15 @@ class StopSignalTaskViewController: UIViewController{
             fatalError("Failure to save context: \(error)")
         }
         
-//        let trialResponseString = "\(trial_id),\(String(describing: timestamp!)),\(taskState.rawValue),\(stopSignalDelay*1000),\(String(describing: responseType!.rawValue)),\(responseTime*1000)\n"
-//        responseString.append(trialResponseString)
+        // Update the next stop signal delay
+        if taskState == .stop {
+            if responseType == .stopSuccessful {
+                stopSignalDelay += STOP_SIGNAL_DELAY_STEP_SIZE
+            } else {
+                stopSignalDelay -= STOP_SIGNAL_DELAY_STEP_SIZE
+            }
+        }
+        
         
         taskState = .blank
         trialStartDate = nil
@@ -277,15 +284,8 @@ class StopSignalTaskViewController: UIViewController{
 //            fatalError("Failure to save context: \(error)")
 //        }
         
+
         
-//        do {
-//            try responseString.write(to: path!, atomically: true, encoding: String.Encoding.utf8)
-//        } catch {
-//            print("Failed to create file")
-//            print("\(error)")
-//        }
-        
-//        AWARESensorManager.shared().syncAllSensorsForcefully()
         fixationLabel.text = "Completed"
     }
 
@@ -311,7 +311,7 @@ class StopSignalTaskViewController: UIViewController{
     }
     
     
-    func stopSignalGenerator() -> Signal{
+    func stopSignalGenerator() -> Signal {
         let flippedHead = Bool.random()
         if flippedHead {
             return .stopFollowingLeftGo

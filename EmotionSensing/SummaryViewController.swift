@@ -83,7 +83,7 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         
         let visitLocations = VisitLocations(awareStudy: study)
         manager.add(visitLocations!)
-        
+
         let pedometer = Pedometer(awareStudy: study)
         manager.add(pedometer!)
         

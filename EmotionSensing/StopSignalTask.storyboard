@@ -18,26 +18,40 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Task Instructions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sBM-1a-Xzm">
+                                <rect key="frame" x="48" y="54" width="279" height="448"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="60q-m5-JGa">
-                                <rect key="frame" x="170.5" y="328.5" width="34" height="30"/>
+                                <rect key="frame" x="170.5" y="617" width="34" height="30"/>
                                 <state key="normal" title="Start"/>
                                 <connections>
+                                    <action selector="startTask:" destination="H3f-pO-XBi" eventType="touchUpInside" id="evZ-Hi-3OZ"/>
                                     <segue destination="tPc-um-JGY" kind="presentation" id="kX2-kd-ucP"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="60q-m5-JGa" firstAttribute="centerY" secondItem="R2o-QW-lVp" secondAttribute="centerY" id="qdN-dx-uQL"/>
+                            <constraint firstItem="R2o-QW-lVp" firstAttribute="trailing" secondItem="sBM-1a-Xzm" secondAttribute="trailing" constant="20" id="4he-EO-mIh"/>
+                            <constraint firstItem="sBM-1a-Xzm" firstAttribute="top" secondItem="R2o-QW-lVp" secondAttribute="top" constant="20" id="9Up-e3-ayL"/>
+                            <constraint firstItem="sBM-1a-Xzm" firstAttribute="leading" secondItem="R2o-QW-lVp" secondAttribute="leading" constant="20" id="CEJ-Dz-xBB"/>
+                            <constraint firstItem="R2o-QW-lVp" firstAttribute="bottom" secondItem="60q-m5-JGa" secondAttribute="bottom" constant="20" id="Voz-dg-Kl4"/>
+                            <constraint firstItem="sBM-1a-Xzm" firstAttribute="centerX" secondItem="R2o-QW-lVp" secondAttribute="centerX" id="aVR-Vy-x68"/>
                             <constraint firstItem="60q-m5-JGa" firstAttribute="centerX" secondItem="R2o-QW-lVp" secondAttribute="centerX" id="uhn-zO-XBh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="R2o-QW-lVp"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item 2" id="EbO-ny-oeD"/>
+                    <connections>
+                        <outlet property="taskInstructionsLabel" destination="sBM-1a-Xzm" id="kKM-bs-3xn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZm-jN-Jid" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041" y="-202"/>
+            <point key="canvasLocation" x="1040.8" y="-202.84857571214394"/>
         </scene>
         <!--Stop Signal Task View Controller-->
         <scene sceneID="rbU-uF-M4q">

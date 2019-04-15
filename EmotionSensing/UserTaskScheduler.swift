@@ -10,17 +10,16 @@ import Foundation
 import UserNotifications
 import UIKit
 
-let USER_TASK_NOTIFICATION = "pending_user_task"
 let STOP_SIGNAL_TASK_IDENTIFIER = "StopSignalTask"
-let FIRE_MINUTE_COMPONENT = 39
+let DEFAULT_FIRE_MINUTE_COMPONENT = 51
 
 class UserTaskScheduler {
     
     static let shared = UserTaskScheduler()
     
-    
     var tasksToBeScheduled: [UserTask]! // Tasks awaiting to be scheduled
     var scheduledTasks: [UserTask]! // Tasks scheduled but not yet fired
+    var taskDisplayNames: [String : String] = [:] // Task names that will be displayed in the dashboard
     
     init() {
         tasksToBeScheduled = []
@@ -45,7 +44,7 @@ class UserTaskScheduler {
             for hour in task.fireHous! {
                 fireDateComponents.timeZone = TimeZone.current
                 fireDateComponents.hour = hour
-                fireDateComponents.minute = FIRE_MINUTE_COMPONENT
+                fireDateComponents.minute = DEFAULT_FIRE_MINUTE_COMPONENT
 
                 
                 let fireDate = calendar.date(from: fireDateComponents)!
@@ -76,7 +75,7 @@ class UserTaskScheduler {
                     
                     var dateComponents = DateComponents()
                     dateComponents.hour = hour
-                    dateComponents.minute = FIRE_MINUTE_COMPONENT
+                    dateComponents.minute = DEFAULT_FIRE_MINUTE_COMPONENT
                     let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
                     let notificationIdentifier = getNotificationIdentifier(taskIdentifier: task.identifier, fireHour: hour)
                     let request = UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
@@ -86,6 +85,7 @@ class UserTaskScheduler {
                 }
             }
             
+            taskDisplayNames[task.identifier] = task.title
             scheduledTasks.append(task)
         }
     }
@@ -98,6 +98,15 @@ class UserTaskScheduler {
     func getNotificationIdentifier(taskIdentifier: String, fireHour: Int) -> String {
         
         return taskIdentifier + String(describing: fireHour)
+    }
+    
+    
+    func getTaskDisplayName(taskIentifier: String) -> String {
+        if let displayName = taskDisplayNames[taskIentifier] {
+            return displayName
+        } else {
+            return taskIentifier
+        }
     }
     
 }

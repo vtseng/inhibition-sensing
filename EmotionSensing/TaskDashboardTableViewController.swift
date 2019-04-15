@@ -14,26 +14,27 @@ let KEY_ATTEMPTED_TASKS = "attempted_tasks"
 
 class PendingTaskCell: UITableViewCell{
     
-    @IBOutlet weak var taskNameLabel: UILabel!
+    @IBOutlet weak var taskDisplayNameLabel: UILabel!
 }
 
 class TaskDashboardTableViewController: UITableViewController {
     
-    var userTaskScheduler: UserTaskScheduler!
 //    var pendingTasks: [UserTask]!
     var pendingTaskIdentifiers: [String]!
     
+    @IBOutlet var noPendingTasksView: UIView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        tableView.backgroundView = noPendingTasksView
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let attemptedTasks = getRecentAttemptedTasks()
         pendingTaskIdentifiers = []
         
@@ -45,6 +46,35 @@ class TaskDashboardTableViewController: UITableViewController {
             }
         }
         
+        if pendingTaskIdentifiers.count == 0 {
+            tableView.backgroundView?.isHidden = false
+            tableView.separatorStyle = .none
+            return 0
+        } else {
+            tableView.backgroundView?.isHidden = true
+            return 1
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        /*
+        let attemptedTasks = getRecentAttemptedTasks()
+        pendingTaskIdentifiers = []
+        
+        for (taskIdentifier, fireDate) in UserTaskScheduler.shared.getPendingTasks() {
+            if attemptedTasks[taskIdentifier] == nil {
+                pendingTaskIdentifiers.append(taskIdentifier)
+            } else if fireDate > attemptedTasks[taskIdentifier]! {
+                pendingTaskIdentifiers.append(taskIdentifier)
+            }
+        }
+        
+        if pendingTaskIdentifiers.count == 0 {
+            tableView.backgroundView?.isHidden = false
+        } else {
+            tableView.backgroundView?.isHidden = true
+        }*/
+        
         return pendingTaskIdentifiers.count
     }
     
@@ -52,11 +82,9 @@ class TaskDashboardTableViewController: UITableViewController {
         let taskIdentifier = pendingTaskIdentifiers[indexPath.row]
         let cell = tableView.dequeueReusableCell(withIdentifier: "PendingTaskCell") as! PendingTaskCell
         
-        cell.taskNameLabel.text = taskIdentifier
+        cell.taskDisplayNameLabel.text = UserTaskScheduler.shared.getTaskDisplayName(taskIentifier: taskIdentifier)
         
         return cell
-
-        
     }
     
     
@@ -67,6 +95,7 @@ class TaskDashboardTableViewController: UITableViewController {
         let storyboardName = pendingTaskIdentifiers[indexPath.row]
         let taskIdentifier = pendingTaskIdentifiers[indexPath.row]
         
+        /*
         let defaults = UserDefaults.standard
         var attemptedTasks : [String : Date] = [:]
             
@@ -75,7 +104,7 @@ class TaskDashboardTableViewController: UITableViewController {
         }
         
         attemptedTasks[taskIdentifier] = Date()
-        defaults.set(attemptedTasks, forKey: KEY_ATTEMPTED_TASKS)
+        defaults.set(attemptedTasks, forKey: KEY_ATTEMPTED_TASKS)*/
         
         let taskViewController = UIStoryboard(name: storyboardName, bundle: nil).instantiateViewController(withIdentifier: taskIdentifier)
         //navigationController?.present(taskViewController, animated: true, completion: nil)
