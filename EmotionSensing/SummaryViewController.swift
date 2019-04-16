@@ -9,6 +9,8 @@
 import UIKit
 import AWAREFramework
 
+let KEY_NUMBER_COMPLETED_TASKS = "number_completed_tasks"
+
 class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate {
 
 //    var sensorManager: AWARESensorManager?
@@ -19,6 +21,8 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
     @IBOutlet weak var rrIntervalLabel: UILabel!
     @IBOutlet weak var rrIntervalValueLabel: UILabel!
     
+    var numberOfCompletedTasks: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -26,6 +30,7 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         let awareCore = AWARECore.shared()
         let study = AWAREStudy.shared()
         let manager = AWARESensorManager.shared()
+        
         
         // add observers for battery level and rr interval updates
         let notificationCenter = NotificationCenter.default
@@ -91,11 +96,8 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         awareCore.requestPermissionForPushNotification()
         
         manager.startAllSensors()
-
-//        startESMTask()
         
         let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], expirationThreshold: 55, notificationDelegate: tabBarController as! UNUserNotificationCenterDelegate)
-//                let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [21, 22], expirationThreshold: 0, notificationDelegate: self)
         let taskScheduler = UserTaskScheduler.shared
         taskScheduler.scheduleTask(task)
         taskScheduler.refrshNotificationSchedules()
@@ -106,36 +108,17 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
     
     
     override func viewDidAppear(_ animated: Bool) {
-        let esmManager = ESMScheduleManager.shared()
-        let schedules = esmManager.getValidSchedules()
-        if (schedules.count > 0){
-            print(schedules)
+        let defaults = UserDefaults.standard
+        
+        if let number = defaults.object(forKey: KEY_NUMBER_COMPLETED_TASKS) as? Int {
+            numberOfCompletedTasks = number
+        } else {
+            numberOfCompletedTasks = 0
         }
         
+        print("#Completed tasks: \(numberOfCompletedTasks)")
     }
     
-    
-    
-//    func scheduleExperienceSampling(){
-//        let schedule = ESMSchedule.init()
-//        schedule.notificationTitle = "notification title"
-//        schedule.notificationBody = "notificaiton body"
-//        schedule.scheduleId = "schedule_id"
-//        schedule.expirationThreshold = 60
-//        schedule.startDate = Date.init()
-//        schedule.endDate = Date.init(timeIntervalSinceNow: 60*60*24*10)
-//        schedule.fireHours = [9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21]
-//
-//        let radio = ESMItem.init(asRadioESMWithTrigger: "1_radio", radioItems: ["A", "B", "C", "D", "E"])
-//        radio?.setTitle("ESM title")
-//        radio?.setInstructions("some instructions")
-//        schedule.addESM(radio)
-//
-//        let esmManager = ESMScheduleManager.shared()
-//        esmManager.add(schedule)
-//        esmManager.refreshESMNotifications()
-//
-//    }
     
     func startESMTask(){
         let content = UNMutableNotificationContent()
@@ -158,25 +141,6 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         }
         UNUserNotificationCenter.current().delegate = self
     }
-    
-
-    
-//    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-//        print("Did received notificaiton")
-//
-//        let identifier = response.notification.request.content.categoryIdentifier
-////        print("Controller: \(String(describing: viewController.self))")
-//
-//        print("Task identifier:", identifier)
-//        let viewController = UIStoryboard(name: identifier, bundle: nil).instantiateViewController(withIdentifier: identifier)
-//        show(viewController, sender: self)
-//
-//        // Open the Stop-Signal-Task tab
-//        self.tabBarController!.selectedIndex = 1
-//        UIApplication.shared.applicationIconBadgeNumber = 0
-//        completionHandler()
-//    }
-    
     
     
     // MARK: User reminders

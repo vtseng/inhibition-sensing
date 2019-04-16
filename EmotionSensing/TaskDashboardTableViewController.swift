@@ -57,24 +57,6 @@ class TaskDashboardTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        /*
-        let attemptedTasks = getRecentAttemptedTasks()
-        pendingTaskIdentifiers = []
-        
-        for (taskIdentifier, fireDate) in UserTaskScheduler.shared.getPendingTasks() {
-            if attemptedTasks[taskIdentifier] == nil {
-                pendingTaskIdentifiers.append(taskIdentifier)
-            } else if fireDate > attemptedTasks[taskIdentifier]! {
-                pendingTaskIdentifiers.append(taskIdentifier)
-            }
-        }
-        
-        if pendingTaskIdentifiers.count == 0 {
-            tableView.backgroundView?.isHidden = false
-        } else {
-            tableView.backgroundView?.isHidden = true
-        }*/
-        
         return pendingTaskIdentifiers.count
     }
     
@@ -89,22 +71,10 @@ class TaskDashboardTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //let storyboardName = "StopSignalTask"
-        //let taskIdentifier = "StopSignalTask"
-    
+
         let storyboardName = pendingTaskIdentifiers[indexPath.row]
         let taskIdentifier = pendingTaskIdentifiers[indexPath.row]
-        
-        /*
-        let defaults = UserDefaults.standard
-        var attemptedTasks : [String : Date] = [:]
-            
-        if let dict = defaults.object(forKey: KEY_ATTEMPTED_TASKS) as? [String : Date] {
-            attemptedTasks = dict
-        }
-        
-        attemptedTasks[taskIdentifier] = Date()
-        defaults.set(attemptedTasks, forKey: KEY_ATTEMPTED_TASKS)*/
+    
         
         let taskViewController = UIStoryboard(name: storyboardName, bundle: nil).instantiateViewController(withIdentifier: taskIdentifier)
         //navigationController?.present(taskViewController, animated: true, completion: nil)
@@ -112,10 +82,8 @@ class TaskDashboardTableViewController: UITableViewController {
     }
     
     
-    /**
-     Get tasks recently attempted.
-     Meanwhile, update the dictionary to include only tasks attempted within 24 hours.
-     */
+    /* Get tasks recently attempted.
+     Meanwhile, update the dictionary to include only tasks attempted within 24 hours. */
     func getRecentAttemptedTasks() -> [String: Date] {
         let defaults = UserDefaults.standard
         

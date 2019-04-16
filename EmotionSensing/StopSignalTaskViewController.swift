@@ -24,6 +24,7 @@ enum TaskState: String {
     case fixation = "fixation"
     case go = "go"
     case stop = "stop"
+    case completed = "completed"
 }
 
 enum ResponseType: String {
@@ -41,16 +42,16 @@ enum TaskStatus: String {
 }
 
 // Stop-signal task settings
-let FIXATION_DURATION = 1.0 // fixation duration
-//let BLANK_DURATION = 0.2 // 0.2 sec blank duration
-let TRIAL_DURATION = 1.0
-let STOP_SIGNAL_DELAY_STEP_SIZE = 0.025 // After successful stopping SSD was increased by 25ms and after unsuccessful stopping SSD was decreased by 25ms.
+let fixationDuration = 1.5 // fixation duration
+let trialDuration = 1.5
+let initialStopSignalDelay = 0.25
+let stopSignalDelayStepSize = 0.025 // After successful stopping SSD was increased by 25ms and after unsuccessful stopping SSD was decreased by 25ms.
 
-let NUMBER_OF_TOTAL_TRAILS = 10
-let NUMBER_OF_STOP_TRIALS = 5
+let numberOfTotalTrials = 10
+let numberOfStopTrials = 5
 
-let DEFAULT_GO_RESPONSE_TYPE = ResponseType.goOmission // Default response type for Go trial if user doesn't respond
-let DEFAULT_STOP_RESPONSE_TYPE = ResponseType.stopSuccessful // Default response type for Stop trial if user doesn't respond
+let defaultGoResponseType = ResponseType.goOmission // Default response type for Go trial if user doesn't respond
+let defaultStopResponseType = ResponseType.stopSuccessful // Default response type for Stop trial if user doesn't respond
 
 let KEY_STOP_SIGNAL_TASK_NUMBER_STOP_TRIALS = "number_stop_trials"
 let KEY_STOP_SIGNAL_TASK_NUMBER_TOTAL_TRIALS = "number_total_trials"
@@ -70,13 +71,14 @@ let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent
 class StopSignalTaskViewController: UIViewController{
     
     @IBOutlet weak var fixationLabel: UILabel!
+    @IBOutlet weak var taskCompletionLabel: UILabel!
     @IBOutlet var taskView: UIView!
     
     var signal: Signal?
     var goSignalAppearedDate : Date?
     var taskState = TaskState.blank
     var trials : [TaskState]?
-    var stopSignalDelay = 0.2 // Initial SSD = 200 ms
+    var stopSignalDelay = 0.25 // Initial SSD = 250 ms
     var trialStartDate : Date?
     var responseDate : Date?
     var responseType : ResponseType?
@@ -86,16 +88,26 @@ class StopSignalTaskViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let numberOfGoTrials = NUMBER_OF_TOTAL_TRAILS - NUMBER_OF_STOP_TRIALS
+        let numberOfGoTrials = numberOfTotalTrials - numberOfStopTrials
         let goTrials = Array(repeating: TaskState.go, count: numberOfGoTrials)
-        let stopTrials = Array(repeating: TaskState.stop, count: NUMBER_OF_STOP_TRIALS)
+        let stopTrials = Array(repeating: TaskState.stop, count: numberOfStopTrials)
         trials = (goTrials + stopTrials).shuffled()
         responseType = nil
         taskStartTimestamp = AWAREUtils.getUnixTimestamp(Date())
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(onMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        taskCompletionLabel.isHidden = true
+        fixationLabel.isHidden = true
         showFixation()
+        
+        UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
     }
     
     
@@ -121,13 +133,16 @@ class StopSignalTaskViewController: UIViewController{
             touchResponse = .right
         }
         
+        resetLabelTextStyle()
+        
         switch taskState{
         case .blank:
             fixationLabel.text = ""
+            
         case .fixation:
             fixationLabel.text = "Too early"
             responseType = .falseStart
-
+            
         case .stop:
             fixationLabel.text = userDidRespond ? fixationLabel.text : "Incorrect"
             responseType = userDidRespond ?  responseType : .stopUnsuccessful
@@ -141,6 +156,9 @@ class StopSignalTaskViewController: UIViewController{
                 fixationLabel.text = userDidRespond ? fixationLabel.text : "Incorrect"
                 responseType = userDidRespond ? responseType : .goError
             }
+            
+        case .completed:
+            self.dismiss(animated: true, completion: nil)
         }
         
         userDidRespond = true
@@ -150,19 +168,19 @@ class StopSignalTaskViewController: UIViewController{
     
     @objc func showFixation(){
         taskState = .fixation
-        goSignalAppearedDate = nil
-        print("Showing Central Fixation")
         fixationLabel.text = "+"
+        fixationLabel.isHidden = false
+        goSignalAppearedDate = nil
         userDidRespond = false
         
         let nextTrial = trials?.popLast()
         
         if nextTrial == .go {
-            responseType = DEFAULT_GO_RESPONSE_TYPE
-            Timer.scheduledTimer(timeInterval: FIXATION_DURATION, target: self, selector: #selector(startGoTrial), userInfo: nil, repeats: false)
+            responseType = defaultGoResponseType
+            Timer.scheduledTimer(timeInterval: fixationDuration, target: self, selector: #selector(startGoTrial), userInfo: nil, repeats: false)
         }else if nextTrial == .stop {
-            responseType = DEFAULT_STOP_RESPONSE_TYPE
-            Timer.scheduledTimer(timeInterval: FIXATION_DURATION, target: self, selector: #selector(startStopTrial), userInfo: nil, repeats: false)
+            responseType = defaultStopResponseType
+            Timer.scheduledTimer(timeInterval: fixationDuration, target: self, selector: #selector(startStopTrial), userInfo: nil, repeats: false)
         }
     }
     
@@ -173,16 +191,11 @@ class StopSignalTaskViewController: UIViewController{
         
         // Randomly decide the type of Go signal
         signal = goSignalGenerator()
-        
-        if signal == .leftGo {
-            fixationLabel.text = "Left"
-        } else if signal == .rightGo {
-            fixationLabel.text = "Right"
-        }
+        showGoSignal(signal: signal!)
         
         trialStartDate = Date()
         
-        Timer.scheduledTimer(timeInterval: TRIAL_DURATION, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: trialDuration, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
     }
     
     
@@ -191,17 +204,12 @@ class StopSignalTaskViewController: UIViewController{
         print("Start trial")
         
         signal = stopSignalGenerator()
-        
-        if signal == .stopFollowingLeftGo {
-            fixationLabel.text = "Left"
-        } else if signal == .stopFollowingRightGo {
-            fixationLabel.text = "Right"
-        }
-        
+        showGoSignal(signal: signal!)
+
         trialStartDate = Date()
         
         Timer.scheduledTimer(timeInterval: stopSignalDelay, target: self, selector: #selector(showStopSignal), userInfo: nil, repeats: false)
-        Timer.scheduledTimer(timeInterval: TRIAL_DURATION, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: trialDuration, target: self, selector: #selector(showBlank), userInfo: nil, repeats: false)
     }
     
     
@@ -215,7 +223,7 @@ class StopSignalTaskViewController: UIViewController{
         print("RT: \(responseTime)")
         print("Re: \(responseType!.rawValue)")
     
-        let trial_id = NUMBER_OF_TOTAL_TRAILS - trials!.count
+        let trial_id = numberOfTotalTrials - trials!.count
         let response_timestamp = AWAREUtils.getUnixTimestamp(Date())
         let device_id = AWAREStudy.shared().getDeviceId()
         
@@ -223,8 +231,8 @@ class StopSignalTaskViewController: UIViewController{
         managedObjectContext.persistentStoreCoordinator = CoreDataHandler.shared().persistentStoreCoordinator
         let task = NSEntityDescription.insertNewObject(forEntityName: String(describing: EntityStopSignalTask.self), into: managedObjectContext)
         
-        task.setValue(NUMBER_OF_STOP_TRIALS, forKey: KEY_STOP_SIGNAL_TASK_NUMBER_STOP_TRIALS)
-        task.setValue(NUMBER_OF_TOTAL_TRAILS, forKey: KEY_STOP_SIGNAL_TASK_NUMBER_TOTAL_TRIALS)
+        task.setValue(numberOfStopTrials, forKey: KEY_STOP_SIGNAL_TASK_NUMBER_STOP_TRIALS)
+        task.setValue(numberOfTotalTrials, forKey: KEY_STOP_SIGNAL_TASK_NUMBER_TOTAL_TRIALS)
         task.setValue(trial_id, forKey: KEY_STOP_SIGNAL_TRIAL_ID)
         task.setValue(responseTime*1000, forKey: KEY_STOP_SIGNAL_TASK_RESPONSE_TIME)
         task.setValue(stopSignalDelay*1000, forKey: KEY_STOP_SIGNAL_TASK_STOP_SIGNAL_DELAY)
@@ -243,50 +251,64 @@ class StopSignalTaskViewController: UIViewController{
         // Update the next stop signal delay
         if taskState == .stop {
             if responseType == .stopSuccessful {
-                stopSignalDelay += STOP_SIGNAL_DELAY_STEP_SIZE
+                stopSignalDelay += stopSignalDelayStepSize
             } else {
-                stopSignalDelay -= STOP_SIGNAL_DELAY_STEP_SIZE
+                stopSignalDelay -= stopSignalDelayStepSize
             }
         }
         
         
         taskState = .blank
+        resetLabelTextStyle()
         trialStartDate = nil
         responseDate = nil
         
         if trials!.count > 0 {
             showFixation()
         } else{
+            taskState = .completed
             taskDidComplete()
         }
     }
     
     
+    func showGoSignal(signal: Signal) {
+        fixationLabel.isHidden = true
+        resetLabelTextStyle()
+        
+        if signal == .leftGo || signal == .stopFollowingLeftGo  {
+            fixationLabel.text = "L"
+        } else if signal == .rightGo || signal == .stopFollowingRightGo {
+            fixationLabel.text = "R"
+        }
+        
+        fixationLabel.isHidden = false
+    }
+    
+    
     @objc func showStopSignal(){
+        fixationLabel.isHidden = true
+        fixationLabel.textColor = UIColor.red
         fixationLabel.text = "X"
+        fixationLabel.font = UIFont.systemFont(ofSize: 40)
+        fixationLabel.isHidden = false
     }
     
     
     
     func taskDidComplete(){
-//        let managedObjectContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-//        managedObjectContext.persistentStoreCoordinator = CoreDataHandler.shared().persistentStoreCoordinator
-//        let task = NSEntityDescription.insertNewObject(forEntityName: String(describing: EntityStopSignalTask.self), into: managedObjectContext)
-//        let device_id = AWAREStudy.shared().getDeviceId()
-//        let unixtime = AWAREUtils.getUnixTimestamp(Date())
-//        task.setValue(device_id, forKey: KEY_STOP_SIGNAL_TASK_DEVICE_ID)
-//        task.setValue(unixtime, forKey: KEY_STOP_SIGNAL_TASK_TIMESTAMP)
-//
-//
-//        do {
-//            try managedObjectContext.save()
-//        } catch {
-//            fatalError("Failure to save context: \(error)")
-//        }
+        fixationLabel.isHidden = true
+        taskCompletionLabel.isHidden = false
         
-
+        // Update the number of completed tasks
+        let defaults = UserDefaults.standard
+        var numberOfCompletedTasks = 0
+        if let number = defaults.object(forKey: KEY_NUMBER_COMPLETED_TASKS) as? Int {
+            numberOfCompletedTasks = number
+        }
+        numberOfCompletedTasks += 1
+        defaults.set(numberOfCompletedTasks, forKey: KEY_NUMBER_COMPLETED_TASKS)
         
-        fixationLabel.text = "Completed"
     }
 
     
@@ -328,13 +350,10 @@ class StopSignalTaskViewController: UIViewController{
     }
     
     
-    // MARK: Force the orientation to be landscape.
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-//        tabBarController?.tabBar.isHidden = true
-        
-        UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+    
+    func resetLabelTextStyle() {
+        fixationLabel.textColor = UIColor.black
+        fixationLabel.font = UIFont.systemFont(ofSize: 40)
     }
     
     override var shouldAutorotate: Bool {

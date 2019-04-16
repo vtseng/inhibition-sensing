@@ -11,7 +11,7 @@ import UserNotifications
 import UIKit
 
 let STOP_SIGNAL_TASK_IDENTIFIER = "StopSignalTask"
-let DEFAULT_FIRE_MINUTE_COMPONENT = 51
+let DEFAULT_FIRE_MINUTE_COMPONENT = 49
 
 class UserTaskScheduler {
     
@@ -69,7 +69,6 @@ class UserTaskScheduler {
                     let content = UNMutableNotificationContent()
                     content.title = task.title
                     content.body = task.message
-//                    content.userInfo = [KEY_TASK_INTRODUCTION_VIEW_CONTROLLER: UIViewController.self]
                     content.categoryIdentifier = task.identifier
                     content.badge = 1
                     
