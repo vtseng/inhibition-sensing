@@ -10,17 +10,34 @@ import Foundation
 import AWAREFramework
 
 // String constants
-let SENSOR_SCOSCHE_HRV = "ScoscheHRV"
-let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
+let SENSOR_PLUGIN_BLE_HRV = "plugin_ble_heart_rate_variability"
+let KEY_HRV_BATTERY_LEVEL = "battery_level"
+let KEY_HRV_BODY_LOCATION = "body_location"
+let KEY_HRV_HEART_RATE = "heart_rate"
+let KEY_HRV_RR_INTERVAL = "rr_interval"
+let KEY_HRV_RSSI = "rssi"
+let KEY_HRV_TIMESTAMP = "timestamp"
+let KEY_HRV_DEVICE_ID = "device_id" // The device id of the phone.
+let KEY_HRV_MANUFACTURER = "manufacturer"
+let KEY_HRV_PERIPHERAL_ID = "peripheral_id"
+
+/*let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
 let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
-let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"
+let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"*/
+
 //let PERIPHERAL_ID = "751FF690-947A-6A0A-7248-209FDF502805"
 let PERIPHERAL_ID = "77EA86F3-A874-9262-F3F7-C0A077724D6E"
 
-class ScoscheHRV: AWARESensor {
+class BLEHeartRateVariability: AWARESensor {
     
     var centralManager: CBCentralManager!
     var heartRatePeripheral: CBPeripheral!
+    // TODO: Update these properties when connect gets set up
+    var batteryLevel: Int = -1
+    var bodyLocation: Int = -1
+    var rssi: Float = -1.0
+    var manufacturer: String = ""
+    var peripheralId: String = PERIPHERAL_ID
     
     let heartRateMeasurementCharacteristicCBUUID = CBUUID(string: "2A37")
     let batteryLevelCharacteristicCBUUID = CBUUID(string: "2A19")
@@ -48,17 +65,23 @@ class ScoscheHRV: AWARESensor {
         }else if dbType == AwareDBTypeCSV{
             print("DBTypeCSV is currently not implemented for HRV sensor.")
         }else{
-            storage = SQLiteStorage(study: study, sensorName: SENSOR_SCOSCHE_HRV, entityName: String(describing: EntityScoscheHRV.self), insertCallBack: { (dataDict, childContext, entity) in
-                let entityHRV = NSEntityDescription.insertNewObject(forEntityName: entity!, into: childContext!) as! EntityScoscheHRV
+            storage = SQLiteStorage(study: study, sensorName: SENSOR_PLUGIN_BLE_HRV, entityName: String(describing: EntityBLEHeartRateVariability.self), insertCallBack: { (dataDict, childContext, entity) in
+                let entityHRV = NSEntityDescription.insertNewObject(forEntityName: entity!, into: childContext!) as! EntityBLEHeartRateVariability
                 
-                entityHRV.device_id = dataDict![KEY_SCOSCHE_HRV_DEVICE_ID] as? String
-                entityHRV.timestamp = dataDict![KEY_SCOSCHE_HRV_TIMESTAMP] as? NSNumber
-                entityHRV.rr_interval = dataDict![KEY_SCOSCHE_HRV_RR_INTERVAL] as? NSNumber
+                entityHRV.battery_level = dataDict![KEY_HRV_BATTERY_LEVEL] as? NSNumber
+                entityHRV.body_location = dataDict![KEY_HRV_BODY_LOCATION] as? NSNumber
+                entityHRV.heart_rate = dataDict![KEY_HRV_HEART_RATE] as? NSNumber
+                entityHRV.rr_interval = dataDict![KEY_HRV_RR_INTERVAL] as? NSNumber
+                entityHRV.rssi = dataDict![KEY_HRV_RSSI] as? NSNumber
+                entityHRV.timestamp = dataDict![KEY_HRV_TIMESTAMP] as? NSNumber
+                entityHRV.device_id = dataDict![KEY_HRV_DEVICE_ID] as? String
+                entityHRV.manufacturer = dataDict![KEY_HRV_MANUFACTURER] as? String
+                entityHRV.peripheral_id = dataDict![KEY_HRV_PERIPHERAL_ID] as? String
 
             })
         }
 
-        super.init(awareStudy: study, sensorName: SENSOR_SCOSCHE_HRV, storage: storage)
+        super.init(awareStudy: study, sensorName: SENSOR_PLUGIN_BLE_HRV, storage: storage)
     }
     
     
@@ -68,7 +91,13 @@ class ScoscheHRV: AWARESensor {
             print("\(String(describing: self.getName())) Create Table")
         }
         let queryMaker = TCQMaker()
-        queryMaker.addColumn("rr_interval", type: TCQTypeReal, default: "0")
+        queryMaker.addColumn(KEY_HRV_BATTERY_LEVEL, type: TCQTypeReal, default: "-1")
+        queryMaker.addColumn(KEY_HRV_BODY_LOCATION, type: TCQTypeReal, default: "-1")
+        queryMaker.addColumn(KEY_HRV_HEART_RATE, type: TCQTypeReal, default: "-1")
+        queryMaker.addColumn(KEY_HRV_RR_INTERVAL, type: TCQTypeReal, default: "0")
+        queryMaker.addColumn(KEY_HRV_RSSI, type: TCQTypeReal, default: "-1")
+        queryMaker.addColumn(KEY_HRV_MANUFACTURER, type: TCQTypeText, default: "''")
+        queryMaker.addColumn(KEY_HRV_PERIPHERAL_ID, type: TCQTypeText, default: "''")
         
         storage.createDBTableOnServer(with: queryMaker)
     }
@@ -94,7 +123,7 @@ class ScoscheHRV: AWARESensor {
 }
 
 // MARK: Confirm to CBCentralManagerDelegate protocol.
-extension ScoscheHRV: CBCentralManagerDelegate {
+extension BLEHeartRateVariability: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         switch central.state {
         case .unknown:
@@ -128,7 +157,7 @@ extension ScoscheHRV: CBCentralManagerDelegate {
 }
 
 // MARK: Confirm to CBPeripheralDelegate protocol.
-extension ScoscheHRV : CBPeripheralDelegate {
+extension BLEHeartRateVariability : CBPeripheralDelegate {
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
         guard let services = peripheral.services else { return }
         
@@ -201,6 +230,7 @@ extension ScoscheHRV : CBPeripheralDelegate {
     }
     
     func onBatteryLevelReceived(_ batteryLevel: Int) {
+        self.batteryLevel = batteryLevel
         postBatteryLevel(batteryLevel)
     }
     
@@ -210,9 +240,16 @@ extension ScoscheHRV : CBPeripheralDelegate {
         
         var dict = [String: Any]()
         let unixtime = AWAREUtils.getUnixTimestamp(NSDate() as Date)
-        dict[KEY_SCOSCHE_HRV_TIMESTAMP] = unixtime
-        dict[KEY_SCOSCHE_HRV_DEVICE_ID] = getDeviceId()
-        dict[KEY_SCOSCHE_HRV_RR_INTERVAL] = rr
+        
+        dict[KEY_HRV_BATTERY_LEVEL] = batteryLevel
+        dict[KEY_HRV_BODY_LOCATION] = bodyLocation
+        dict[KEY_HRV_HEART_RATE] = heartRate
+        dict[KEY_HRV_RR_INTERVAL] = rr
+        dict[KEY_HRV_RSSI] = rssi
+        dict[KEY_HRV_TIMESTAMP] = unixtime
+        dict[KEY_HRV_DEVICE_ID] = getDeviceId()
+        dict[KEY_HRV_MANUFACTURER] = manufacturer
+        dict[KEY_HRV_PERIPHERAL_ID] = peripheralId
         
         print(dict)
         
@@ -231,14 +268,14 @@ extension ScoscheHRV : CBPeripheralDelegate {
         NotificationCenter.default.post(
             name: .ScoscheDidUpdateBatteryLevel,
             object: self,
-            userInfo: [ScoscheHRV.BATTERY_LEVEL_NOTIFICATION_KEY : batteryLevel])
+            userInfo: [BLEHeartRateVariability.BATTERY_LEVEL_NOTIFICATION_KEY : batteryLevel])
     }
     
     func postRRInterval(_ rr: Float) {
         NotificationCenter.default.post(
             name: .ScoscheDidUpdateRRInterval,
             object: self,
-            userInfo: [ScoscheHRV.RR_INTERVAL_NOTIFICATION_KEY : rr])
+            userInfo: [BLEHeartRateVariability.RR_INTERVAL_NOTIFICATION_KEY : rr])
     }
 }
 

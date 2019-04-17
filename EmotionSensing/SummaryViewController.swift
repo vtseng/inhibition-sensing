@@ -47,7 +47,7 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         study.setStudyURL(url)
         study.setMaximumNumberOfRecordsForDBSync(1)
         
-        let hrvSensor = ScoscheHRV(awareStudy: study)
+        let hrvSensor = BLEHeartRateVariability(awareStudy: study)
         manager.add(hrvSensor!)
         
         let accelerometer = Accelerometer(awareStudy: study)
@@ -92,6 +92,9 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
         let pedometer = Pedometer(awareStudy: study)
         manager.add(pedometer!)
         
+        let wifi = Wifi(awareStudy: study)
+        manager.add(wifi!)
+        
         manager.createDBTablesOnAwareServer()
         awareCore.requestPermissionForPushNotification()
         
@@ -116,7 +119,7 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
             numberOfCompletedTasks = 0
         }
         
-        print("#Completed tasks: \(numberOfCompletedTasks)")
+        print("#Completed tasks: \(numberOfCompletedTasks!)")
     }
     
     
@@ -146,13 +149,13 @@ class SummaryViewController: UIViewController, UNUserNotificationCenterDelegate 
     // MARK: User reminders
     @objc
     func scoscheDidUpdateBatteryLevel(_ notification: Notification) {
-        let batteryLevel = notification.userInfo?[ScoscheHRV.BATTERY_LEVEL_NOTIFICATION_KEY]
+        let batteryLevel = notification.userInfo?[BLEHeartRateVariability.BATTERY_LEVEL_NOTIFICATION_KEY]
         self.batteryLevelValueLabel.text = "\(batteryLevel!)"
     }
     
     @objc
     func scoscheDidUpdateRRInterval(_ notification: Notification) {
-        let rr = notification.userInfo?[ScoscheHRV.RR_INTERVAL_NOTIFICATION_KEY]
+        let rr = notification.userInfo?[BLEHeartRateVariability.RR_INTERVAL_NOTIFICATION_KEY]
         self.rrIntervalValueLabel.text = "\(rr!)"
     }
 

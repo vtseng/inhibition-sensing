@@ -9,7 +9,7 @@
 import Foundation
 import AWAREFramework
 
-let SENSOR_STOP_SIGNAL_TASK_RESPONSE = "stop_signal_task_response"
+let SENSOR_STOP_SIGNAL_TASK_RESPONSE = "plugin_stop_signal_task_response"
 
 class StopSignalTaskResponse: AWARESensor{
     

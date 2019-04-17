@@ -10,7 +10,7 @@
 		7DAFC269E8B1EC42884C71B7 /* Pods_EmotionSensingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1ADD164B6813C31022CA1F /* Pods_EmotionSensingTests.framework */; };
 		84518E5AB6F5087331A77AEB /* Pods_EmotionSensingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */; };
 		A32D3A7382D5EBEBA43ECCF0 /* Pods_EmotionSensing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D51EE988AC1B285F5641A07 /* Pods_EmotionSensing.framework */; };
-		BF519D9922286B2C0078E589 /* ScoscheHRV.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF519D9822286B2C0078E589 /* ScoscheHRV.swift */; };
+		BF519D9922286B2C0078E589 /* BLEHeartRateVariability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF519D9822286B2C0078E589 /* BLEHeartRateVariability.swift */; };
 		BF52DAB822089E74009C0BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAB722089E74009C0BF5 /* AppDelegate.swift */; };
 		BF52DABA22089E74009C0BF5 /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAB922089E74009C0BF5 /* SummaryViewController.swift */; };
 		BF52DABF22089E77009C0BF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF52DABE22089E77009C0BF5 /* Assets.xcassets */; };
@@ -30,6 +30,8 @@
 		BF927048226284E4007CCE23 /* EntityStopSignalTask+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF927047226284E4007CCE23 /* EntityStopSignalTask+CoreDataProperties.swift */; };
 		BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */; };
 		BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
+		BFB1CDA522676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA322676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift */; };
+		BFB1CDA622676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA422676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift */; };
 		BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */; };
 		BFCAAFCD225801F20086A6A1 /* HRV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCC225801F20086A6A1 /* HRV.storyboard */; };
 		BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */; };
@@ -60,7 +62,7 @@
 		6A18EF53F8C81782FA366F91 /* Pods-EmotionSensingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingTests/Pods-EmotionSensingTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F5B5586221A9061B38E52E6 /* Pods-EmotionSensing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing.debug.xcconfig"; sourceTree = "<group>"; };
 		8E1ADD164B6813C31022CA1F /* Pods_EmotionSensingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF519D9822286B2C0078E589 /* ScoscheHRV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoscheHRV.swift; sourceTree = "<group>"; };
+		BF519D9822286B2C0078E589 /* BLEHeartRateVariability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEHeartRateVariability.swift; sourceTree = "<group>"; };
 		BF52DAB422089E74009C0BF5 /* EmotionSensing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmotionSensing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF52DAB722089E74009C0BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BF52DAB922089E74009C0BF5 /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +88,8 @@
 		BF927047226284E4007CCE23 /* EntityStopSignalTask+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		BFB1CDA322676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBLEHeartRateVariability+CoreDataClass.swift"; sourceTree = "<group>"; };
+		BFB1CDA422676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBLEHeartRateVariability+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BFCAAFCC225801F20086A6A1 /* HRV.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HRV.storyboard; sourceTree = "<group>"; };
 		BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StopSignalTask.storyboard; sourceTree = "<group>"; };
@@ -166,6 +170,8 @@
 				BF92703B225C0066007CCE23 /* TaskDashboardTableViewController.swift */,
 				BF927033225A941C007CCE23 /* UserTask.swift */,
 				BF927035225A95DF007CCE23 /* UserTaskScheduler.swift */,
+				BF519D9822286B2C0078E589 /* BLEHeartRateVariability.swift */,
+				BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */,
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
 				BF92702E22593558007CCE23 /* Main.storyboard */,
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
@@ -173,8 +179,8 @@
 				BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */,
 				BF927039225BFA55007CCE23 /* TaskDashboard.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
-				BF519D9822286B2C0078E589 /* ScoscheHRV.swift */,
-				BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */,
+				BFB1CDA322676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift */,
+				BFB1CDA422676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift */,
 				BFB01467224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift */,
 				BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */,
 				BF92703D226279AB007CCE23 /* EntityStopSignalTask+CoreDataClass.swift */,
@@ -493,13 +499,15 @@
 				BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */,
 				BF927048226284E4007CCE23 /* EntityStopSignalTask+CoreDataProperties.swift in Sources */,
 				BF92703C225C0066007CCE23 /* TaskDashboardTableViewController.swift in Sources */,
+				BFB1CDA522676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift in Sources */,
 				BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */,
 				BF92703222593D75007CCE23 /* StopSignalTaskResponse.swift in Sources */,
 				BF52DABA22089E74009C0BF5 /* SummaryViewController.swift in Sources */,
 				BF927038225BEAEE007CCE23 /* StopSignalTaskInstructionsViewController.swift in Sources */,
 				BF92703F226279AB007CCE23 /* EntityStopSignalTask+CoreDataClass.swift in Sources */,
 				BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */,
-				BF519D9922286B2C0078E589 /* ScoscheHRV.swift in Sources */,
+				BFB1CDA622676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift in Sources */,
+				BF519D9922286B2C0078E589 /* BLEHeartRateVariability.swift in Sources */,
 				BF52DAB822089E74009C0BF5 /* AppDelegate.swift in Sources */,
 				BF927036225A95DF007CCE23 /* UserTaskScheduler.swift in Sources */,
 			);

@@ -93,6 +93,17 @@
         <attribute name="rssi" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
+    <entity name="EntityBLEHeartRateVariability" representedClassName="EntityBLEHeartRateVariability" syncable="YES">
+        <attribute name="battery_level" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="body_location" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="heart_rate" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="manufacturer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="peripheral_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="rr_interval" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="rssi" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
     <entity name="EntityBluetooth" representedClassName="EntityBluetooth" syncable="YES">
         <attribute name="bt_address" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="bt_name" optional="YES" attributeType="String" syncable="YES"/>
@@ -702,5 +713,6 @@
         <element name="EntityStopSignalTask" positionX="342" positionY="189" width="128" height="195"/>
         <element name="EntityTimezone" positionX="198" positionY="162" width="128" height="30"/>
         <element name="EntityWifi" positionX="207" positionY="171" width="128" height="30"/>
+        <element name="EntityBLEHeartRateVariability" positionX="306" positionY="153" width="128" height="180"/>
     </elements>
 </model>
