@@ -21,10 +21,6 @@ let KEY_HRV_DEVICE_ID = "device_id" // The device id of the phone.
 let KEY_HRV_MANUFACTURER = "manufacturer"
 let KEY_HRV_PERIPHERAL_ID = "peripheral_id"
 
-/*let KEY_SCOSCHE_HRV_DEVICE_ID = "device_id"
-let KEY_SCOSCHE_HRV_TIMESTAMP = "timestamp"
-let KEY_SCOSCHE_HRV_RR_INTERVAL = "rr_interval"*/
-
 //let PERIPHERAL_ID = "751FF690-947A-6A0A-7248-209FDF502805"
 let PERIPHERAL_ID = "77EA86F3-A874-9262-F3F7-C0A077724D6E"
 
@@ -80,6 +76,8 @@ class BLEHeartRateVariability: AWARESensor {
 
             })
         }
+        
+        peripheralId = UserDefaults.standard.object(forKey: KEY_HRV_PERIPHERAL_ID) as! String
 
         super.init(awareStudy: study, sensorName: SENSOR_PLUGIN_BLE_HRV, storage: storage)
     }
@@ -144,7 +142,7 @@ extension BLEHeartRateVariability: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         print(peripheral)
-        if (peripheral.identifier.uuidString == PERIPHERAL_ID) {
+        if (peripheral.identifier.uuidString == peripheralId) {
             heartRatePeripheral = peripheral
             heartRatePeripheral.delegate = self
             centralManager.connect(heartRatePeripheral)

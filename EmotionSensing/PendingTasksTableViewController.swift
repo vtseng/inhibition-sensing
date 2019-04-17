@@ -12,12 +12,12 @@ import UserNotifications
 
 let KEY_ATTEMPTED_TASKS = "attempted_tasks"
 
-class PendingTaskCell: UITableViewCell{
+class PendingTaskCell: UITableViewCell {
     
     @IBOutlet weak var taskDisplayNameLabel: UILabel!
 }
 
-class TaskDashboardTableViewController: UITableViewController {
+class PendingTasksTableViewController: UITableViewController {
     
 //    var pendingTasks: [UserTask]!
     var pendingTaskIdentifiers: [String]!

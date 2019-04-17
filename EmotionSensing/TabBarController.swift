@@ -20,16 +20,27 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let summaryViewController = UIStoryboard(name: "HRV", bundle: nil).instantiateViewController(withIdentifier: "HRVViewController") as! SummaryViewController
-        let summaryNavigationController = UINavigationController(rootViewController: summaryViewController)
-        summaryNavigationController.title = "Summary"
+        let defaults = UserDefaults.standard
+        
+        //TODO: This part of code has to be moved to BluetoothDevicesTableViewController
+        defaults.set(PERIPHERAL_ID, forKey: KEY_HRV_PERIPHERAL_ID)
+        
+        var studyViewController: UIViewController!
+        if defaults.object(forKey: KEY_HRV_PERIPHERAL_ID) as? String != nil {
+            studyViewController = UIStoryboard(name: "HRV", bundle: nil).instantiateViewController(withIdentifier: "HRVViewController") as! StudyDashboardViewController
+        } else {
+            //TODO: Set the destination VC to be BluetoothDevicesViewController
+        }
+    
+        let studyNavigationController = UINavigationController(rootViewController: studyViewController)
+        studyNavigationController.title = "Summary"
         
 //        let taskViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "StopSignalTask")
         let taskViewController = UIStoryboard(name: "TaskDashboard", bundle: nil).instantiateViewController(withIdentifier: "TaskDashboard")
         let taskNavigationController = UINavigationController(rootViewController: taskViewController)
         taskNavigationController.title = "Task"
         
-        viewControllers = [summaryNavigationController, taskNavigationController]
+        viewControllers = [studyNavigationController, taskNavigationController]
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
