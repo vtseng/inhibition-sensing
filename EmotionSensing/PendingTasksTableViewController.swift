@@ -26,6 +26,7 @@ class PendingTasksTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.rowHeight = 60.0
     }
     
     override func viewWillAppear(_ animated: Bool) {

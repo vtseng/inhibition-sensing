@@ -32,10 +32,9 @@
 		BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
 		BFB1CDA522676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA322676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift */; };
 		BFB1CDA622676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA422676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift */; };
-		BFB1CDA8226776050082E7FC /* BluetoothScan.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFB1CDA7226776050082E7FC /* BluetoothScan.storyboard */; };
 		BFB1CDAA22677C1F0082E7FC /* BluetoothDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA922677C1F0082E7FC /* BluetoothDevicesTableViewController.swift */; };
 		BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */; };
-		BFCAAFCD225801F20086A6A1 /* HRV.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCC225801F20086A6A1 /* HRV.storyboard */; };
+		BFCAAFCD225801F20086A6A1 /* StudyDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCC225801F20086A6A1 /* StudyDashboard.storyboard */; };
 		BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -92,10 +91,9 @@
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFB1CDA322676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBLEHeartRateVariability+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFB1CDA422676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBLEHeartRateVariability+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BFB1CDA7226776050082E7FC /* BluetoothScan.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BluetoothScan.storyboard; sourceTree = "<group>"; };
 		BFB1CDA922677C1F0082E7FC /* BluetoothDevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesTableViewController.swift; sourceTree = "<group>"; };
 		BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
-		BFCAAFCC225801F20086A6A1 /* HRV.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = HRV.storyboard; sourceTree = "<group>"; };
+		BFCAAFCC225801F20086A6A1 /* StudyDashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyDashboard.storyboard; sourceTree = "<group>"; };
 		BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StopSignalTask.storyboard; sourceTree = "<group>"; };
 		C61E452B15F3A5ACE5D0F388 /* Pods-EmotionSensingUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingUITests/Pods-EmotionSensingUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,8 +178,7 @@
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
 				BF92702E22593558007CCE23 /* Main.storyboard */,
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
-				BFCAAFCC225801F20086A6A1 /* HRV.storyboard */,
-				BFB1CDA7226776050082E7FC /* BluetoothScan.storyboard */,
+				BFCAAFCC225801F20086A6A1 /* StudyDashboard.storyboard */,
 				BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */,
 				BF927039225BFA55007CCE23 /* TaskDashboard.storyboard */,
 				BF52DAC322089E77009C0BF5 /* Info.plist */,
@@ -342,9 +339,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */,
-				BFCAAFCD225801F20086A6A1 /* HRV.storyboard in Resources */,
+				BFCAAFCD225801F20086A6A1 /* StudyDashboard.storyboard in Resources */,
 				BF92703022593558007CCE23 /* Main.storyboard in Resources */,
-				BFB1CDA8226776050082E7FC /* BluetoothScan.storyboard in Resources */,
 				BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */,
 				BF92703A225BFA55007CCE23 /* TaskDashboard.storyboard in Resources */,
 				BF52DABF22089E77009C0BF5 /* Assets.xcassets in Resources */,

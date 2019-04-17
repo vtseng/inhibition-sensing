@@ -10,6 +10,50 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Bluetooth Devices Table View Controller-->
+        <scene sceneID="NuK-8v-gmg">
+            <objects>
+                <tableViewController storyboardIdentifier="BluetoothScan" id="Esx-On-bm0" customClass="BluetoothDevicesTableViewController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YsB-h7-ydR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BluetoothDeviceCell" rowHeight="95" id="rRv-gY-0hh" customClass="BluetoothDeviceCell" customModule="EmotionSensing" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rRv-gY-0hh" id="ODf-Gl-aIe">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="94.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Device Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x4t-VZ-6eD">
+                                            <rect key="frame" x="56" y="11" width="277" height="73"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="x4t-VZ-6eD" firstAttribute="leading" secondItem="ODf-Gl-aIe" secondAttribute="leading" constant="20" id="ngA-HX-Rjd"/>
+                                        <constraint firstItem="x4t-VZ-6eD" firstAttribute="centerY" secondItem="ODf-Gl-aIe" secondAttribute="centerY" id="tU8-hs-mYt"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="deviceNameLabel" destination="x4t-VZ-6eD" id="Zis-7y-L4N"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showStudyDashboard" id="EH8-O4-yx8"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Esx-On-bm0" id="toh-XN-6Ro"/>
+                            <outlet property="delegate" destination="Esx-On-bm0" id="P90-1F-3R7"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dmg-8q-aMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-346.37681159420293" y="-127.23214285714285"/>
+        </scene>
         <!--Study Dashboard View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -81,8 +125,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="If you have any questions, please contact Vincent Tseng at wt262@cornell.edu" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="udd-7z-R2G">
+                                <rect key="frame" x="42" y="760" width="331" height="81"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="udd-7z-R2G" secondAttribute="bottom" constant="50" id="bTd-kM-9fE"/>
+                            <constraint firstItem="udd-7z-R2G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dpX-lc-qwc"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="udd-7z-R2G" secondAttribute="trailing" constant="20" id="ncb-5z-e80"/>
+                            <constraint firstItem="udd-7z-R2G" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wnl-1K-Lcb"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
@@ -94,7 +150,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="875" y="21"/>
+            <point key="canvasLocation" x="922" y="-127"/>
         </scene>
     </scenes>
 </document>

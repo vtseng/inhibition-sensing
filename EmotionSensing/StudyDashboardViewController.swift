@@ -10,6 +10,7 @@ import UIKit
 import AWAREFramework
 
 let KEY_NUMBER_COMPLETED_TASKS = "number_completed_tasks"
+let researcherPassword = "paclab"
 
 class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDelegate {
 
@@ -25,8 +26,12 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-
+        
+        navigationItem.hidesBackButton = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
+        
+        
+        
         let awareCore = AWARECore.shared()
         let study = AWAREStudy.shared()
         let manager = AWARESensorManager.shared()
@@ -163,6 +168,32 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
     @objc func appMovedToBackground() {
         print("Sync data after App moved to background!")
         AWARESensorManager.shared().syncAllSensorsForcefully()
+    }
+    
+    
+    @objc func resetButtonTapped() {
+        let alert = UIAlertController(title: "Reset Study", message: "Please enter the password to reset the study.", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            
+        }
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { [weak alert, unowned self] (_) in
+            let password = alert?.textFields![0].text
+            if password == researcherPassword {
+                //TODO: Reset the peripheral id
+                
+                //TODO: Navigate back to BluetoothDeviceTableViewController to select a different BLE device
+                let bluetoothDevicesTableViewController = UIStoryboard(name: "TaskDashboard", bundle: nil).instantiateViewController(withIdentifier: "TaskDashboard") as! PendingTasksTableViewController
+                self.navigationController?.popViewController(animated: true)
+//                self.present(bluetoothDevicesTableViewController, animated: true, completion: nil)
+            }
+            
+            
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

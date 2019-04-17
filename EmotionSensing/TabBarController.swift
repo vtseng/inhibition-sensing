@@ -20,25 +20,16 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        let defaults = UserDefaults.standard
-        
-        //TODO: This part of code has to be moved to BluetoothDevicesTableViewController
-        defaults.set(PERIPHERAL_ID, forKey: KEY_HRV_PERIPHERAL_ID)
-        
         var studyViewController: UIViewController!
-        if defaults.object(forKey: KEY_HRV_PERIPHERAL_ID) as? String != nil {
-            studyViewController = UIStoryboard(name: "HRV", bundle: nil).instantiateViewController(withIdentifier: "HRVViewController") as! StudyDashboardViewController
-        } else {
-            //TODO: Set the destination VC to be BluetoothDevicesViewController
-        }
-    
+        
+        studyViewController = UIStoryboard(name: "StudyDashboard", bundle: nil).instantiateViewController(withIdentifier: "BluetoothScan") as! BluetoothDevicesTableViewController
         let studyNavigationController = UINavigationController(rootViewController: studyViewController)
-        studyNavigationController.title = "Summary"
+        studyNavigationController.title = "Dashboard"
         
 //        let taskViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "StopSignalTask")
         let taskViewController = UIStoryboard(name: "TaskDashboard", bundle: nil).instantiateViewController(withIdentifier: "TaskDashboard")
         let taskNavigationController = UINavigationController(rootViewController: taskViewController)
-        taskNavigationController.title = "Task"
+        taskNavigationController.title = "Tasks"
         
         viewControllers = [studyNavigationController, taskNavigationController]
     }
