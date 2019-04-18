@@ -178,21 +178,15 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
             
         }
         
-        alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: { [weak alert, unowned self] (_) in
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        
+        alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { [weak alert, unowned self] (_) in
             let password = alert?.textFields![0].text
             if password == researcherPassword {
                 //TODO: Reset the peripheral id
-                
-                //TODO: Navigate back to BluetoothDeviceTableViewController to select a different BLE device
-                let bluetoothDevicesTableViewController = UIStoryboard(name: "TaskDashboard", bundle: nil).instantiateViewController(withIdentifier: "TaskDashboard") as! PendingTasksTableViewController
                 self.navigationController?.popViewController(animated: true)
-//                self.present(bluetoothDevicesTableViewController, animated: true, completion: nil)
             }
-            
-            
         }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
         
         self.present(alert, animated: true, completion: nil)
     }
