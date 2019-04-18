@@ -11,7 +11,7 @@ import UserNotifications
 import UIKit
 
 let STOP_SIGNAL_TASK_IDENTIFIER = "StopSignalTask"
-let DEFAULT_FIRE_MINUTE_COMPONENT = 49
+let DEFAULT_FIRE_MINUTE_COMPONENT = 9
 
 class UserTaskScheduler {
     

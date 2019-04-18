@@ -42,8 +42,9 @@ enum TaskStatus: String {
 }
 
 // Stop-signal task settings
-let fixationDuration = 1.5 // fixation duration
+let fixationDuration = 0.5 // fixation duration
 let trialDuration = 1.5
+let blanDuration = 1.0 // Interval that separates each trial
 let initialStopSignalDelay = 0.25
 let stopSignalDelayStepSize = 0.025 // After successful stopping SSD was increased by 25ms and after unsuccessful stopping SSD was decreased by 25ms.
 
@@ -150,7 +151,8 @@ class StopSignalTaskViewController: UIViewController{
         case .go:
             let correct = userResponseToGoTrial(with: touchResponse!)
             if correct{
-                fixationLabel.text = userDidRespond ? fixationLabel.text : "Correct"
+                fixationLabel.text = ""
+                //fixationLabel.text = userDidRespond ? fixationLabel.text : "Correct"
                 responseType = userDidRespond ? responseType : .goCorrect
             } else{
                 fixationLabel.text = userDidRespond ? fixationLabel.text : "Incorrect"
@@ -290,7 +292,7 @@ class StopSignalTaskViewController: UIViewController{
         fixationLabel.isHidden = true
         fixationLabel.textColor = UIColor.red
         fixationLabel.text = "X"
-        fixationLabel.font = UIFont.systemFont(ofSize: 40)
+        fixationLabel.font = UIFont.systemFont(ofSize: 100)
         fixationLabel.isHidden = false
     }
     
@@ -353,7 +355,7 @@ class StopSignalTaskViewController: UIViewController{
     
     func resetLabelTextStyle() {
         fixationLabel.textColor = UIColor.black
-        fixationLabel.font = UIFont.systemFont(ofSize: 40)
+        fixationLabel.font = UIFont.systemFont(ofSize: 60)
     }
     
     override var shouldAutorotate: Bool {

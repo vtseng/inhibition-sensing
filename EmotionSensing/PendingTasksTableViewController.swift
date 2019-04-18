@@ -84,7 +84,7 @@ class PendingTasksTableViewController: UITableViewController {
     
     
     /* Get tasks recently attempted.
-     Meanwhile, update the dictionary to include only tasks attempted within 24 hours. */
+    Meanwhile, update the dictionary to include only tasks attempted within the past 24 hours. */
     func getRecentAttemptedTasks() -> [String: Date] {
         let defaults = UserDefaults.standard
         

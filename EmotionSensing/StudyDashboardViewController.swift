@@ -21,6 +21,8 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
     @IBOutlet weak var batteryLevelValueLabel: UILabel!
     @IBOutlet weak var rrIntervalLabel: UILabel!
     @IBOutlet weak var rrIntervalValueLabel: UILabel!
+    @IBOutlet weak var deviceIdLabel: UILabel!
+    
     
     var numberOfCompletedTasks: Int!
     
@@ -29,7 +31,6 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         
         navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
-        
         
         
         let awareCore = AWARECore.shared()
