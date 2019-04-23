@@ -9,9 +9,9 @@
 import Foundation
 import AWAREFramework
 
-let SENSOR_SELF_CONTROL_EMA_ANSWER = "plugin_self_control_ema_answer"
+let SENSOR_SELF_CONTROL_EMA_RESPONSE = "plugin_self_control_ema_response"
 
-class SelfControlEMA: AWARESensor{
+class SelfControlEMAAnswer: AWARESensor{
     
     override convenience init() {
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
@@ -25,14 +25,14 @@ class SelfControlEMA: AWARESensor{
         var storage = AWAREStorage()
         switch dbType {
         case AwareDBTypeSQLite:
-            storage = SQLiteStorage(study: study, sensorName: SENSOR_SELF_CONTROL_EMA_ANSWER, entityName: String(describing: EntitySelfControlEMAAnswer.self), insertCallBack: { (dataDict, childContext, entity) in
+            storage = SQLiteStorage(study: study, sensorName: SENSOR_SELF_CONTROL_EMA_RESPONSE, entityName: String(describing: EntitySelfControlEMAAnswer.self), insertCallBack: { (dataDict, childContext, entity) in
                 
             })
         default:
             print("\(dbType) is not yet implemented")
         }
         
-        super.init(awareStudy: study, sensorName: SENSOR_SELF_CONTROL_EMA_ANSWER, storage: storage)
+        super.init(awareStudy: study, sensorName: SENSOR_SELF_CONTROL_EMA_RESPONSE, storage: storage)
     }
     
     
