@@ -32,11 +32,9 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         navigationItem.hidesBackButton = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(resetButtonTapped))
         
-        
         let awareCore = AWARECore.shared()
         let study = AWAREStudy.shared()
         let manager = AWARESensorManager.shared()
-        
         
         // add observers for battery level and rr interval updates
         let notificationCenter = NotificationCenter.default
@@ -101,6 +99,12 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         let wifi = Wifi(awareStudy: study)
         manager.add(wifi!)
         
+        let bluetooth = Bluetooth(awareStudy: study)
+        manager.add(bluetooth!)
+        
+        let selfControlEMA = SelfControlEMA(awareStudy: study)
+        manager.add(selfControlEMA!)
+        
         manager.createDBTablesOnAwareServer()
         awareCore.requestPermissionForPushNotification()
         
@@ -113,6 +117,12 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         
         NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        deviceIdLabel.text = AWAREStudy.shared().getDeviceId()
     }
     
     

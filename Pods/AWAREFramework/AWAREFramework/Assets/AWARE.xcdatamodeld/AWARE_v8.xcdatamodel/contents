@@ -612,6 +612,16 @@
         <attribute name="screen_status" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
     </entity>
+    <entity name="EntitySelfControlEMAAnswer" representedClassName="EntitySelfControlEMAAnswer" syncable="YES">
+        <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="i_am_full_of_willpower" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="i_am_having_trouble_paying_attention" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="i_am_having_trouble_pulling_myself_together" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="i_could_resist_any_temptation" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="i_have_no_trouble_bringing_myself_to_do_disagreeable_things" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="i_have_to_force_myself_to_stay_focused" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="timestamp" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+    </entity>
     <entity name="EntitySensorWifi" representedClassName="EntitySensorWifi" syncable="YES">
         <attribute name="bssid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="device_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -656,6 +666,7 @@
         <element name="EntityBatteryDischarge" positionX="198" positionY="153" width="128" height="30"/>
         <element name="EntityBCCalendar" positionX="234" positionY="198" width="128" height="375"/>
         <element name="EntityBLEHeartRate" positionX="216" positionY="180" width="128" height="30"/>
+        <element name="EntityBLEHeartRateVariability" positionX="306" positionY="153" width="128" height="180"/>
         <element name="EntityBluetooth" positionX="216" positionY="180" width="128" height="30"/>
         <element name="EntityCalendar" positionX="297" positionY="144" width="128" height="270"/>
         <element name="EntityCall" positionX="225" positionY="189" width="128" height="30"/>
@@ -713,6 +724,6 @@
         <element name="EntityStopSignalTask" positionX="342" positionY="189" width="128" height="195"/>
         <element name="EntityTimezone" positionX="198" positionY="162" width="128" height="30"/>
         <element name="EntityWifi" positionX="207" positionY="171" width="128" height="30"/>
-        <element name="EntityBLEHeartRateVariability" positionX="306" positionY="153" width="128" height="180"/>
+        <element name="EntitySelfControlEMAAnswer" positionX="306" positionY="153" width="128" height="165"/>
     </elements>
 </model>
