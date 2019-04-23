@@ -19,11 +19,12 @@
 		BF52DAD822089E77009C0BF5 /* EmotionSensingUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAD722089E77009C0BF5 /* EmotionSensingUITests.swift */; };
 		BF52DAE62208E03E009C0BF5 /* AWAREFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */; };
 		BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */; };
+		BF7799CD226E1A1100799B00 /* StopSignalTaskGetReadyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7799CC226E1A1100799B00 /* StopSignalTaskGetReadyViewController.swift */; };
+		BF7E9AB8226E73DE006718BF /* SelfControlEMAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF7E9AB7226E73DE006718BF /* SelfControlEMAViewController.swift */; };
 		BF92703022593558007CCE23 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF92702E22593558007CCE23 /* Main.storyboard */; };
 		BF92703222593D75007CCE23 /* StopSignalTaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */; };
 		BF927034225A941C007CCE23 /* UserTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF927033225A941C007CCE23 /* UserTask.swift */; };
 		BF927036225A95DF007CCE23 /* UserTaskScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF927035225A95DF007CCE23 /* UserTaskScheduler.swift */; };
-		BF927038225BEAEE007CCE23 /* StopSignalTaskInstructionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF927037225BEAED007CCE23 /* StopSignalTaskInstructionsViewController.swift */; };
 		BF92703A225BFA55007CCE23 /* TaskDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF927039225BFA55007CCE23 /* TaskDashboard.storyboard */; };
 		BF92703C225C0066007CCE23 /* PendingTasksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92703B225C0066007CCE23 /* PendingTasksTableViewController.swift */; };
 		BF92703F226279AB007CCE23 /* EntityStopSignalTask+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF92703D226279AB007CCE23 /* EntityStopSignalTask+CoreDataClass.swift */; };
@@ -78,11 +79,12 @@
 		BF52DAD922089E77009C0BF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BF52DAE52208E03E009C0BF5 /* AWAREFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AWAREFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskViewController.swift; sourceTree = "<group>"; };
+		BF7799CC226E1A1100799B00 /* StopSignalTaskGetReadyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskGetReadyViewController.swift; sourceTree = "<group>"; };
+		BF7E9AB7226E73DE006718BF /* SelfControlEMAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfControlEMAViewController.swift; sourceTree = "<group>"; };
 		BF92702F22593558007CCE23 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskResponse.swift; sourceTree = "<group>"; };
 		BF927033225A941C007CCE23 /* UserTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTask.swift; sourceTree = "<group>"; };
 		BF927035225A95DF007CCE23 /* UserTaskScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserTaskScheduler.swift; sourceTree = "<group>"; };
-		BF927037225BEAED007CCE23 /* StopSignalTaskInstructionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopSignalTaskInstructionsViewController.swift; sourceTree = "<group>"; };
 		BF927039225BFA55007CCE23 /* TaskDashboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TaskDashboard.storyboard; sourceTree = "<group>"; };
 		BF92703B225C0066007CCE23 /* PendingTasksTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingTasksTableViewController.swift; sourceTree = "<group>"; };
 		BF92703D226279AB007CCE23 /* EntityStopSignalTask+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityStopSignalTask+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -168,10 +170,11 @@
 				BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */,
 				BF52DAB922089E74009C0BF5 /* StudyDashboardViewController.swift */,
 				BF6C3D672252A45100035335 /* StopSignalTaskViewController.swift */,
-				BF927037225BEAED007CCE23 /* StopSignalTaskInstructionsViewController.swift */,
+				BF7799CC226E1A1100799B00 /* StopSignalTaskGetReadyViewController.swift */,
 				BF92703B225C0066007CCE23 /* PendingTasksTableViewController.swift */,
 				BF927033225A941C007CCE23 /* UserTask.swift */,
 				BF927035225A95DF007CCE23 /* UserTaskScheduler.swift */,
+				BF7E9AB7226E73DE006718BF /* SelfControlEMAViewController.swift */,
 				BF519D9822286B2C0078E589 /* BLEHeartRateVariability.swift */,
 				BFB1CDA922677C1F0082E7FC /* BluetoothDevicesTableViewController.swift */,
 				BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */,
@@ -499,6 +502,8 @@
 			files = (
 				BFB01469224D4CED00D68077 /* EntityScoscheHRV+CoreDataClass.swift in Sources */,
 				BF927034225A941C007CCE23 /* UserTask.swift in Sources */,
+				BF7E9AB8226E73DE006718BF /* SelfControlEMAViewController.swift in Sources */,
+				BF7799CD226E1A1100799B00 /* StopSignalTaskGetReadyViewController.swift in Sources */,
 				BF6C3D682252A45100035335 /* StopSignalTaskViewController.swift in Sources */,
 				BF927048226284E4007CCE23 /* EntityStopSignalTask+CoreDataProperties.swift in Sources */,
 				BF92703C225C0066007CCE23 /* PendingTasksTableViewController.swift in Sources */,
@@ -506,7 +511,6 @@
 				BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */,
 				BF92703222593D75007CCE23 /* StopSignalTaskResponse.swift in Sources */,
 				BF52DABA22089E74009C0BF5 /* StudyDashboardViewController.swift in Sources */,
-				BF927038225BEAEE007CCE23 /* StopSignalTaskInstructionsViewController.swift in Sources */,
 				BF92703F226279AB007CCE23 /* EntityStopSignalTask+CoreDataClass.swift in Sources */,
 				BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */,
 				BFB1CDA622676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift in Sources */,

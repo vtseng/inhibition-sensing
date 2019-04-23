@@ -44,12 +44,14 @@ enum TaskStatus: String {
 // Stop-signal task settings
 let fixationDuration = 0.5 // fixation duration
 let trialDuration = 1.5
-let blanDuration = 1.0 // Interval that separates each trial
+let blankDuration = 0.5 // Interval that separates each trial
 let initialStopSignalDelay = 0.25
 let stopSignalDelayStepSize = 0.025 // After successful stopping SSD was increased by 25ms and after unsuccessful stopping SSD was decreased by 25ms.
 
-let numberOfTotalTrials = 10
-let numberOfStopTrials = 5
+let numberOfTotalTrials = 80
+let numberOfStopTrials = 20
+let fixationFontSize: CGFloat = 50
+let signalFontSize: CGFloat = 100
 
 let defaultGoResponseType = ResponseType.goOmission // Default response type for Go trial if user doesn't respond
 let defaultStopResponseType = ResponseType.stopSuccessful // Default response type for Stop trial if user doesn't respond
@@ -169,8 +171,10 @@ class StopSignalTaskViewController: UIViewController{
     
     
     @objc func showFixation(){
+        fixationLabel.isHidden = true
         taskState = .fixation
         fixationLabel.text = "+"
+        fixationLabel.font = UIFont.systemFont(ofSize: fixationFontSize)
         fixationLabel.isHidden = false
         goSignalAppearedDate = nil
         userDidRespond = false
@@ -216,7 +220,8 @@ class StopSignalTaskViewController: UIViewController{
     
     
     @objc func showBlank(){
-        //TODO: Save the log from the previvous trial
+        fixationLabel.isHidden = true
+        
         var responseTime = -1.0
         if responseDate != nil {
             responseTime = responseDate!.timeIntervalSince(trialStartDate!)
@@ -266,7 +271,8 @@ class StopSignalTaskViewController: UIViewController{
         responseDate = nil
         
         if trials!.count > 0 {
-            showFixation()
+            Timer.scheduledTimer(timeInterval: blankDuration, target: self, selector: #selector(showFixation), userInfo: nil, repeats: false)
+            //showFixation()
         } else{
             taskState = .completed
             taskDidComplete()
@@ -283,7 +289,7 @@ class StopSignalTaskViewController: UIViewController{
         } else if signal == .rightGo || signal == .stopFollowingRightGo {
             fixationLabel.text = "R"
         }
-        
+        fixationLabel.font = UIFont.systemFont(ofSize: signalFontSize)
         fixationLabel.isHidden = false
     }
     
@@ -292,7 +298,7 @@ class StopSignalTaskViewController: UIViewController{
         fixationLabel.isHidden = true
         fixationLabel.textColor = UIColor.red
         fixationLabel.text = "X"
-        fixationLabel.font = UIFont.systemFont(ofSize: 100)
+        fixationLabel.font = UIFont.systemFont(ofSize: signalFontSize)
         fixationLabel.isHidden = false
     }
     
@@ -346,11 +352,10 @@ class StopSignalTaskViewController: UIViewController{
     
     
     @objc func onMovedToBackground() {
-        // TODO: Save unsaved user data before the view coontroller gets removed
         print("Task moved to background!")
+        trials = []
         dismiss(animated: true, completion: nil)
     }
-    
     
     
     func resetLabelTextStyle() {
@@ -358,6 +363,8 @@ class StopSignalTaskViewController: UIViewController{
         fixationLabel.font = UIFont.systemFont(ofSize: 60)
     }
     
+    
+    // MARK: Force the screen to auto to the right.
     override var shouldAutorotate: Bool {
         return false
     }

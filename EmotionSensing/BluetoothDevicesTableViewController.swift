@@ -41,6 +41,7 @@ class BluetoothDevicesTableViewController: UITableViewController {
         if peripherals.count > 0 {
             return 1
         } else {
+            tableView.separatorStyle = .none
             return 0
         }
     }

@@ -47,6 +47,8 @@ class PendingTasksTableViewController: UITableViewController {
             }
         }
         
+        UIApplication.shared.applicationIconBadgeNumber = pendingTaskIdentifiers.count
+        
         if pendingTaskIdentifiers.count == 0 {
             tableView.backgroundView?.isHidden = false
             tableView.separatorStyle = .none

@@ -39,6 +39,11 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
         // Open the Stop-Signal-Task tab
         selectedIndex = 1
         UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        let alert = UIAlertController(title: "Notification", message: "Are you ready for the task?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+        
         completionHandler()
     }
     
