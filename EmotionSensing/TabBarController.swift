@@ -22,7 +22,7 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
         
         var studyViewController: UIViewController!
         
-        studyViewController = UIStoryboard(name: "StudyDashboard", bundle: nil).instantiateViewController(withIdentifier: "BluetoothScan") as! BluetoothDevicesTableViewController
+        studyViewController = UIStoryboard(name: "StudyDashboard", bundle: nil).instantiateViewController(withIdentifier: "BluetoothScan") as! BLEDevicesTableViewController
         let studyNavigationController = UINavigationController(rootViewController: studyViewController)
         studyNavigationController.title = "Dashboard"
         

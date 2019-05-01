@@ -23,7 +23,15 @@ let KEY_HRV_PERIPHERAL_ID = "peripheral_id"
 
 //let PERIPHERAL_ID = "751FF690-947A-6A0A-7248-209FDF502805"
 //let PERIPHERAL_ID = "77EA86F3-A874-9262-F3F7-C0A077724D6E" // Small Polar H10
-let PERIPHERAL_ID = "EA4CE0DD-88E5-31FD-57A3-30B8FFB29DEB" // Medium Polar H10
+//let PERIPHERAL_ID = "EA4CE0DD-88E5-31FD-57A3-30B8FFB29DEB" // Medium Polar H10
+
+let heartRateMeasurementCharacteristicCBUUID = CBUUID(string: "2A37")
+let batteryLevelCharacteristicCBUUID = CBUUID(string: "2A19")
+let bodyLocationCharacteristicCBUUID = CBUUID(string: "0x2A38")
+let heartRateServiceCBUUID = CBUUID(string: "0x180D")
+let batteryServiceCBUUID = CBUUID(string: "0x180F")
+
+
 
 class BLEHeartRateVariability: AWARESensor {
     
@@ -32,15 +40,9 @@ class BLEHeartRateVariability: AWARESensor {
     // TODO: Update these properties when connect gets set up
     var batteryLevel: Int = -1
     var bodyLocation: Int = -1
-    var rssi: Float = -1.0
+    var rssi: NSNumber = -1.0
     var manufacturer: String = ""
-    var peripheralId: String = PERIPHERAL_ID
-    
-    let heartRateMeasurementCharacteristicCBUUID = CBUUID(string: "2A37")
-    let batteryLevelCharacteristicCBUUID = CBUUID(string: "2A19")
-    
-    let heartRateServiceCBUUID = CBUUID(string: "0x180D")
-    let batteryServiceCBUUID = CBUUID(string: "0x180F")
+    var peripheralId: String!
     
     static let BATTERY_LEVEL_NOTIFICATION_KEY = "batteryLevel"
     static let RR_INTERVAL_NOTIFICATION_KEY = "rrInterval"
@@ -77,9 +79,7 @@ class BLEHeartRateVariability: AWARESensor {
 
             })
         }
-        
-        peripheralId = UserDefaults.standard.object(forKey: KEY_HRV_PERIPHERAL_ID) as! String
-
+    
         super.init(awareStudy: study, sensorName: SENSOR_PLUGIN_BLE_HRV, storage: storage)
     }
     
@@ -111,6 +111,7 @@ class BLEHeartRateVariability: AWARESensor {
     override func stopSensor() -> Bool {
         if centralManager != nil {
             centralManager.stopScan()
+            centralManager.cancelPeripheralConnection(heartRatePeripheral)
             centralManager = nil
         }
         return super.stopSensor()
@@ -118,6 +119,18 @@ class BLEHeartRateVariability: AWARESensor {
     
     override func stopSyncDB() {
         super.stopSyncDB()
+    }
+    
+    func disconnectPeripheral() {
+        if centralManager != nil {
+            centralManager.cancelPeripheralConnection(heartRatePeripheral)
+        }
+        
+        if heartRatePeripheral != nil {
+            heartRatePeripheral.delegate = nil
+            heartRatePeripheral = nil
+        }
+        
     }
 }
 
@@ -137,22 +150,33 @@ extension BLEHeartRateVariability: CBCentralManagerDelegate {
             print("central.state is .poweredOff")
         case .poweredOn:
             print("central.state is .poweredOn")
-            centralManager.scanForPeripherals(withServices: [heartRateServiceCBUUID, batteryServiceCBUUID])
+            centralManager.scanForPeripherals(withServices: [heartRateServiceCBUUID, batteryServiceCBUUID, bodyLocationCharacteristicCBUUID])
         }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print(peripheral)
+        peripheralId = (UserDefaults.standard.object(forKey: KEY_HRV_PERIPHERAL_ID) as! String)
         if (peripheral.identifier.uuidString == peripheralId) {
+            centralManager.stopScan()
             heartRatePeripheral = peripheral
             heartRatePeripheral.delegate = self
             centralManager.connect(heartRatePeripheral)
+            rssi = RSSI
+            manufacturer = peripheral.name ?? ""
         }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         heartRatePeripheral.discoverServices([heartRateServiceCBUUID, batteryServiceCBUUID])
     }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        if heartRatePeripheral != nil {
+            heartRatePeripheral.delegate = nil
+            heartRatePeripheral = nil
+        }
+    }
+    
 }
 
 // MARK: Confirm to CBPeripheralDelegate protocol.
@@ -191,10 +215,13 @@ extension BLEHeartRateVariability : CBPeripheralDelegate {
         case batteryLevelCharacteristicCBUUID:
             let battery = batteryLevel(from: characteristic)
             onBatteryLevelReceived(battery)
+        case bodyLocationCharacteristicCBUUID:
+            bodyLocation = sensorLocation(from: characteristic)
         default:
             print("Unhandled Characteristic UUID: \(characteristic.uuid)")
         }
     }
+    
     
     // MARK: Helper functions
     private func heartRate(from characteristic: CBCharacteristic) -> Int {
@@ -275,6 +302,28 @@ extension BLEHeartRateVariability : CBPeripheralDelegate {
             name: .ScoscheDidUpdateRRInterval,
             object: self,
             userInfo: [BLEHeartRateVariability.RR_INTERVAL_NOTIFICATION_KEY : rr])
+    }
+    
+    
+    func sensorLocation(from sensorLocationCharacteristic: CBCharacteristic) -> Int {
+        
+        let sensorLocationValue = sensorLocationCharacteristic.value!
+        // convert to an array of unsigned 8-bit integers
+        let buffer = [UInt8](sensorLocationValue)
+        
+        // look at just 8 bits
+        return Int(buffer[0])
+
+        /*var sensorLocation = ""
+         if buffer[0] == 1 {
+            sensorLocation = "Chest"
+        } else if buffer[0] == 2 {
+            sensorLocation = "Wrist"
+        } else {
+            sensorLocation = "N/A"
+        }*/
+        
+        
     }
 }
 

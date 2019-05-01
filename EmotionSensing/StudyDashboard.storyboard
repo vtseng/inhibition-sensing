@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Bluetooth Devices Table View Controller-->
+        <!--Devices Table View Controller-->
         <scene sceneID="NuK-8v-gmg">
             <objects>
-                <tableViewController storyboardIdentifier="BluetoothScan" id="Esx-On-bm0" customClass="BluetoothDevicesTableViewController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="BluetoothScan" id="Esx-On-bm0" customClass="BLEDevicesTableViewController" customModule="EmotionSensing" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YsB-h7-ydR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BluetoothDeviceCell" rowHeight="95" id="rRv-gY-0hh" customClass="BluetoothDeviceCell" customModule="EmotionSensing" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BluetoothDeviceCell" rowHeight="95" id="rRv-gY-0hh" customClass="BLEDeviceCell" customModule="EmotionSensing" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="95"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="rRv-gY-0hh" id="ODf-Gl-aIe">
@@ -97,30 +97,19 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Device ID:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFF-iy-aoz">
-                                <rect key="frame" x="117" y="431" width="78" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yFF-iy-aoz">
+                                <rect key="frame" x="168" y="442.5" width="78" height="21"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Device ID:">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="#Completed Tasks: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rY-SS-gxq">
-                                <rect key="frame" x="117" y="480" width="152" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpU-sh-KTx">
-                                <rect key="frame" x="212" y="431" width="16" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSf-9c-zjv">
-                                <rect key="frame" x="271" y="479" width="16" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of Completed Tasks: " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rY-SS-gxq">
+                                <rect key="frame" x="93.5" y="524" width="227" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -131,27 +120,46 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YpU-sh-KTx">
+                                <rect key="frame" x="37" y="473" width="340" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VSf-9c-zjv">
+                                <rect key="frame" x="199" y="555" width="16" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="YpU-sh-KTx" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="0NC-dj-jPf"/>
+                            <constraint firstItem="yFF-iy-aoz" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="TMj-Wq-jbC"/>
+                            <constraint firstItem="VSf-9c-zjv" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Z7L-Go-zXT"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="udd-7z-R2G" secondAttribute="bottom" constant="50" id="bTd-kM-9fE"/>
+                            <constraint firstItem="yFF-iy-aoz" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="cCK-CU-ec3"/>
+                            <constraint firstItem="6rY-SS-gxq" firstAttribute="top" secondItem="YpU-sh-KTx" secondAttribute="bottom" constant="30" id="dB1-iC-hv4"/>
                             <constraint firstItem="udd-7z-R2G" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="dpX-lc-qwc"/>
+                            <constraint firstItem="YpU-sh-KTx" firstAttribute="top" secondItem="yFF-iy-aoz" secondAttribute="bottom" constant="10" id="f2v-gv-5Fb"/>
+                            <constraint firstItem="VSf-9c-zjv" firstAttribute="top" secondItem="6rY-SS-gxq" secondAttribute="bottom" constant="10" id="mJh-it-7IG"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="udd-7z-R2G" secondAttribute="trailing" constant="20" id="ncb-5z-e80"/>
+                            <constraint firstItem="6rY-SS-gxq" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="vCd-uH-Jqf"/>
                             <constraint firstItem="udd-7z-R2G" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="wnl-1K-Lcb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="batteryLevelLabel" destination="bAJ-uY-QZi" id="2Fo-QN-SEB"/>
                         <outlet property="batteryLevelValueLabel" destination="4S1-gg-EiR" id="o28-zn-05x"/>
                         <outlet property="deviceIdLabel" destination="YpU-sh-KTx" id="3Mo-34-hvq"/>
-                        <outlet property="rrIntervalLabel" destination="iaF-av-hC9" id="TKm-EG-yJ1"/>
+                        <outlet property="numberOfCompletedTasksLabel" destination="VSf-9c-zjv" id="Y3g-nB-cof"/>
                         <outlet property="rrIntervalValueLabel" destination="Maz-ac-NSY" id="CqU-bt-YmG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="922" y="-127"/>
+            <point key="canvasLocation" x="921.73913043478262" y="-127.23214285714285"/>
         </scene>
     </scenes>
 </document>

@@ -17,11 +17,10 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
 //    var sensorManager: AWARESensorManager?
 //    var hrvSensor: ScoscheHRV!
     
-    @IBOutlet weak var batteryLevelLabel: UILabel!
     @IBOutlet weak var batteryLevelValueLabel: UILabel!
-    @IBOutlet weak var rrIntervalLabel: UILabel!
     @IBOutlet weak var rrIntervalValueLabel: UILabel!
     @IBOutlet weak var deviceIdLabel: UILabel!
+    @IBOutlet weak var numberOfCompletedTasksLabel: UILabel!
     
     
     var numberOfCompletedTasks: Int!
@@ -34,6 +33,7 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         
         let awareCore = AWARECore.shared()
         let study = AWAREStudy.shared()
+        
         let manager = AWARESensorManager.shared()
         
         // add observers for battery level and rr interval updates
@@ -46,10 +46,12 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
                                        selector: #selector(scoscheDidUpdateRRInterval(_:)),
                                        name: .ScoscheDidUpdateRRInterval,
                                        object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
 
         let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
         study.setStudyURL(url)
-        study.setMaximumNumberOfRecordsForDBSync(1)
+        study.setMaximumNumberOfRecordsForDBSync(100)
         
         let hrvSensor = BLEHeartRateVariability(awareStudy: study)
         manager.add(hrvSensor!)
@@ -102,20 +104,27 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         let bluetooth = Bluetooth(awareStudy: study)
         manager.add(bluetooth!)
         
+        let network = Network(awareStudy: study)
+        manager.add(network!)
+        
+        let proximity = Proximity(awareStudy: study)
+        manager.add(proximity!)
+        
         let selfControlEMA = SelfControlEMA(awareStudy: study)
         manager.add(selfControlEMA!)
+        
         
         manager.createDBTablesOnAwareServer()
         awareCore.requestPermissionForPushNotification()
         
         manager.startAllSensors()
+//        manager.syncAllSensors()
         
-        let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], expirationThreshold: 55, notificationDelegate: tabBarController as! UNUserNotificationCenterDelegate)
+        let task = UserTask(title: "Stop Signal Task", message: "Please complete the Stop Signal Task.", identifier: STOP_SIGNAL_TASK_IDENTIFIER, fireHours: [7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23], expirationThreshold: 55, notificationDelegate: tabBarController as! UNUserNotificationCenterDelegate)
         let taskScheduler = UserTaskScheduler.shared
         taskScheduler.scheduleTask(task)
         taskScheduler.refrshNotificationSchedules()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         
     }
     
@@ -123,46 +132,16 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         deviceIdLabel.text = AWAREStudy.shared().getDeviceId()
-    }
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        let defaults = UserDefaults.standard
         
+        let defaults = UserDefaults.standard
         if let number = defaults.object(forKey: KEY_NUMBER_COMPLETED_TASKS) as? Int {
             numberOfCompletedTasks = number
         } else {
             numberOfCompletedTasks = 0
         }
-        
-        print("#Completed tasks: \(numberOfCompletedTasks!)")
+        numberOfCompletedTasksLabel.text = String(numberOfCompletedTasks)
     }
     
-    
-    func startESMTask(){
-        let content = UNMutableNotificationContent()
-        content.title = "Task title"
-        content.subtitle = "Task subtitle"
-        content.body = "Task body"
-        content.categoryIdentifier = STOP_SIGNAL_TASK_IDENTIFIER
-        content.badge = 1
-        var dateComponents = DateComponents()
-        dateComponents.hour = 14
-        dateComponents.minute = 44
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-//        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
-        let request = UNNotificationRequest(identifier: STOP_SIGNAL_TASK_IDENTIFIER, content: content, trigger: trigger)
-        UNUserNotificationCenter.current().add(request) { (error) in
-            if error != nil {
-                print("Notification error \(String(describing: error))")
-            }
-            
-        }
-        UNUserNotificationCenter.current().delegate = self
-    }
-    
-    
-    // MARK: User reminders
     @objc
     func scoscheDidUpdateBatteryLevel(_ notification: Notification) {
         let batteryLevel = notification.userInfo?[BLEHeartRateVariability.BATTERY_LEVEL_NOTIFICATION_KEY]
@@ -178,7 +157,7 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
 
     @objc func appMovedToBackground() {
         print("Sync data after App moved to background!")
-        AWARESensorManager.shared().syncAllSensorsForcefully()
+        AWARESensorManager.shared().syncAllSensors()
     }
     
     
@@ -193,7 +172,7 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         alert.addAction(UIAlertAction(title: "Reset", style: .destructive, handler: { [weak alert, unowned self] (_) in
             let password = alert?.textFields![0].text
             if password == researcherPassword {
-                //TODO: Reset the peripheral id
+                UserDefaults.standard.set(nil, forKey: KEY_HRV_PERIPHERAL_ID)
                 self.navigationController?.popViewController(animated: true)
             }
         }))

@@ -11,16 +11,33 @@ import UIKit
 
 class StopSignalTaskGetReadyViewController: UIViewController {
     
+    @IBOutlet weak var taskWillStartLabel: UILabel!
+    @IBOutlet weak var taskCompletionLabel: UILabel!
+    @IBOutlet weak var startButton: UIButton!
+    @IBOutlet weak var heartRateMonitorNotConnectedLabel: UILabel!
+    
+    var taskHasStarted : Bool!
+    var hrvDataIsAvailable: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(onMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        notificationCenter.addObserver(self,
+                                       selector: #selector(BLESensorDidUpdateRRInterval),
+                                       name: .ScoscheDidUpdateRRInterval,
+                                       object: nil)
+        taskHasStarted = false
+        hrvDataIsAvailable = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIDevice.current.setValue(UIInterfaceOrientation.landscapeRight.rawValue, forKey: "orientation")
+        hrvDataIsAvailable = false
+        updateView()
     }
     
     
@@ -30,6 +47,13 @@ class StopSignalTaskGetReadyViewController: UIViewController {
     
     
     @IBAction func startTask(_ sender: Any) {
+        
+//        if !hrvDataIsAvailable {
+//            let alert = UIAlertController(title: "Heart Rate Monitor Not Detected", message: "Please make sure that you are wearing the heart rate monitor before you start the task. ", preferredStyle: .alert)
+//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+//            self.present(alert, animated: true, completion: nil)
+//        }
+        
         // Update the UserDefaults when task is attempted
         let defaults = UserDefaults.standard
         var attemptedTasks : [String : Date] = [:]
@@ -40,8 +64,49 @@ class StopSignalTaskGetReadyViewController: UIViewController {
         
         attemptedTasks[STOP_SIGNAL_TASK_IDENTIFIER] = Date()
         defaults.set(attemptedTasks, forKey: KEY_ATTEMPTED_TASKS)
+        
+        taskHasStarted = true
+        
+        performSegue(withIdentifier: "startStopSignalTask", sender: self)
+        
     }
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if taskHasStarted {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @objc func BLESensorDidUpdateRRInterval() {
+        hrvDataIsAvailable = true
+        updateView()
+    }
+    
+    
+    func updateView() {
+        taskWillStartLabel.isHidden = true
+        taskCompletionLabel.isHidden = true
+        startButton.isHidden = true
+        heartRateMonitorNotConnectedLabel.isHidden = true
+        
+        if taskHasStarted {
+            //taskWillStartLabel.isHidden = true
+            //startButton.isHidden = true
+            taskCompletionLabel.isHidden = false
+            //heartRateMonitorNotConnectedLabel.isHidden = true
+        } else if hrvDataIsAvailable {
+            taskWillStartLabel.isHidden = false
+            startButton.isHidden = false
+            //taskCompletionLabel.isHidden = true
+            //heartRateMonitorNotConnectedLabel.isHidden = true
+        } else {
+            //taskWillStartLabel.isHidden = true
+            //startButton.isHidden = true
+            //taskCompletionLabel.isHidden = true
+            heartRateMonitorNotConnectedLabel.isHidden = false
+        }
+    }
     
     
     // MARK: Force the screen to auto to the right.

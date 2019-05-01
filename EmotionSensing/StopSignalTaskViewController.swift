@@ -74,7 +74,6 @@ let path = NSURL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent
 class StopSignalTaskViewController: UIViewController{
     
     @IBOutlet weak var fixationLabel: UILabel!
-    @IBOutlet weak var taskCompletionLabel: UILabel!
     @IBOutlet var taskView: UIView!
     
     var signal: Signal?
@@ -87,6 +86,8 @@ class StopSignalTaskViewController: UIViewController{
     var responseType : ResponseType?
     var userDidRespond = false
     var taskStartTimestamp : NSNumber!
+    var numberOfGoOmissions : Int!
+    var numberOfStopSuccessfuls : Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -106,7 +107,8 @@ class StopSignalTaskViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        taskCompletionLabel.isHidden = true
+        numberOfGoOmissions = 0
+        numberOfStopSuccessfuls = 0
         fixationLabel.isHidden = true
         showFixation()
         
@@ -255,12 +257,17 @@ class StopSignalTaskViewController: UIViewController{
             fatalError("Failure to save context: \(error)")
         }
         
+        if taskState == .go && responseType == .goOmission {
+            numberOfGoOmissions += 1
+        }
+        
         // Update the next stop signal delay
         if taskState == .stop {
             if responseType == .stopSuccessful {
                 stopSignalDelay += stopSignalDelayStepSize
             } else {
                 stopSignalDelay -= stopSignalDelayStepSize
+                numberOfStopSuccessfuls += 1
             }
         }
         
@@ -274,8 +281,9 @@ class StopSignalTaskViewController: UIViewController{
             Timer.scheduledTimer(timeInterval: blankDuration, target: self, selector: #selector(showFixation), userInfo: nil, repeats: false)
             //showFixation()
         } else{
-            taskState = .completed
             taskDidComplete()
+            taskState = .completed
+            dismiss(animated: true, completion: nil)
         }
     }
     
@@ -306,7 +314,6 @@ class StopSignalTaskViewController: UIViewController{
     
     func taskDidComplete(){
         fixationLabel.isHidden = true
-        taskCompletionLabel.isHidden = false
         
         // Update the number of completed tasks
         let defaults = UserDefaults.standard
@@ -314,8 +321,15 @@ class StopSignalTaskViewController: UIViewController{
         if let number = defaults.object(forKey: KEY_NUMBER_COMPLETED_TASKS) as? Int {
             numberOfCompletedTasks = number
         }
-        numberOfCompletedTasks += 1
-        defaults.set(numberOfCompletedTasks, forKey: KEY_NUMBER_COMPLETED_TASKS)
+        
+        // Lenit criteria for completing a tasking
+        let goOmissionRate = Float(numberOfGoOmissions)/Float(numberOfTotalTrials - numberOfStopTrials)
+        let stopSuccessfulRate = Float(numberOfStopSuccessfuls)/Float(numberOfStopTrials)
+        print("goOmissionRate: \(goOmissionRate), stopSuccessfulRate: \(stopSuccessfulRate)")
+        if goOmissionRate < 0.4 && stopSuccessfulRate > 0.25 {
+            numberOfCompletedTasks += 1
+            defaults.set(numberOfCompletedTasks, forKey: KEY_NUMBER_COMPLETED_TASKS)
+        }
         
     }
 

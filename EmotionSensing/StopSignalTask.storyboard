@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -133,7 +133,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="When you are ready, please hit the button to start the task." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Chf-so-9dM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="When you are ready, please hit the button below to start the task." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Chf-so-9dM">
                                 <rect key="frame" x="46" y="375" width="281" height="108"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -144,25 +144,49 @@
                                 <state key="normal" title="Start"/>
                                 <connections>
                                     <action selector="startTask:" destination="9Ns-Z8-fGq" eventType="touchUpInside" id="tPw-ij-Ph5"/>
-                                    <segue destination="tPc-um-JGY" kind="show" id="BIt-8Y-cM3"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Thank you for completing the task! Please tap the screen to leave the task." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BBx-Yi-4kw">
+                                <rect key="frame" x="16" y="191" width="343" height="176"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Heart rate monitor is not connected. Please make sure that you are wearing the heart rate monitor before you start the task." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k76-yt-c3h">
+                                <rect key="frame" x="16" y="529" width="343" height="162"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="V6a-OF-S0Z" firstAttribute="trailing" secondItem="Chf-so-9dM" secondAttribute="trailing" constant="20" id="1Od-in-Uoq"/>
                             <constraint firstItem="Chf-so-9dM" firstAttribute="centerY" secondItem="V6a-OF-S0Z" secondAttribute="centerY" id="24d-WJ-ost"/>
+                            <constraint firstItem="V6a-OF-S0Z" firstAttribute="trailing" secondItem="k76-yt-c3h" secondAttribute="trailing" constant="20" id="4WD-Pg-jPW"/>
+                            <constraint firstItem="k76-yt-c3h" firstAttribute="leading" secondItem="V6a-OF-S0Z" secondAttribute="leading" constant="20" id="73y-lm-niV"/>
+                            <constraint firstItem="k76-yt-c3h" firstAttribute="centerX" secondItem="V6a-OF-S0Z" secondAttribute="centerX" id="9Os-tB-xgm"/>
                             <constraint firstItem="Chf-so-9dM" firstAttribute="centerX" secondItem="V6a-OF-S0Z" secondAttribute="centerX" id="9hW-UD-wfX"/>
+                            <constraint firstItem="BBx-Yi-4kw" firstAttribute="centerX" secondItem="V6a-OF-S0Z" secondAttribute="centerX" id="Emz-aJ-siv"/>
                             <constraint firstItem="hlq-In-NK8" firstAttribute="centerX" secondItem="V6a-OF-S0Z" secondAttribute="centerX" id="OEE-hh-pku"/>
+                            <constraint firstItem="k76-yt-c3h" firstAttribute="centerY" secondItem="V6a-OF-S0Z" secondAttribute="centerY" id="PvQ-kz-who"/>
+                            <constraint firstItem="BBx-Yi-4kw" firstAttribute="centerY" secondItem="V6a-OF-S0Z" secondAttribute="centerY" id="QK1-1e-IIN"/>
                             <constraint firstItem="Chf-so-9dM" firstAttribute="leading" secondItem="V6a-OF-S0Z" secondAttribute="leading" constant="20" id="a7P-hi-7tQ"/>
                             <constraint firstItem="hlq-In-NK8" firstAttribute="top" secondItem="Chf-so-9dM" secondAttribute="bottom" constant="20" id="cNm-0E-CTL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="V6a-OF-S0Z"/>
                     </view>
+                    <connections>
+                        <outlet property="heartRateMonitorNotConnectedLabel" destination="k76-yt-c3h" id="W1q-6P-hWE"/>
+                        <outlet property="startButton" destination="hlq-In-NK8" id="WFi-in-I7B"/>
+                        <outlet property="taskCompletionLabel" destination="BBx-Yi-4kw" id="bjX-PU-MWY"/>
+                        <outlet property="taskWillStartLabel" destination="Chf-so-9dM" id="CEp-6X-How"/>
+                        <segue destination="tPc-um-JGY" kind="show" identifier="startStopSignalTask" id="Yrs-sw-HHh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0La-5z-Tui" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2022" y="-205"/>
+            <point key="canvasLocation" x="2021.5999999999999" y="-205.41871921182266"/>
         </scene>
         <!--Stop Signal Task View Controller-->
         <scene sceneID="rbU-uF-M4q">
@@ -178,25 +202,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Thank you for completing the task! Please tap the screen to leave the task." lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ke9-g0-YGE">
-                                <rect key="frame" x="16" y="160" width="343" height="176"/>
-                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="30"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="v4k-6j-uxT" firstAttribute="centerY" secondItem="GxC-E2-6OE" secondAttribute="centerY" id="2Ck-gL-pAl"/>
-                            <constraint firstItem="ke9-g0-YGE" firstAttribute="centerX" secondItem="GxC-E2-6OE" secondAttribute="centerX" id="Jyt-qg-aG4"/>
                             <constraint firstItem="v4k-6j-uxT" firstAttribute="centerX" secondItem="GxC-E2-6OE" secondAttribute="centerX" id="gp2-qp-uZU"/>
-                            <constraint firstItem="ke9-g0-YGE" firstAttribute="centerY" secondItem="GxC-E2-6OE" secondAttribute="centerY" id="qxf-1r-wxD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GxC-E2-6OE"/>
                     </view>
                     <connections>
                         <outlet property="fixationLabel" destination="v4k-6j-uxT" id="Tj6-fK-aMt"/>
-                        <outlet property="taskCompletionLabel" destination="ke9-g0-YGE" id="HtK-pg-hM5"/>
                         <outlet property="taskView" destination="pqd-VO-qyX" id="uSq-or-IUQ"/>
                     </connections>
                 </viewController>

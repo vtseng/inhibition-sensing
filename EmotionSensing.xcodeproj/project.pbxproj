@@ -36,7 +36,7 @@
 		BFB0146A224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */; };
 		BFB1CDA522676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA322676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift */; };
 		BFB1CDA622676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA422676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift */; };
-		BFB1CDAA22677C1F0082E7FC /* BluetoothDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA922677C1F0082E7FC /* BluetoothDevicesTableViewController.swift */; };
+		BFB1CDAA22677C1F0082E7FC /* BLEDevicesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFB1CDA922677C1F0082E7FC /* BLEDevicesTableViewController.swift */; };
 		BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */; };
 		BFCAAFCD225801F20086A6A1 /* StudyDashboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCC225801F20086A6A1 /* StudyDashboard.storyboard */; };
 		BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */; };
@@ -99,7 +99,7 @@
 		BFB01468224D4CED00D68077 /* EntityScoscheHRV+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityScoscheHRV+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		BFB1CDA322676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBLEHeartRateVariability+CoreDataClass.swift"; sourceTree = "<group>"; };
 		BFB1CDA422676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EntityBLEHeartRateVariability+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		BFB1CDA922677C1F0082E7FC /* BluetoothDevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothDevicesTableViewController.swift; sourceTree = "<group>"; };
+		BFB1CDA922677C1F0082E7FC /* BLEDevicesTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEDevicesTableViewController.swift; sourceTree = "<group>"; };
 		BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		BFCAAFCC225801F20086A6A1 /* StudyDashboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StudyDashboard.storyboard; sourceTree = "<group>"; };
 		BFCAAFCE225809F10086A6A1 /* StopSignalTask.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StopSignalTask.storyboard; sourceTree = "<group>"; };
@@ -182,7 +182,7 @@
 				BF927035225A95DF007CCE23 /* UserTaskScheduler.swift */,
 				BF7E9AB7226E73DE006718BF /* SelfControlEMAViewController.swift */,
 				BF519D9822286B2C0078E589 /* BLEHeartRateVariability.swift */,
-				BFB1CDA922677C1F0082E7FC /* BluetoothDevicesTableViewController.swift */,
+				BFB1CDA922677C1F0082E7FC /* BLEDevicesTableViewController.swift */,
 				BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */,
 				BF7E9ABD226FA2B8006718BF /* SelfControlEMA.swift */,
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
@@ -524,7 +524,7 @@
 				BF92703F226279AB007CCE23 /* EntityStopSignalTask+CoreDataClass.swift in Sources */,
 				BFCAAFCB2257F7AA0086A6A1 /* TabBarController.swift in Sources */,
 				BFB1CDA622676FF70082E7FC /* EntityBLEHeartRateVariability+CoreDataProperties.swift in Sources */,
-				BFB1CDAA22677C1F0082E7FC /* BluetoothDevicesTableViewController.swift in Sources */,
+				BFB1CDAA22677C1F0082E7FC /* BLEDevicesTableViewController.swift in Sources */,
 				BF7E9AC9226FB7E9006718BF /* EntitySelfControlEMAAnswer+CoreDataClass.swift in Sources */,
 				BF519D9922286B2C0078E589 /* BLEHeartRateVariability.swift in Sources */,
 				BF52DAB822089E74009C0BF5 /* AppDelegate.swift in Sources */,

@@ -55,6 +55,7 @@ class PendingTasksTableViewController: UITableViewController {
             return 0
         } else {
             tableView.backgroundView?.isHidden = true
+            tableView.separatorStyle = .singleLine
             return 1
         }
     }
