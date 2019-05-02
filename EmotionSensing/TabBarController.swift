@@ -14,6 +14,8 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
+        
+        print("TabBar viewDidLoad!")
     }
     
     
@@ -37,7 +39,7 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         // Open the Stop-Signal-Task tab
-        selectedIndex = 1
+//        selectedIndex = 1
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         let alert = UIAlertController(title: "Notification", message: "Are you ready for the task?", preferredStyle: .alert)

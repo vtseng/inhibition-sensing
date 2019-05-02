@@ -22,6 +22,7 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
     @IBOutlet weak var deviceIdLabel: UILabel!
     @IBOutlet weak var numberOfCompletedTasksLabel: UILabel!
     
+//    private let reachability = SCNetworkReachabilityCreateWithName(nil, "https://github.com")
     
     var numberOfCompletedTasks: Int!
     
@@ -125,7 +126,6 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         taskScheduler.scheduleTask(task)
         taskScheduler.refrshNotificationSchedules()
         
-        
     }
     
     
@@ -179,5 +179,11 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         
         self.present(alert, animated: true, completion: nil)
     }
+    
+
+    func syncDataInBackground() {
+ 
+    }
+    
 }
 

@@ -10,6 +10,25 @@
 		7DAFC269E8B1EC42884C71B7 /* Pods_EmotionSensingTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E1ADD164B6813C31022CA1F /* Pods_EmotionSensingTests.framework */; };
 		84518E5AB6F5087331A77AEB /* Pods_EmotionSensingUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D01143A6511D53728D8C3A75 /* Pods_EmotionSensingUITests.framework */; };
 		A32D3A7382D5EBEBA43ECCF0 /* Pods_EmotionSensing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D51EE988AC1B285F5641A07 /* Pods_EmotionSensing.framework */; };
+		BF1FFEFC227B8E6200A7824E /* 60.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEE9227B8E5A00A7824E /* 60.png */; };
+		BF1FFEFD227B8E6200A7824E /* 40.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEEA227B8E5A00A7824E /* 40.png */; };
+		BF1FFEFE227B8E6200A7824E /* 100.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEEB227B8E5B00A7824E /* 100.png */; };
+		BF1FFEFF227B8E6200A7824E /* 29.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEEC227B8E5B00A7824E /* 29.png */; };
+		BF1FFF00227B8E6200A7824E /* 50.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEED227B8E5B00A7824E /* 50.png */; };
+		BF1FFF01227B8E6200A7824E /* 20.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEEE227B8E5B00A7824E /* 20.png */; };
+		BF1FFF02227B8E6200A7824E /* 144.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEEF227B8E5C00A7824E /* 144.png */; };
+		BF1FFF03227B8E6200A7824E /* 58.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF0227B8E5C00A7824E /* 58.png */; };
+		BF1FFF04227B8E6200A7824E /* 72.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF1227B8E5C00A7824E /* 72.png */; };
+		BF1FFF05227B8E6200A7824E /* 80.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF2227B8E6000A7824E /* 80.png */; };
+		BF1FFF06227B8E6200A7824E /* 76.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF3227B8E6000A7824E /* 76.png */; };
+		BF1FFF07227B8E6200A7824E /* 167.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF4227B8E6000A7824E /* 167.png */; };
+		BF1FFF08227B8E6200A7824E /* 152.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF5227B8E6100A7824E /* 152.png */; };
+		BF1FFF09227B8E6200A7824E /* 120.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF6227B8E6100A7824E /* 120.png */; };
+		BF1FFF0A227B8E6200A7824E /* 114.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF7227B8E6100A7824E /* 114.png */; };
+		BF1FFF0B227B8E6200A7824E /* 180.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF8227B8E6100A7824E /* 180.png */; };
+		BF1FFF0C227B8E6200A7824E /* 87.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEF9227B8E6100A7824E /* 87.png */; };
+		BF1FFF0D227B8E6200A7824E /* 57.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEFA227B8E6200A7824E /* 57.png */; };
+		BF1FFF0E227B8E6200A7824E /* 1024.png in Resources */ = {isa = PBXBuildFile; fileRef = BF1FFEFB227B8E6200A7824E /* 1024.png */; };
 		BF519D9922286B2C0078E589 /* BLEHeartRateVariability.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF519D9822286B2C0078E589 /* BLEHeartRateVariability.swift */; };
 		BF52DAB822089E74009C0BF5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAB722089E74009C0BF5 /* AppDelegate.swift */; };
 		BF52DABA22089E74009C0BF5 /* StudyDashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF52DAB922089E74009C0BF5 /* StudyDashboardViewController.swift */; };
@@ -67,6 +86,26 @@
 		6A18EF53F8C81782FA366F91 /* Pods-EmotionSensingTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensingTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensingTests/Pods-EmotionSensingTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F5B5586221A9061B38E52E6 /* Pods-EmotionSensing.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EmotionSensing.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing.debug.xcconfig"; sourceTree = "<group>"; };
 		8E1ADD164B6813C31022CA1F /* Pods_EmotionSensingTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_EmotionSensingTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF1FFEE9227B8E5A00A7824E /* 60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 60.png; sourceTree = "<group>"; };
+		BF1FFEEA227B8E5A00A7824E /* 40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 40.png; sourceTree = "<group>"; };
+		BF1FFEEB227B8E5B00A7824E /* 100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 100.png; sourceTree = "<group>"; };
+		BF1FFEEC227B8E5B00A7824E /* 29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 29.png; sourceTree = "<group>"; };
+		BF1FFEED227B8E5B00A7824E /* 50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 50.png; sourceTree = "<group>"; };
+		BF1FFEEE227B8E5B00A7824E /* 20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 20.png; sourceTree = "<group>"; };
+		BF1FFEEF227B8E5C00A7824E /* 144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 144.png; sourceTree = "<group>"; };
+		BF1FFEF0227B8E5C00A7824E /* 58.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 58.png; sourceTree = "<group>"; };
+		BF1FFEF1227B8E5C00A7824E /* 72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 72.png; sourceTree = "<group>"; };
+		BF1FFEF2227B8E6000A7824E /* 80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80.png; sourceTree = "<group>"; };
+		BF1FFEF3227B8E6000A7824E /* 76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 76.png; sourceTree = "<group>"; };
+		BF1FFEF4227B8E6000A7824E /* 167.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 167.png; sourceTree = "<group>"; };
+		BF1FFEF5227B8E6100A7824E /* 152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 152.png; sourceTree = "<group>"; };
+		BF1FFEF6227B8E6100A7824E /* 120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 120.png; sourceTree = "<group>"; };
+		BF1FFEF7227B8E6100A7824E /* 114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 114.png; sourceTree = "<group>"; };
+		BF1FFEF8227B8E6100A7824E /* 180.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 180.png; sourceTree = "<group>"; };
+		BF1FFEF9227B8E6100A7824E /* 87.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 87.png; sourceTree = "<group>"; };
+		BF1FFEFA227B8E6200A7824E /* 57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 57.png; sourceTree = "<group>"; };
+		BF1FFEFB227B8E6200A7824E /* 1024.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1024.png; sourceTree = "<group>"; };
+		BF1FFF0F227BA44900A7824E /* EmotionSensing.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EmotionSensing.entitlements; sourceTree = "<group>"; };
 		BF519D9822286B2C0078E589 /* BLEHeartRateVariability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEHeartRateVariability.swift; sourceTree = "<group>"; };
 		BF52DAB422089E74009C0BF5 /* EmotionSensing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EmotionSensing.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF52DAB722089E74009C0BF5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +186,32 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BF1FFF10227BA79200A7824E /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				BF1FFEEE227B8E5B00A7824E /* 20.png */,
+				BF1FFEEC227B8E5B00A7824E /* 29.png */,
+				BF1FFEEA227B8E5A00A7824E /* 40.png */,
+				BF1FFEED227B8E5B00A7824E /* 50.png */,
+				BF1FFEFA227B8E6200A7824E /* 57.png */,
+				BF1FFEF0227B8E5C00A7824E /* 58.png */,
+				BF1FFEE9227B8E5A00A7824E /* 60.png */,
+				BF1FFEF1227B8E5C00A7824E /* 72.png */,
+				BF1FFEF3227B8E6000A7824E /* 76.png */,
+				BF1FFEF2227B8E6000A7824E /* 80.png */,
+				BF1FFEF9227B8E6100A7824E /* 87.png */,
+				BF1FFEEB227B8E5B00A7824E /* 100.png */,
+				BF1FFEF7227B8E6100A7824E /* 114.png */,
+				BF1FFEF6227B8E6100A7824E /* 120.png */,
+				BF1FFEEF227B8E5C00A7824E /* 144.png */,
+				BF1FFEF5227B8E6100A7824E /* 152.png */,
+				BF1FFEF4227B8E6000A7824E /* 167.png */,
+				BF1FFEF8227B8E6100A7824E /* 180.png */,
+				BF1FFEFB227B8E6200A7824E /* 1024.png */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		BF52DAAB22089E74009C0BF5 = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +237,7 @@
 		BF52DAB622089E74009C0BF5 /* EmotionSensing */ = {
 			isa = PBXGroup;
 			children = (
+				BF1FFF0F227BA44900A7824E /* EmotionSensing.entitlements */,
 				BF52DAB722089E74009C0BF5 /* AppDelegate.swift */,
 				BFCAAFCA2257F7AA0086A6A1 /* TabBarController.swift */,
 				BF52DAB922089E74009C0BF5 /* StudyDashboardViewController.swift */,
@@ -186,6 +252,7 @@
 				BF92703122593D75007CCE23 /* StopSignalTaskResponse.swift */,
 				BF7E9ABD226FA2B8006718BF /* SelfControlEMA.swift */,
 				BF52DABE22089E77009C0BF5 /* Assets.xcassets */,
+				BF1FFF10227BA79200A7824E /* Icons */,
 				BF92702E22593558007CCE23 /* Main.storyboard */,
 				BF52DAC022089E77009C0BF5 /* LaunchScreen.storyboard */,
 				BFCAAFCC225801F20086A6A1 /* StudyDashboard.storyboard */,
@@ -310,6 +377,9 @@
 						CreatedOnToolsVersion = 10.1;
 						LastSwiftMigration = 1010;
 						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -350,12 +420,31 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BF1FFF04227B8E6200A7824E /* 72.png in Resources */,
+				BF1FFF05227B8E6200A7824E /* 80.png in Resources */,
+				BF1FFEFF227B8E6200A7824E /* 29.png in Resources */,
+				BF1FFEFE227B8E6200A7824E /* 100.png in Resources */,
 				BFCAAFCF225809F20086A6A1 /* StopSignalTask.storyboard in Resources */,
+				BF1FFF0D227B8E6200A7824E /* 57.png in Resources */,
+				BF1FFF0B227B8E6200A7824E /* 180.png in Resources */,
+				BF1FFF01227B8E6200A7824E /* 20.png in Resources */,
 				BFCAAFCD225801F20086A6A1 /* StudyDashboard.storyboard in Resources */,
+				BF1FFF06227B8E6200A7824E /* 76.png in Resources */,
 				BF92703022593558007CCE23 /* Main.storyboard in Resources */,
+				BF1FFF02227B8E6200A7824E /* 144.png in Resources */,
+				BF1FFF08227B8E6200A7824E /* 152.png in Resources */,
+				BF1FFEFC227B8E6200A7824E /* 60.png in Resources */,
+				BF1FFF0A227B8E6200A7824E /* 114.png in Resources */,
+				BF1FFF0C227B8E6200A7824E /* 87.png in Resources */,
+				BF1FFF03227B8E6200A7824E /* 58.png in Resources */,
+				BF1FFF0E227B8E6200A7824E /* 1024.png in Resources */,
+				BF1FFF07227B8E6200A7824E /* 167.png in Resources */,
 				BF52DAC222089E77009C0BF5 /* LaunchScreen.storyboard in Resources */,
+				BF1FFEFD227B8E6200A7824E /* 40.png in Resources */,
 				BF92703A225BFA55007CCE23 /* TaskDashboard.storyboard in Resources */,
+				BF1FFF09227B8E6200A7824E /* 120.png in Resources */,
 				BF52DABF22089E77009C0BF5 /* Assets.xcassets in Resources */,
+				BF1FFF00227B8E6200A7824E /* 50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,21 +796,23 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EmotionSensing/EmotionSensing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 853VPLF7T7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionSensing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -732,20 +823,22 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = EmotionSensing/EmotionSensing.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = NO;
 				DEVELOPMENT_TEAM = 853VPLF7T7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = EmotionSensing/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionSensing;
+				PRODUCT_BUNDLE_IDENTIFIER = com.vincent.EmotionMeter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
