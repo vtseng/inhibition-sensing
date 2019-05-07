@@ -48,12 +48,6 @@ class StopSignalTaskGetReadyViewController: UIViewController {
     
     @IBAction func startTask(_ sender: Any) {
         
-//        if !hrvDataIsAvailable {
-//            let alert = UIAlertController(title: "Heart Rate Monitor Not Detected", message: "Please make sure that you are wearing the heart rate monitor before you start the task. ", preferredStyle: .alert)
-//            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-//            self.present(alert, animated: true, completion: nil)
-//        }
-        
         // Update the UserDefaults when task is attempted
         let defaults = UserDefaults.standard
         var attemptedTasks : [String : Date] = [:]

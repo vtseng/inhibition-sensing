@@ -22,7 +22,8 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
     @IBOutlet weak var deviceIdLabel: UILabel!
     @IBOutlet weak var numberOfCompletedTasksLabel: UILabel!
     
-//    private let reachability = SCNetworkReachabilityCreateWithName(nil, "https://github.com")
+//    private let reachability = SCNetworkReachabilityCreateWithName(nil, "www.google.com")
+    let reachability = Reachability(hostName: "www.google.com")
     
     var numberOfCompletedTasks: Int!
     
@@ -49,16 +50,24 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
                                        object: nil)
         
         notificationCenter.addObserver(self, selector: #selector(appMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
+        
+        notificationCenter.addObserver(self, selector: #selector(reachabilityChanged(notification:)), name: .reachabilityChanged, object: reachability)
 
+        notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+        
         let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
         study.setStudyURL(url)
         study.setMaximumNumberOfRecordsForDBSync(100)
+        study.setAutoDBSyncOnlyBatterChargning(false)
         
         let hrvSensor = BLEHeartRateVariability(awareStudy: study)
         manager.add(hrvSensor!)
         
-        let accelerometer = Accelerometer(awareStudy: study)
-        manager.add(accelerometer!)
+        //let accelerometer = Accelerometer(awareStudy: study)
+        //manager.add(accelerometer!)
+        
+        let linearAccelerometer = LinearAccelerometer(awareStudy: study)
+        manager.add(linearAccelerometer!)
         
         let stopSigalTaskResponse = StopSignalTaskResponse(awareStudy: study)
         manager.add(stopSigalTaskResponse!)
@@ -114,9 +123,9 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         let selfControlEMA = SelfControlEMA(awareStudy: study)
         manager.add(selfControlEMA!)
         
-        
         manager.createDBTablesOnAwareServer()
         awareCore.requestPermissionForPushNotification()
+        
         
         manager.startAllSensors()
 //        manager.syncAllSensors()
@@ -125,6 +134,13 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         let taskScheduler = UserTaskScheduler.shared
         taskScheduler.scheduleTask(task)
         taskScheduler.refrshNotificationSchedules()
+
+        reachability?.startNotifier()
+//        if ((reachability?.startNotifier())!){
+//            print("Reachability started notifier")
+//        }else {
+//            print("Could not start reachability notifier")
+//        }
         
     }
     
@@ -140,6 +156,7 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
             numberOfCompletedTasks = 0
         }
         numberOfCompletedTasksLabel.text = String(numberOfCompletedTasks)
+    
     }
     
     @objc
@@ -156,8 +173,7 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
 
 
     @objc func appMovedToBackground() {
-        print("Sync data after App moved to background!")
-        AWARESensorManager.shared().syncAllSensors()
+//        AWARESensorManager.shared().syncAllSensors()
     }
     
     
@@ -180,9 +196,29 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         self.present(alert, animated: true, completion: nil)
     }
     
+    
+    @objc func willEnterForeground() {
+        print("App entered foreground")
+        AWARESensorManager.shared().startAllSensors()
+        AWARESensorManager.shared().syncAllSensors()
+    }
+    
 
-    func syncDataInBackground() {
- 
+    @objc func reachabilityChanged(notification: Notification) {
+        let reachability = notification.object as! Reachability
+        print(reachability.currentReachabilityStatus())
+        let status = reachability.currentReachabilityStatus()
+        switch status {
+        case NotReachable:
+            print("Network not reachable")
+        case ReachableViaWiFi:
+            AWARESensorManager.shared().syncAllSensors()
+            print("Network reachable via WIFI")
+        case ReachableViaWWAN:
+            print("Network reachable via WWAN")
+        default:
+            print("Network reachable via \(status.rawValue)")
+        }
     }
     
 }

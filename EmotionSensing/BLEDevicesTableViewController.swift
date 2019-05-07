@@ -20,6 +20,8 @@ class BLEDeviceCell: UITableViewCell {
 
 class BLEDevicesTableViewController: UITableViewController, CBCentralManagerDelegate, CBPeripheralDelegate {
     
+    @IBOutlet var noBLEDeviceView: UIView!
+    
     var centralManager: CBCentralManager!
     var devices = [String: [String: Any]]()
     
@@ -30,6 +32,7 @@ class BLEDevicesTableViewController: UITableViewController, CBCentralManagerDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        tableView.backgroundView = noBLEDeviceView
         
         devices = [String: [String: Any]]()
         if UserDefaults.standard.object(forKey: KEY_HRV_PERIPHERAL_ID) != nil {
@@ -42,9 +45,11 @@ class BLEDevicesTableViewController: UITableViewController, CBCentralManagerDele
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         if devices.count > 0 {
+            tableView.backgroundView?.isHidden = true
             tableView.separatorStyle = .singleLine
             return 1
         } else {
+            tableView.backgroundView?.isHidden = false
             tableView.separatorStyle = .none
             return 0
         }

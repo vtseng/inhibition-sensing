@@ -49,8 +49,29 @@
                             <outlet property="delegate" destination="Esx-On-bm0" id="P90-1F-3R7"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="noBLEDeviceView" destination="4Bw-kQ-yGk" id="Osg-yL-ecz"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dmg-8q-aMa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="4Bw-kQ-yGk">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="No BLE Device Found" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wyo-QC-ryH">
+                            <rect key="frame" x="37" y="54" width="166" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="wyo-QC-ryH" firstAttribute="centerY" secondItem="LSK-ow-t9x" secondAttribute="centerY" id="PaM-4O-Nca"/>
+                        <constraint firstItem="wyo-QC-ryH" firstAttribute="centerX" secondItem="LSK-ow-t9x" secondAttribute="centerX" id="RLy-i0-Sug"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="LSK-ow-t9x"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="-346.37681159420293" y="-127.23214285714285"/>
         </scene>

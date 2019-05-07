@@ -28,7 +28,6 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
         let studyNavigationController = UINavigationController(rootViewController: studyViewController)
         studyNavigationController.title = "Dashboard"
         
-//        let taskViewController = UIStoryboard(name: "StopSignalTask", bundle: nil).instantiateViewController(withIdentifier: "StopSignalTask")
         let taskViewController = UIStoryboard(name: "TaskDashboard", bundle: nil).instantiateViewController(withIdentifier: "TaskDashboard")
         let taskNavigationController = UINavigationController(rootViewController: taskViewController)
         taskNavigationController.title = "Tasks"
@@ -39,12 +38,8 @@ class TabBarController : UITabBarController, UITabBarControllerDelegate, UNUserN
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         // Open the Stop-Signal-Task tab
-//        selectedIndex = 1
+        selectedIndex = 1
         UIApplication.shared.applicationIconBadgeNumber = 0
-        
-        let alert = UIAlertController(title: "Notification", message: "Are you ready for the task?", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
         
         completionHandler()
     }
