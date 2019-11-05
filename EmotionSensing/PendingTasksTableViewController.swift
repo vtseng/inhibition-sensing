@@ -29,7 +29,7 @@ class PendingTasksTableViewController: UITableViewController {
         tableView.rowHeight = 60.0
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {    
         super.viewWillAppear(animated)
         tableView.reloadData()
         tableView.backgroundView = noPendingTasksView

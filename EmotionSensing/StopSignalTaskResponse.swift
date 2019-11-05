@@ -25,6 +25,7 @@ class StopSignalTaskResponse: AWARESensor{
         var storage = AWAREStorage()
         switch dbType {
         case AwareDBTypeSQLite:
+            print("Initalized with SQLiteStorage")
             storage = SQLiteStorage(study: study, sensorName: SENSOR_STOP_SIGNAL_TASK_RESPONSE, entityName: String(describing: EntityStopSignalTask.self), insertCallBack: { (dataDict, childContext, entity) in
                 
             })

@@ -2,7 +2,7 @@
 //  EntityStopSignalTask+CoreDataProperties.swift
 //  EmotionSensing
 //
-//  Created by Vincent on 4/13/19.
+//  Created by Vincent on 11/5/19.
 //  Copyright © 2019 Vincent. All rights reserved.
 //
 //
@@ -18,14 +18,14 @@ extension EntityStopSignalTask {
     }
 
     @NSManaged public var device_id: String?
-    @NSManaged public var timestamp: NSNumber?
-    @NSManaged public var task_start_timestamp: NSNumber?
-    @NSManaged public var number_total_trials: NSNumber?
-    @NSManaged public var number_stop_trials: NSNumber?
-    @NSManaged public var trial_id: NSNumber?
-    @NSManaged public var stop_signal_delay_milliseconds: NSNumber?
+    @NSManaged public var timestamp: Int64
+    @NSManaged public var task_start_timestamp: Int64
+    @NSManaged public var number_total_trials: Int64
+    @NSManaged public var number_stop_trials: Int64
+    @NSManaged public var trial_id: Int64
+    @NSManaged public var stop_signal_delay_milliseconds: Int64
     @NSManaged public var response_type: String?
-    @NSManaged public var response_time_milliseconds: NSNumber?
+    @NSManaged public var response_time_milliseconds: Int64
     @NSManaged public var trial_type: String?
 
 }
