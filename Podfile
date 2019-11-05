@@ -6,8 +6,9 @@ target 'EmotionSensing' do
   use_frameworks!
 
   # Pods for EmotionSensing
-  pod 'AWAREFramework', :git=>'https://github.com/tetujin/AWAREFramework-iOS.git'
-  #pod 'MQTTKit'
+  pod 'AWAREFramework', '~> 1.5'
+  # pod 'AWAREFramework', :git=>'https://github.com/tetujin/AWAREFramework-iOS.git'
+  # pod 'MQTTKit'
 
   target 'EmotionSensingTests' do
     inherit! :search_paths

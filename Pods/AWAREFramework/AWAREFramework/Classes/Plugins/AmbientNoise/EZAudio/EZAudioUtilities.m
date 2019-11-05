@@ -539,7 +539,7 @@ BOOL __shouldExitOnCheckResultFail = YES;
     fprintf(stderr, "Error: %s (%s)\n", operation, errorString);
     if (__shouldExitOnCheckResultFail)
     {
-        exit(-1);
+        // exit(-1);
     }
 }
 
@@ -687,7 +687,7 @@ BOOL __shouldExitOnCheckResultFail = YES;
     //
     TPCircularBufferProduceBytes(&historyInfo->circularBuffer, buffer, bufferSize * sizeof(float));
     int32_t targetBytes = historyInfo->bufferSize * sizeof(float);
-    int32_t availableBytes = 0;
+    uint32_t availableBytes = 0;
     float *historyBuffer = TPCircularBufferTail(&historyInfo->circularBuffer, &availableBytes);
     int32_t bytes = MIN(targetBytes, availableBytes);
     memmove(historyInfo->buffer, historyBuffer, bytes);

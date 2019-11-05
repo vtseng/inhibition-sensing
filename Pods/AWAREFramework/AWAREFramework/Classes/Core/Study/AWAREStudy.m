@@ -6,7 +6,6 @@
 //  Copyright © 2015 Yuuki NISHIYAMA. All rights reserved.
 //
 
-#import "AWAREDelegate.h"
 #import "AWAREStudy.h"
 #import "AWAREKeys.h"
 #import "AWARESensorManager.h"
@@ -156,7 +155,7 @@ static AWAREStudy * sharedStudy;
     NSString * uuid = [self getDeviceId];
     NSString * post = [NSString stringWithFormat:@"device_id=%@", uuid];
     NSData   * postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString * postLength = [NSString stringWithFormat:@"%ld", [postData length]];
+    NSString * postLength = [NSString stringWithFormat:@"%zd", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
@@ -214,7 +213,7 @@ didReceiveResponse:(NSURLResponse *)response
               task:(NSURLSessionTask *)task
 didCompleteWithError:(NSError *)error {
     if (error != nil) {
-        NSLog(@"ERROR: %@ %ld", error.debugDescription , error.code);
+        NSLog(@"ERROR: %@ %zd", error.debugDescription , error.code);
         if (error.code == -1202) {
             /**
              * If the error code is -1202, this device needs .crt for SSL(secure) connection.
@@ -341,7 +340,7 @@ didCompleteWithError:(NSError *)error {
 
 - (bool) isExistDeviceId:(NSString *)deviceId onAwareServer:(NSString *)url{
     NSString * result = [self getLatestStoredDataInAwareServerWithUrl:url deviceId:deviceId];
-    if([result isEqualToString:@"[]"] ){
+    if([result isEqualToString:@"[]"] || [result isEqualToString:@"\n\n[]"]){
         if (isDebug) NSLog(@"[AWAREStudy] Your device_id (%@) is not stored.", deviceId);
         return NO;
     }else{
@@ -357,7 +356,7 @@ didCompleteWithError:(NSError *)error {
     NSString *post = [NSString stringWithFormat:@"device_id=%@", deviceId];
     // NSLog(@"%@", url);
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%ld", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%zd", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];
@@ -423,7 +422,7 @@ didCompleteWithError:(NSError *)error {
     NSString *post = [NSString stringWithFormat:@"device_id=%@&fields=%@", uuid, query];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-    NSString *postLength = [NSString stringWithFormat:@"%ld", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%zd", [postData length]];
     
     NSNumber * unixtime = [AWAREUtils getUnixTimestamp:[NSDate new]];
     url = [NSString stringWithFormat:@"%@?%@", url, unixtime];
@@ -558,7 +557,7 @@ didCompleteWithError:(NSError *)error {
     }
     NSString *post = [NSString stringWithFormat:@"data=%@&device_id=%@", jsonString,uuid];
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    NSString *postLength = [NSString stringWithFormat:@"%ld", [postData length]];
+    NSString *postLength = [NSString stringWithFormat:@"%zd", [postData length]];
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
     [request setURL:[NSURL URLWithString:url]];
     [request setHTTPMethod:@"POST"];

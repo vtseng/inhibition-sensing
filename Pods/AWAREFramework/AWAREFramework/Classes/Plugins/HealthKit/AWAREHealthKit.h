@@ -11,10 +11,13 @@
 #import "AWAREHealthKitCategory.h"
 #import "AWAREHealthKitQuantity.h"
 
-extern NSString * const AWARE_PREFERENCES_STATUS_HEALTHKIT;
-extern NSString * const AWARE_PREFERENCES_PLUGIN_HEALTHKIT_FREQUENCY;
+
+extern NSString * _Nonnull const AWARE_PREFERENCES_STATUS_HEALTHKIT;
+extern NSString * _Nonnull const AWARE_PREFERENCES_PLUGIN_HEALTHKIT_FREQUENCY;
 
 @interface AWAREHealthKit : AWARESensor <AWARESensorDelegate>
+
+NS_ASSUME_NONNULL_BEGIN
 
 @property int fetchIntervalSecond; // default = 1800 second (= 30 min)
 
@@ -29,10 +32,15 @@ extern NSString * const AWARE_PREFERENCES_PLUGIN_HEALTHKIT_FREQUENCY;
 /**
  * Get the last fetch data using a data type
  */
-+ (NSDate * _Nullable) getLastFetchDataWithDataType:(NSString * _Nullable) dataType;
+// - (NSDate * _Nullable) getLastRecordTimeWithHKDataType:(NSString * _Nonnull)type;
 
 /**
  * Set the latest fetch date with a data type.
  */
-+ (void) setLastFetchData:(NSDate * _Nonnull)date withDataType:(NSString * _Nullable)dataType;
+// - (void) setLastRecordTime:(NSDate * _Nonnull)date withHKDataType:(NSString * _Nonnull)type;
+
+- (void) setLastFetchTimeForAll:(NSDate * _Nonnull) date;
+
+NS_ASSUME_NONNULL_END
+
 @end

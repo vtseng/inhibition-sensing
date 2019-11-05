@@ -11,6 +11,10 @@
 
 @interface AWAREHealthKitWorkout : AWARESensor
 
-- (void) saveWorkoutData:(NSArray *)data;
+NS_ASSUME_NONNULL_BEGIN
+
+- (void) saveWorkoutData:(NSArray <HKWorkout * > * _Nonnull)data;
+
+NS_ASSUME_NONNULL_END
 
 @end

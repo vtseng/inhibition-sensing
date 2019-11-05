@@ -61,67 +61,64 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         study.setAutoDBSyncOnlyBatterChargning(false)
         
         let hrvSensor = BLEHeartRateVariability(awareStudy: study)
-        manager.add(hrvSensor!)
-        
-        //let accelerometer = Accelerometer(awareStudy: study)
-        //manager.add(accelerometer!)
+//        manager.add(hrvSensor)
         
         let linearAccelerometer = LinearAccelerometer(awareStudy: study)
-        manager.add(linearAccelerometer!)
+        manager.add(linearAccelerometer)
         
         let stopSigalTaskResponse = StopSignalTaskResponse(awareStudy: study)
-        manager.add(stopSigalTaskResponse!)
+//        manager.add(stopSigalTaskResponse)
         
         let weather = OpenWeather(awareStudy: study)
-        manager.add(weather!)
+        manager.add(weather)
         
         let iosActivity = IOSActivityRecognition(awareStudy: study)
-        manager.add(iosActivity!)
+        manager.add(iosActivity)
         
         let ambientNoise = AmbientNoise(awareStudy: study)
-        manager.add(ambientNoise!)
+        manager.add(ambientNoise)
         
         let locations = Locations(awareStudy: study)
-        manager.add(locations!)
+        manager.add(locations)
         
         let battery = Battery(awareStudy: study)
-        manager.add(battery!)
+        manager.add(battery)
         
         let calendar = Calendar(awareStudy: study)
-        manager.add(calendar!)
+        manager.add(calendar)
         
         let calls = Calls(awareStudy: study)
-        manager.add(calls!)
+        manager.add(calls)
         
         let deviceUsage = DeviceUsage(awareStudy: study)
-        manager.add(deviceUsage!)
+        manager.add(deviceUsage)
         
         let pushNotification = PushNotification(awareStudy: study)
-        manager.add(pushNotification!)
+        manager.add(pushNotification)
         
         let screen = Screen(awareStudy: study)
-        manager.add(screen!)
+        manager.add(screen)
         
         let visitLocations = VisitLocations(awareStudy: study)
-        manager.add(visitLocations!)
+        manager.add(visitLocations)
 
         let pedometer = Pedometer(awareStudy: study)
-        manager.add(pedometer!)
+        manager.add(pedometer)
         
         let wifi = Wifi(awareStudy: study)
-        manager.add(wifi!)
+        manager.add(wifi)
         
         let bluetooth = Bluetooth(awareStudy: study)
-        manager.add(bluetooth!)
+        manager.add(bluetooth)
         
         let network = Network(awareStudy: study)
-        manager.add(network!)
+        manager.add(network)
         
         let proximity = Proximity(awareStudy: study)
-        manager.add(proximity!)
+        manager.add(proximity)
         
         let selfControlEMA = SelfControlEMA(awareStudy: study)
-        manager.add(selfControlEMA!)
+//        manager.add(selfControlEMA)
         
         manager.createDBTablesOnAwareServer()
         awareCore.requestPermissionForPushNotification()
@@ -135,13 +132,8 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
         taskScheduler.scheduleTask(task)
         taskScheduler.refrshNotificationSchedules()
 
-        reachability?.startNotifier()
-//        if ((reachability?.startNotifier())!){
-//            print("Reachability started notifier")
-//        }else {
-//            print("Could not start reachability notifier")
-//        }
-        
+        reachability.startNotifier()
+
     }
     
     

@@ -471,24 +471,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-resources.sh",
-				"${PODS_ROOT}/AWAREFramework/AWAREFramework/Assets/AWARE.xcdatamodeld",
-				"${PODS_CONFIGURATION_BUILD_DIR}/AWAREFramework/AWAREFramework.bundle",
-				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AWARE.momd",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AWAREFramework.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
+				"${PODS_ROOT}/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3FB253BD873829E677B396EB /* [CP] Check Pods Manifest.lock */ = {
@@ -541,32 +532,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-frameworks.sh",
-				"${PODS_ROOT}/AWAREFramework/AWAREFramework/Frameworks/StudentLifeAudio.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaAsyncSocket/CocoaAsyncSocket.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/SCNetworkReachability/SCNetworkReachability.framework",
-				"${BUILT_PRODUCTS_DIR}/TPCircularBuffer/TPCircularBuffer.framework",
-				"${BUILT_PRODUCTS_DIR}/ios-ntp/ios_ntp.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StudentLifeAudio.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaAsyncSocket.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCNetworkReachability.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TPCircularBuffer.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ios_ntp.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-EmotionSensing/Pods-EmotionSensing-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		95812CE6E80E9F6D8A446D8C /* [CP] Check Pods Manifest.lock */ = {

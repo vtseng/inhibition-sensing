@@ -8,7 +8,7 @@
 
 #import "AWAREKeys.h"
 
-NSString* const  KEY_APNS_TOKEN          = @"key_apns_token";
+NSString* const KEY_APNS_TOKEN          = @"key_apns_token";
 NSString* const KEY_AWARE_STUDY         = @"key_aware_study";
 NSString* const KEY_AWARE_DEVICE_NAME   = @"aware_device_name";
 NSString* const KEY_AWARE_DEVICE_ID     = @"key_aware_device_id";
@@ -92,6 +92,7 @@ NSString* const SENSOR_CALLS         = @"calls";
 NSString* const SENSOR_LABELS        = @"labels";
 NSString* const SENSOR_ORIENTATION   = @"orientation";
 NSString* const SENSOR_HEALTH_KIT      = @"health_kit";
+NSString* const SENSOR_SIGNIFICANT_MOTION = @"significant_motion";
 NSString* const SENSOR_IOS_ESM         = @"plugin_ios_esm";
 NSString* const SENSOR_IOS_ACTIVITY_RECOGNITION = @"plugin_ios_activity_recognition";
 

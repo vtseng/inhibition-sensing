@@ -21,6 +21,7 @@
     NSString * KEY_DATA_TYPE;
     NSString * KEY_VALUE;
     NSString * KEY_UNIT;
+    NSString * KEY_START;
     NSString * KEY_END;
     NSString * KEY_DEVICE;
     NSString * KEY_LABLE;
@@ -62,6 +63,7 @@
         KEY_DATA_TYPE = @"type";
         KEY_VALUE     = @"value";
         KEY_UNIT      = @"unit";
+        KEY_START     = @"timestamp_start";
         KEY_END       = @"timestamp_end";
         KEY_DEVICE    = @"device";
         KEY_LABLE     = @"label";
@@ -72,6 +74,7 @@
 - (void) createTable{
     if (self.isDebug) NSLog(@"[%@] create table!", [self getSensorName]);
     TCQMaker * tcqMaker = [[TCQMaker alloc] init];
+    [tcqMaker addColumn:KEY_START     type:TCQTypeReal default:@"0"];
     [tcqMaker addColumn:KEY_END       type:TCQTypeReal default:@"0"];
     [tcqMaker addColumn:KEY_DATA_TYPE type:TCQTypeText default:@"''"];
     [tcqMaker addColumn:KEY_VALUE     type:TCQTypeReal default:@"0"];
@@ -89,48 +92,37 @@
     } else {
         NSMutableArray * buffer = [[NSMutableArray alloc] init];
         
-        HKQuantitySample * sample = data.firstObject;
-        NSDate * lastFetchDate = [AWAREHealthKit getLastFetchDataWithDataType:sample.sampleType.identifier];
-        if (lastFetchDate==nil) {
-            lastFetchDate = [NSDate dateWithTimeIntervalSince1970:-1*60*60*24];
-        }
-        
+        // HKQuantitySample * sample = data.firstObject;
+ 
         for(HKQuantitySample * sample in data) {
             HKSampleType     * type = sample.sampleType;
             if([self isDebug]) NSLog(@"%@",type);
             
-            if (sample.startDate.timeIntervalSince1970 > lastFetchDate.timeIntervalSince1970) {
-                NSMutableString * quantityStr = [[NSMutableString alloc] initWithString:[sample.quantity description]];
-                NSArray  * array = [quantityStr componentsSeparatedByString:@" "];
-                NSString * unit  = @"";
-                
-                NSNumber * value = @0;
-                if (array.count > 1) {
-                    if(array[0] != nil) value = @([array[0] doubleValue]);
-                    if(array[1] != nil) unit  = array[1];
-                }
-                
-                NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
-                [dict setObject:[AWAREUtils getUnixTimestamp:sample.startDate] forKey:KEY_TIMESTAMP];
-                [dict setObject:[AWAREUtils getUnixTimestamp:sample.endDate]   forKey:KEY_END];
-                [dict setObject:[self getDeviceId] forKey:KEY_DEVICE_ID];
-                [dict setObject:type.identifier    forKey:KEY_DATA_TYPE];
-                [dict setObject:value forKey:KEY_VALUE];
-                [dict setObject:unit  forKey:KEY_UNIT];
-                if(sample.device == nil){
-                    [dict setObject:@"unknown" forKey:KEY_DEVICE];
-                }else{
-                    [dict setObject:sample.device.model forKey:KEY_DEVICE];
-                }
-                [dict setObject:@"" forKey:KEY_LABLE];
-                [buffer addObject:dict];
-                
-                // save the last fetch timestamp with a identifier
-                if (sample.endDate != nil && type.identifier != nil) {
-                    [AWAREHealthKit setLastFetchData:sample.endDate
-                                        withDataType:type.identifier];
-                }
+            NSMutableString * quantityStr = [[NSMutableString alloc] initWithString:[sample.quantity description]];
+            NSArray  * array = [quantityStr componentsSeparatedByString:@" "];
+            NSString * unit  = @"";
+            
+            NSNumber * value = @0;
+            if (array.count > 1) {
+                if(array[0] != nil) value = @([array[0] doubleValue]);
+                if(array[1] != nil) unit  = array[1];
             }
+            
+            NSMutableDictionary * dict = [[NSMutableDictionary alloc] init];
+            [dict setObject:[AWAREUtils getUnixTimestamp:[NSDate new]] forKey:KEY_TIMESTAMP];
+            [dict setObject:[AWAREUtils getUnixTimestamp:sample.startDate] forKey:KEY_START];
+            [dict setObject:[AWAREUtils getUnixTimestamp:sample.endDate]   forKey:KEY_END];
+            [dict setObject:[self getDeviceId] forKey:KEY_DEVICE_ID];
+            [dict setObject:type.identifier    forKey:KEY_DATA_TYPE];
+            [dict setObject:value forKey:KEY_VALUE];
+            [dict setObject:unit  forKey:KEY_UNIT];
+            if(sample.device == nil){
+                [dict setObject:@"unknown" forKey:KEY_DEVICE];
+            }else{
+                [dict setObject:sample.device.description forKey:KEY_DEVICE];
+            }
+            [dict setObject:@"" forKey:KEY_LABLE];
+            [buffer addObject:dict];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{

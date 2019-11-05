@@ -212,6 +212,8 @@ static AWARESensorManager * sharedSensorManager;
                 awareSensor = [[Calendar alloc] initWithAwareStudy:awareStudy dbType:dbType];
             }else if ([setting isEqualToString:AWARE_PREFERENCES_STATUS_HEALTHKIT]){
                 awareSensor = [[AWAREHealthKit alloc] initWithAwareStudy:awareStudy dbType:dbType];
+            }else if ([setting isEqualToString:AWARE_PREFERENCES_STATUS_SIGNIFICANT_MOTION]){
+                awareSensor = [[SignificantMotion alloc] initWithAwareStudy:awareStudy dbType:dbType];
             }
 
             if (awareSensor != nil) {
@@ -448,10 +450,10 @@ static AWARESensorManager * sharedSensorManager;
 
 - (void)syncAllSensorsForcefully{
     
-    if(awareStudy.isDebug) NSLog(@"[AWARESensorManager] Start SyncDB forcefully");
+    if (awareStudy.isDebug) NSLog(@"[AWARESensorManager] Start SyncDB forcefully");
     
     for (AWARESensor * sensor in awareSensors ) {
-        NSLog(@"%@",sensor.getSensorName);
+        if (awareStudy.isDebug) NSLog(@"%@",sensor.getSensorName);
         [sensor startSyncDB];
     }
 }

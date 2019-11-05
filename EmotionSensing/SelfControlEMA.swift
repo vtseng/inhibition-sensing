@@ -17,11 +17,11 @@ class SelfControlEMA: AWARESensor{
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
     }
     
-    override convenience init!(awareStudy study: AWAREStudy!) {
+    override convenience init(awareStudy study: AWAREStudy!) {
         self.init(awareStudy: study, dbType: AwareDBTypeSQLite)
     }
     
-    override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
+    override init(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
         var storage = AWAREStorage()
         switch dbType {
         case AwareDBTypeSQLite:
@@ -48,6 +48,6 @@ class SelfControlEMA: AWARESensor{
         queryMaker.addColumn(KEY_QUESTION_TROUBLE_PAYING_ATTENTION, type: TCQTypeInteger, default: "-1")
         queryMaker.addColumn(KEY_QUESTION_NO_TROUBLE_WITH_DISAGREEABLE_THINGS, type: TCQTypeInteger, default: "-1")
         
-        storage.createDBTableOnServer(with: queryMaker)
+        storage!.createDBTableOnServer(with: queryMaker)
     }
 }

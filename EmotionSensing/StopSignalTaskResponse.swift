@@ -17,11 +17,11 @@ class StopSignalTaskResponse: AWARESensor{
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
     }
     
-    override convenience init!(awareStudy study: AWAREStudy!) {
+    override convenience init(awareStudy study: AWAREStudy!) {
         self.init(awareStudy: study, dbType: AwareDBTypeSQLite)
     }
     
-    override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
+    override init(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
         var storage = AWAREStorage()
         switch dbType {
         case AwareDBTypeSQLite:
@@ -50,7 +50,7 @@ class StopSignalTaskResponse: AWARESensor{
         queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_RESPONSE_TYPE, type: TCQTypeText, default: "''")
         queryMaker.addColumn(KEY_STOP_SIGNAL_TASK_TRIAL_TYPE, type: TCQTypeText, default: "''")
         
-        storage.createDBTableOnServer(with: queryMaker)
+        storage!.createDBTableOnServer(with: queryMaker)
     }
     
 }

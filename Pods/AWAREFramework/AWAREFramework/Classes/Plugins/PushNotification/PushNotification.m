@@ -105,7 +105,7 @@
 }
 
 /**
- * Save a stored device token from push notification
+ * Save a stored device token fro push notification
  * @return An existance of device token for push notification
  */
 - (BOOL) saveStoredPushNotificationDeviceToken {

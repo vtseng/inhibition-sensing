@@ -52,11 +52,11 @@ class BLEHeartRateVariability: AWARESensor {
         self.init(awareStudy: nil, dbType: AwareDBTypeSQLite)
     }
     
-    override convenience init!(awareStudy study: AWAREStudy!) {
+    override convenience init(awareStudy study: AWAREStudy!) {
         self.init(awareStudy: study, dbType: AwareDBTypeSQLite)
     }
     
-    override init!(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
+    override init(awareStudy study: AWAREStudy!, dbType: AwareDBType) {
 
         var storage = AWAREStorage()
         if dbType == AwareDBTypeJSON{
@@ -98,7 +98,7 @@ class BLEHeartRateVariability: AWARESensor {
         queryMaker.addColumn(KEY_HRV_MANUFACTURER, type: TCQTypeText, default: "''")
         queryMaker.addColumn(KEY_HRV_PERIPHERAL_ID, type: TCQTypeText, default: "''")
         
-        storage.createDBTableOnServer(with: queryMaker)
+        storage?.createDBTableOnServer(with: queryMaker)
     }
     
     
@@ -279,7 +279,7 @@ extension BLEHeartRateVariability : CBPeripheralDelegate {
         
         print(dict)
         
-        storage.saveData(with: dict, buffer: false, saveInMainThread: true)
+        storage?.saveData(with: dict, buffer: false, saveInMainThread: true)
         setLatestData(dict)
         
         if let handler = getEventHandler(){
