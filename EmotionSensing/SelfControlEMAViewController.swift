@@ -69,13 +69,20 @@ class SelfControlEMAViewController: UIViewController {
     
     
     @IBAction func nextButtonTapped(_ sender: Any) {
-        currentQuestionId += 1
-        if currentQuestionId < questionnaires.count {
-            questionLabel.text = questionnaires[currentQuestionId].question
+        // Check whether a value is selected.
+        if questionnaires[currentQuestionId].answer == -1 {
+            let alert = UIAlertController(title: "Please select a value.", message: "", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
         } else {
-            print(questionnaires)
-            saveResponse(questionnaires: questionnaires)
-            performSegue(withIdentifier: "ShowInstructions", sender: self)
+            currentQuestionId += 1
+            if currentQuestionId < questionnaires.count {
+                questionLabel.text = questionnaires[currentQuestionId].question
+            } else {
+                print(questionnaires)
+                saveResponse(questionnaires: questionnaires)
+                performSegue(withIdentifier: "ShowInstructions", sender: self)
+            }
         }
     }
     
@@ -102,6 +109,7 @@ class SelfControlEMAViewController: UIViewController {
         } catch {
             fatalError("Failure to save context: \(error)")
         }
+        
     }
     
 }
