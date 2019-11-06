@@ -103,4 +103,5 @@ class SelfControlEMAViewController: UIViewController {
             fatalError("Failure to save context: \(error)")
         }
     }
+    
 }

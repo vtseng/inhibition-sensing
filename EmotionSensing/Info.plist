@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIconFile</key>
-	<string></string>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -13,6 +9,8 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleGetInfoString</key>
+	<string></string>
+	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
@@ -32,6 +30,8 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSBluetoothPeripheralUsageDescription</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSCalendarsUsageDescription</key>
@@ -46,9 +46,9 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSHumanReadableCopyright</key>
 	<string></string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSLocationAlwaysUsageDescription</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>NSLocationUsageDescription</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

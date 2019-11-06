@@ -21,7 +21,6 @@ class StopSignalTaskGetReadyViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(onMovedToBackground), name: UIApplication.willResignActiveNotification, object: nil)
         
@@ -115,4 +114,5 @@ class StopSignalTaskGetReadyViewController: UIViewController {
     override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation{
         return .landscapeRight
     }
+    
 }
