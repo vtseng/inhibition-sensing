@@ -55,7 +55,7 @@ class StudyDashboardViewController: UIViewController, UNUserNotificationCenterDe
 
         notificationCenter.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
         
-        let url = "http://3.16.129.117/pac-server/index.php/webservice/index/key/example"
+        let url = "http://18.191.245.185/pac-server/index.php/webservice/index/key/example"
         study.setStudyURL(url)
         study.setMaximumNumberOfRecordsForDBSync(100)
         study.setAutoDBSyncOnlyBatterChargning(false)
